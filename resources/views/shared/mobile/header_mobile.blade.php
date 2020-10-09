@@ -2,7 +2,7 @@
     <div class="header-top">
         <div class="container">
             <div class="logo text-center">
-                <a href="#" title="logo"><img alt="logo-theme" src="/images/logo.png" class="img-responsive"></a>
+                <a href="/" title="logo"><img alt="logo-theme" src="/images/logo.png" class="img-responsive"></a>
             </div>
         </div>
     </div>

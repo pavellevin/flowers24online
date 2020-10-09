@@ -97,7 +97,7 @@
                                 </div>
                                 <div class="col-md-6 col-md-offset-6 mt-25">
                                     <button type="submit" class="proceed-checkout">
-                                        <span>{{ __('messages.process register') }}</span>
+                                        <span>{{ __('messages.confirm') }}</span>
                                     </button>
                                 </div>
                             </div>

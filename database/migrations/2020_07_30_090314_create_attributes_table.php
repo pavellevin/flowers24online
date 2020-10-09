@@ -17,7 +17,7 @@ class CreateAttributesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('group_id');
             $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
-            $table->string('name', 100);
+            $table->string('name_en', 100);
             $table->timestamps();
         });
     }

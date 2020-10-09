@@ -117,14 +117,14 @@
                 @endif
             </div>
             <div class="col-md-3">
-                <div class="sidebar sidebar-right hidden-xs">
+                <div class="sidebar sidebar-right hidden-sm hidden-xs">
                     @if(isset($catalog) && in_array($catalog->id, ['5','7','8','25','26']))
                         @widget('filter_flower', ['slug' => $catalog->slug, 'filters' => $filters])
+                        @widget('filter_price', ['filters' => $filters])
                     @endif
                     @if(isset($catalog) && in_array($catalog->id, ['28']))
                         @widget('filter_dop', ['slug' => $catalog->slug, 'filters' => $filters])
                     @endif
-                    @widget('filter_price', ['filters' => $filters])
                 {{--</div>--}}
                 {{--<div class="sidebar sidebar-right">--}}
                     @widget('catalog')

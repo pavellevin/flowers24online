@@ -1,6 +1,6 @@
 <div class="widget widget-filter-color">
     <div class="title-heading">
-        <span>ФИЛЬТР</span>
+        <span>{{ __('messages.filter') }}</span>
     </div>
     <div id="accordion">
             <div class="card">
@@ -12,7 +12,7 @@
                 </h4>
             </div>
 
-            <div id="collapse{{$attribute->id}}" class="collapse" aria-labelledby="heading{{$attribute->id}}" data-parent="#accordion">
+            <div id="collapse{{$attribute->id}}" class="collapsed" aria-labelledby="heading{{$attribute->id}}" data-parent="#accordion">
                 @foreach($attribute->attributes as $attr)
                 <div class="card-body">
                     <li><a href="/catalog/{{$slug}}/filters={{$filters}}{{ mb_strtolower($attr->name) }}&">{{ $attr->name }}</a></li>

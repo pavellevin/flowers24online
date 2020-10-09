@@ -89,6 +89,7 @@ return [
     'search' => 'Search',
     'uah' => 'UAH',
     'enter your e-mail' => 'Enter your e-mail',
-    'buy' => 'Buy',
+    'buy' => 'Buy Now',
+    'color' => 'Color',
 
 ];

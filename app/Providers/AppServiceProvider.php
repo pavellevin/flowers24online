@@ -39,7 +39,10 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer(['site.product', 'site.checkout'], function ($view) {
-                if ($period = Period::where('start_time', '>', Carbon::now('Europe/Kiev')->format('H:i:s'))->orderBy('start_time', 'ASC')->first()) {
+                if ($period = Period::where('start_time', '>', Carbon::now('Europe/Kiev')->addMinutes(30)->format('H:i:s'))
+                    ->where('start_time', '<', '18:00:00')
+                    ->orderBy('start_time', 'ASC')
+                    ->first()) {
                 $nearestperiod = $period->name;
             } else {
                     $nearestperiod = Carbon::tomorrow()->format('d-m-Y');

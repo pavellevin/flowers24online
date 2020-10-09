@@ -7706,6 +7706,7 @@ button.close {
 
 .pull-left {
     float: left !important;
+    display: inline-flex;
 }
 
 .hide {
@@ -13344,6 +13345,7 @@ li {
 }
 
 .price {
+    margin-left: 10px;
     color: #80b435;
     font-family: "Roboto Condensed", sans-serif;
 }
@@ -17747,7 +17749,7 @@ h1.category_title {
 }
 
 select.selectpicker2 {
-    padding-left: 30px;
+    /*padding-left: 30px;*/
     border: none;
 }
 
@@ -17973,6 +17975,7 @@ button.btn-login.btn-theme.btn-medium.btn-buy {
     font-weight: 500;
 }
 
+.button-cart a,
 .header-v3 .title-submenu a,
 .header-v3 .lever-1 a,
 .header-v3 .dropdown-content a{

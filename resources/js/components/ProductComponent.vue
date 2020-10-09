@@ -94,7 +94,7 @@
                 'products'
             ],
         mounted() {
-            console.log(this.products)
+            console.log('Component ProductComponent mounted.');
         },
         methods: {
             addToCart(item) {

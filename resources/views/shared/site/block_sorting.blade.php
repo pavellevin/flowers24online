@@ -24,23 +24,24 @@
         <div class="select-filter">
             <span>{{ __('messages.sort by') }}:</span>
             {{--<select name="selectpicker" class="selectpicker" onchange="location.href=(typeof catalog !== 'undefined' ? '/catalog/' + catalog : '/shop') + '/' + this.value">--}}
-            <select name="selectpicker" class="selectpicker2"
-                    onchange="location.href=document.location.href.replace(/\&\/.*/, '&') + '/' + this.value">
-                <option value="" @if(!$sortby) selected @endif>{{ __('messages.default') }}</option>
+            <select id="sortby-section" name="selectpicker" class="selectpicker2" onchange="setSortby()">
+                <option value="default" @if(isset($_COOKIE['sortBy']) && $_COOKIE['sortBy'] == 'popularity') selected @endif>{{ __('messages.default') }}</option>
                 <option value="popularity"
-                        @if($sortby == 'popularity') selected @endif>{{ __('messages.popularity') }}</option>
+                        @if(isset($_COOKIE['sortBy']) && $_COOKIE['sortBy'] == 'popularity') selected @endif>{{ __('messages.popularity') }}</option>
                 <option value="lowerprice"
-                        @if($sortby == 'lowerprice') selected @endif>{{ __('messages.from low price') }}</option>
+                        @if(isset($_COOKIE['sortBy']) && $_COOKIE['sortBy'] == 'lowerprice') selected @endif>{{ __('messages.from low price') }}</option>
                 <option value="highestprice"
-                        @if($sortby == 'highestprice') selected @endif> {{ __('messages.from high price') }}</option>
+                        @if(isset($_COOKIE['sortBy']) && $_COOKIE['sortBy'] == 'highestprice') selected @endif> {{ __('messages.from high price') }}</option>
                 <option value="newness"
-                        @if($sortby == 'newness') selected @endif>{{ __('messages.new items') }}</option>
+                        @if(isset($_COOKIE['sortBy']) && $_COOKIE['sortBy'] == 'newness') selected @endif>{{ __('messages.new items') }}</option>
             </select>
         </div>
     </div>
 </div>
     <div class="box-filter">
-            <div id="collapse" aria-labelledby="heading" class="collapse" style="height: 0px;" aria-expanded="false">
+        <div id="collapse" aria-labelledby="heading" class="collapse" style="height: 0px;" aria-expanded="false">
+            @isset($catalog)
                 @widget('filter_flower', ['slug' => $catalog->slug, 'filters' => $filters])
-            </div>
+            @endisset
         </div>
+    </div>

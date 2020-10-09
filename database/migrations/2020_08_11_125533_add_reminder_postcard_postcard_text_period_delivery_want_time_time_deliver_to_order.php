@@ -19,7 +19,7 @@ class AddReminderPostcardPostcardTextPeriodDeliveryWantTimeTimeDeliverToOrder ex
                 $table->string('want_postcard', 20)->nullable()->after('reminder');
                 $table->text('postcard_text', 500)->nullable()->after('postcard');
                 $table->string('period_id', 20)->nullable()->after('date_delivery');
-                $table->string('want_time', 2)->nullable()->after('period_delivery');
+                $table->string('want_time', 20)->nullable()->after('period_delivery');
                 $table->time('time_delivery')->nullable()->after('want_time');
             }
 

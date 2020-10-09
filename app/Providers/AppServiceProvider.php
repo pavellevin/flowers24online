@@ -27,9 +27,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer(['layouts.main'], function ($view) {
-            $catalog = \App\Catalog::with('products')->get();
-//            $catalog = \App\Catalog::all();
-//            dd($catalog);
+            $catalog = \App\Catalog::with('products')->sortingPosition()->get();
+
             $news = \App\News::all();
 
             $view->with([
@@ -43,13 +42,20 @@ class AppServiceProvider extends ServiceProvider
                     ->where('start_time', '<', '18:00:00')
                     ->orderBy('start_time', 'ASC')
                     ->first()) {
-                $nearestperiod = $period->name;
-            } else {
+                    $nearestperiod = $period->name;
+                } else {
                     $nearestperiod = Carbon::tomorrow()->format('d-m-Y');
-            }
-//dd($nearestperiod);
+                }
+//dd(\App\Setting::findOrFail(2)->value);
+
             $view->with([
-                'nearestperiod' => $nearestperiod
+                'nearestperiod' => $nearestperiod,
+                'service_surprise' => \App\Setting::findOrFail(2)->value,
+                'service_photo' => \App\Setting::findOrFail(3)->value,
+                'service_branded_card' => \App\Setting::findOrFail(4)->value,
+                'service_exact_time' => \App\Setting::findOrFail(5)->value,
+                'service_morning_evening_delivery' => \App\Setting::findOrFail(6)->value,
+                'coast_delivery' => \App\Setting::findOrFail(7)->value,
             ]);
         });
     }

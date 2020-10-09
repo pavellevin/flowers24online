@@ -18,24 +18,54 @@ use Illuminate\Support\Facades\Session;
 
 class FrontController extends Controller
 {
-    private function getSort($products, $sortby)
+    private function getSort($products)
     {
-        switch ($sortby) {
+        switch ($_COOKIE['sortBy']){
             case 'newness':
-                return $products = $products->newness();
+                $products = $products->Newness();
+                return $products;
                 break;
             case 'popularity':
-                return $products = $products->popularity();
+                $products = $products->Popularity();
+                return $products;
                 break;
             case 'lowerprice':
-                return $products = $products->lowerprice();
+                $products = $products->Lowerprice();
+                return $products;
                 break;
             case 'highestprice':
-                return $products = $products->highestprice();
+                $products = $products->Highestprice();
+                return $products;
                 break;
+            default:
+                return $products = $products->Newness();
         }
     }
 
+    private function getWant($want){
+        if ($want == 'on')
+            return true;
+        return false;
+    }
+
+//    private function getSort($products, $sortby)
+//    {
+//        switch ($sortby) {
+//            case 'newness':
+//                return $products = $products->newness();
+//                break;
+//            case 'popularity':
+//                return $products = $products->popularity();
+//                break;
+//            case 'lowerprice':
+//                return $products = $products->lowerprice();
+//                break;
+//            case 'highestprice':
+//                return $products = $products->highestprice();
+//                break;
+//        }
+//    }
+//
     public function index()
     {
         $products = Product::where('is_slider', 'on')->with('catalog')->get();
@@ -108,10 +138,12 @@ class FrontController extends Controller
         $catalog = Catalog::where('slug', $slug)->firstOrFail();
         $products = $catalog->products()->active();
 
-        if (isset($sortby) && !empty($sortby))
-            $products = $this->getSort($products, $sortby);
+        if (isset($_COOKIE['sortBy']) && !empty($_COOKIE['sortBy'])) {
+            $products = $this->getSort($products);
+        }
 
         $products = $products->paginate();
+//        dd($products);
         foreach ($products as $key => $product) {
             $products[$key]['image'] = $product->image;
         }
@@ -120,7 +152,6 @@ class FrontController extends Controller
             'products' => $products,
             'catalog' => $catalog,
             'filters' => '',
-            'sortby' => $sortby,
             'minPrice' => Product::orderBy('price')->value('price'),
             'maxPrice' => Product::orderBy('price', 'desc')->value('price')
 
@@ -222,15 +253,26 @@ class FrontController extends Controller
         $order->date_delivery = Carbon::parse($request->date_delivery)->format('Y-m-d');
         $order->comment = $request->comment;
         $order->reminder = $request->reminder;
-        $order->postcard = $request->want_postcard;
+        $order->want_postcard = $request->want_postcard;
         $order->postcard_text = $request->postcard_text;
         $order->want_time = $request->want_time;
         $order->want_foto = $request->want_foto;
         $order->want_call = $request->want_call;
         $order->time_delivery = Carbon::parse($request->time_delivery)->format('H:i:s');
         $order->status_id = 1;
-        if ($request->want_time == 'on')
+        if ($this->getWant($request->want_time)) {
             $order->period_id = null;
+            $order->want_time =  \App\Setting::findOrFail(5)->value;
+        }
+        if ($this->getWant($request->want_postcard)) {
+            $order->want_postcard =  \App\Setting::findOrFail(4)->value;
+        }
+        if ($this->getWant($request->want_foto)) {
+            $order->want_foto =  \App\Setting::findOrFail(3)->value;
+        }
+        if ($this->getWant($request->want_call)) {
+            $order->want_call =  \App\Setting::findOrFail(2)->value;
+        }
         if ($order->save()) {
             $carts = json_decode($request->cart, TRUE);
             foreach ($carts as $cart) {

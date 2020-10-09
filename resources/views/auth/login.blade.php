@@ -69,8 +69,8 @@
                                                placeholder="Email *" autofocus>
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                         @enderror
                                         {{--<input type="text" name="username" placeholder="Username or Email *">--}}
                                         <input id="password" type="password"
@@ -79,8 +79,8 @@
                                                placeholder="Password *">
                                         @error('password')
                                         <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                         @enderror
                                         {{--<input type="text" name="password" placeholder="Password *">--}}
                                         <div class="action-login">
@@ -102,7 +102,7 @@
                             </div>
                         </form>
                     </div>
-                @endif
+    @endif
 @endsection
 
 {{--FOOTER--}}

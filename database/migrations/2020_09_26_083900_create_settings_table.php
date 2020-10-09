@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddWantCallToOrders extends Migration
+class CreateSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddWantCallToOrders extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->string('want_call', 20)->nullable()->after('want_time');
+        Schema::create('settings', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 250);
+            $table->string('value', 250);
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddWantCallToOrders extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn('want_call');
-        });
+        Schema::dropIfExists('settings');
     }
 }

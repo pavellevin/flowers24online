@@ -44,5 +44,4 @@ const app = new Vue({
             location.href = '/checkout';
         },
     }
-
 });

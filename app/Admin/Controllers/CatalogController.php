@@ -27,6 +27,7 @@ class CatalogController extends AdminController
         $grid = new Grid(new Catalog());
 
         $grid->column('id', __('Id'));
+        $grid->column('position', __('Position'))->sortable()->label();
         $grid->column('image')->image();
         $grid->column('name', __('Name'));
         $grid->column('slug', __('Slug'));
@@ -48,6 +49,7 @@ class CatalogController extends AdminController
         $show = new Show(Catalog::findOrFail($id));
 
         $show->field('id', __('Id'));
+        $show->field('position', __('Position'));
         $show->field('name', __('Name'));
         $show->field('slug', __('Slug'));
         $show->field('description', __('Description'));
@@ -67,6 +69,9 @@ class CatalogController extends AdminController
     {
         $form = new Form(new Catalog());
         $form->text('name', __('Name'));
+        $form->text('position', __('Position'))
+            ->creationRules(['required', "unique:catalogs"])
+            ->updateRules(['required', "unique:catalogs,position,{{id}}"]);
         $form->text('slug', __('Slug'));
         $form->text('description', __('Description'));
         $form->image('image', 'Pictures');

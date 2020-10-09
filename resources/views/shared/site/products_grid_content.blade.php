@@ -11,7 +11,7 @@
                     <div class="product-block">
                         <div class="row">
                             @foreach($products as $product)
-                                <div class="item col-lg-3 col-md-6 col-sm-6  col-xs-6 wrap-box">
+                                <div class="item col-lg-3 col-md-3 col-sm-6  col-xs-6 wrap-box">
                                     <div class="wrap-box-1">
                                         <div class="box-img">
                                             <a href="{{ route('product', $product->slug) }}">
@@ -112,7 +112,7 @@
                                                 {{--</div>--}}
                                             </div>
                                         </div>
-                                        <button @click="addToCart({{json_encode($product)}})" type="submit" class="btn-login btn-theme btn-medium btn-buy"><span>{{__('messages.buy')}}</span></button>
+                                        <button onclick="window.location.href='{{ route('product', $product->slug) }}'" type="submit" class="btn-login btn-theme btn-medium btn-buy"><span>{{__('messages.buy')}}</span></button>
 
                                     </div>
                                 </div>

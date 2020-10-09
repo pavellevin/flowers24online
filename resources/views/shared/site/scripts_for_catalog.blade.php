@@ -196,6 +196,11 @@
         $( "#amount2" ).val( $( "#slider-range" ).slider( "values", 1 ));
     } );
 
-
+    function setSortby(){
+        var value = document.getElementById('sortby-section').value;
+        console.log(value);
+        document.cookie = "sortBy=" + value;
+        location.reload();
+    }
 </script>
 

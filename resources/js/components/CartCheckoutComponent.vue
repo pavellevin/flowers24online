@@ -2,7 +2,7 @@
 <div class="inner row">
     <div class="content-left col-md-8 col-sm-12">
         <div class="form-billing-details row">
-            <div class="col-md-5 pt-25 pb-10">
+            <div class="col-md-5 pt-25 pb-10 checkout-customer">
                 <div class="title-heading">
                     <h3>{{ __('messages.сustomer') }}</h3>
                 </div>
@@ -16,7 +16,7 @@
 
                 <input type="checkbox" name="want_call" id="want_call" class="reset_input_style" @change="viewCall()">
                 <span>{{ __('messages.call') }}
-                   <i>({{ __('messages.call price') }})</i></span>
+                   <i>({{ __('messages.call price') }} {{ service_surprise }} {{ __('messages.uah') }})</i></span>
                    <br/>
 
                 <input type="checkbox" name="reminder" id="reminder" class="reset_input_style">
@@ -26,7 +26,7 @@
 
                 <input type="checkbox" name="want_foto" id="want_foto" class="reset_input_style" @change="viewFoto()">
                  <span>{{ __('messages.photo') }}
-                   <i>({{ __('messages.photo price') }})</i></span>
+                   <i>({{ __('messages.photo price') }} {{ service_photo }} {{ __('messages.uah') }})</i></span>
                    <br/>
 
                 <input type="radio" name="want_postcard" id="want_card" class="reset_input_style" value="card" @change="viewPostcardText()">
@@ -34,16 +34,16 @@
                    <i>({{ __('messages.free') }})</i></span>
                    <br/>
 
-                <input type="radio" name="want_postcard" id="want_postcard" class="reset_input_style" value="postcard" @change="viewPostcardText()">
+                <input type="radio" name="want_postcard" id="want_postcard" class="reset_input_style" value="on" @change="viewPostcardText()">
                  <span>{{ __('messages.branded card') }}
-                   <i>({{ __('messages.branded card price') }})</i></span>
+                   <i>({{ __('messages.branded card price') }} {{ service_branded_card }} {{ __('messages.uah') }})</i></span>
                    <textarea name="postcard_text" id="postcard_text"></textarea>
                    <br/>
 
                    <label>{{ __('messages.comment') }}</label>
                    <textarea name="order note" id="comment"></textarea>
             </div>
-            <div class="col-md-5 col-md-offset-1 pt-25 pb-10">
+            <div class="col-md-5 col-md-offset-1 pt-25 pb-10 checkout-recipient">
                 <div class="title-heading">
                     <h3>{{ __('messages.recipient') }}</h3>
                 </div>
@@ -79,7 +79,7 @@
                 <input type="date" name="date_delivery" id="date_delivery">
 
                 <label>{{ __('messages.delivery time') }}  </label>
-                <div>{{ __('messages.nearest delivery time') }} :   {{ nearestperiod }}</div>
+                <div class="nearest-delivery-time">{{ __('messages.nearest delivery time') }} :   {{ nearestperiod }}</div>
                 <select v-model="period_delivery_selected" @change="viewEarlyLateDelivery()">
                 <option value="" disabled selected style='display:none;'>{{ __('messages.сhoose time') }}</option>
                   <option v-for="period in periods" :value="period.id">
@@ -90,12 +90,12 @@
                 <br/>
                 <input type="checkbox" id="want_time" name="want_time" class="reset_input_style" @change="viewTimeDelivery()">
                 <span>{{ __('messages.exact time') }}
-                <i>({{ __('messages.exact time price') }})</i></span>
+                <i>({{ __('messages.exact time price') }} {{ service_exact_time }} {{ __('messages.uah') }})</i></span>
                 <input type="time" id="time_delivery" name="time_delivery" class="time_delivery">
             </div>
         </div>
     </div>
-    <div class="content-right col-md-4 col-sm-12 pt-25">
+    <div class="content-right col-md-4 col-sm-12 pt-25 checkout-order">
         <div class="widget widget-your-order">
             <div class="title-heading">
                 <h3>{{ __('messages.your order') }}</h3>
@@ -130,23 +130,23 @@
                 </div>
                 <div class="content-center early_late_delivery" style="display:none">
                     <div class="title">{{ __('messages.service morning evening delivery') }}</div>
-                    <span class="price" id="early_late_delivery">99.00</span>
+                    <span class="price" id="early_late_delivery">{{service_morning_evening_delivery}}</span>
                 </div>
                 <div class="content-center time_delivery" style="display:none">
                     <div class="title">{{ __('messages.service exact time') }}</div>
-                    <span class="price" id="exact_time">99.00</span>
+                    <span class="price" id="exact_time">{{service_exact_time}}</span>
                 </div>
                 <div class="content-center foto" style="display:none">
                     <div class="title">{{ __('messages.service photo') }}</div>
-                    <span class="price" id="foto_coast">30.00</span>
+                    <span class="price" id="foto_coast">{{service_photo}}</span>
                 </div>
                 <div class="content-center postcard" style="display:none">
                     <div class="title">{{ __('messages.service postcard') }}</div>
-                    <span class="price" id="postcard_coast">10.00</span>
+                    <span class="price" id="postcard_coast">{{service_branded_card}}</span>
                 </div>
                 <div class="content-center call" style="display:none">
                     <div class="title">{{ __('messages.service pre-call') }}</div>
-                    <span class="price" id="call">99.00</span>
+                    <span class="price" id="call">{{service_surprise}}</span>
                 </div>
                 <div class="content-center">
                     <div class="title">{{ __('messages.delivery') }}</div>
@@ -170,7 +170,7 @@
                         </a>
                 </div>
             <div class="content-item p-0">
-                <h5 class="title-h5">
+                <h5 class="title-h5 text-center">
                     <a :href="/product/+product.slug" tabindex="0">
                         {{product.name}}
                     </a>
@@ -210,12 +210,19 @@
            'nearestperiod',
            'periods',
            'dopproducts',
+           'service_surprise',
+           'service_photo',
+           'service_branded_card',
+           'service_exact_time',
+           'service_morning_evening_delivery',
+           'coast_delivery',
         ],
         mounted() {
+            console.log('Component CartCheckout mounted.');
             let delivery = Number($('#coast_delivery').text());
             let total = Number($('#total_price').text());
             if(total < 500){
-                $('#coast_delivery').text('99.00');
+                $('#coast_delivery').text(this.coast_delivery);
                 delivery = Number($('#coast_delivery').text());
                 let totaldelivery = total + delivery;
                 $('#total_price').text(totaldelivery.toFixed(2));

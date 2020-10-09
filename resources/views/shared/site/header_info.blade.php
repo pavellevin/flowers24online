@@ -1,4 +1,4 @@
-<header id="main-header-info" class="header-info">
+<header id="main-header-info" class="header-info visible-md visible-xs">
     <div class="container-fluid">
         <div class="inner row">
             <div class="col-lg-2 col-md-2 col-xs-5 header-info-item">
@@ -18,6 +18,5 @@
                 <span>{{ __('messages.convenient payment: more than 10 ways') }}</span>
             </div>
         </div>
-    </div>
     </div>
 </header>

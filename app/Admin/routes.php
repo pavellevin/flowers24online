@@ -82,6 +82,13 @@ Route::group([
     $router->put('/auth/periods/{id}', 'PeriodsController@update')->name('update.period');
     $router->get('/auth/periods/{id}/edit', 'PeriodsController@edit')->name('edit.period');
 
+    $router->get('/auth/settings', 'SettingsController@index')->name('settings');
+    $router->post('/auth/settings', 'SettingsController@store')->name('store.setting');
+    $router->get('/auth/settings/create', 'SettingsController@create')->name('create.setting');
+    $router->get('/auth/settings/{id}', 'SettingsController@show')->name('show.setting');
+    $router->put('/auth/settings/{id}', 'SettingsController@update')->name('update.setting');
+    $router->get('/auth/settings/{id}/edit', 'SettingsController@edit')->name('edit.setting');
+
     $router->resource('newsletters', NewsletterController::class);
 
     $router->resource('news', NewsController::class);

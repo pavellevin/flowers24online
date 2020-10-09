@@ -1,4 +1,4 @@
-<header id="main-header-filter" class="header-filter">
+<header id="main-header-filter" class="header-filter visible-md">
     <div class="container-fluid">
         <div class="inner row">
             @foreach($attributes as $attribute)

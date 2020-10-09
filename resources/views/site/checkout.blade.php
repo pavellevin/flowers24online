@@ -107,7 +107,13 @@
                                :login_user="{{ json_encode(['isLoggedIn'=>auth()->check() ? true : false, 'user'=>auth()->check() ? auth()->user() : null]) }}"
                                :periods="{{json_encode($periods)}}"
                                :dopproducts="{{json_encode($dopproducts)}}"
-                               :nearestperiod="{{json_encode($nearestperiod)}}" >
+                               :nearestperiod="{{json_encode($nearestperiod)}}"
+                               :service_surprise="{{json_encode($service_surprise)}}"
+                               :service_photo="{{json_encode($service_photo)}}"
+                               :service_branded_card="{{json_encode($service_branded_card)}}"
+                               :service_exact_time="{{json_encode($service_exact_time)}}"
+                               :service_morning_evening_delivery="{{json_encode($service_morning_evening_delivery)}}"
+                               :coast_delivery="{{json_encode($coast_delivery)}}">
                 </cart-checkout>
             </div>
         </section>

@@ -28,6 +28,7 @@ class OrdersController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Order());
+        $grid->model()->orderBy('id', 'desc');
 //        $grid->model()->select([DB::raw("sum(price*quantity) as total"), 'order_key', 'user_id', 'phone', 'city_id', 'status_id', 'district_id', 'date_delivery', 'comment', 'quantity', 'created_at', 'updated_at']);
         $grid->column('id', __('Id'));
 //        $grid->column('order_key', __('Order key'));
@@ -43,19 +44,22 @@ class OrdersController extends AdminController
             }
 
             if ($total < 500)
-                $total += 99;
+                $total += \App\Setting::findOrFail(7)->value;
+
+            if(isset($this->want_call) && $this->want_time != null )
+                $total += (integer)$this->want_call;
 
             if(isset($this->want_time) && $this->want_time != null )
-                $total += 99;
+                $total += (integer)$this->want_time;
 
-            if(isset($this->postcard) && $this->postcard != null )
-                $total += 10;
+            if(isset($this->want_postcard) && $this->want_postcard != null && $this->want_postcard != 'card' )
+                $total += (integer)$this->want_postcard;
 
             if(isset($this->want_foto) && $this->want_foto != null )
-                $total += 30;
+                $total += (integer)$this->want_foto;
 
             if($this->period_id == 1 || $this->period_id  == 8 )
-                $total += 99;
+                $total += \App\Setting::findOrFail(6)->value;
 
             return $total;
         });
@@ -126,7 +130,11 @@ class OrdersController extends AdminController
         $show->field('time_delivery', __('Time delivery'))->display(function ($time_delivery) {
             return \Carbon\Carbon::parse($time_delivery)->format('H:m');
         });
-        $show->field('want_postcard', __('Postcard or Card'));
+        $show->field('want_postcard', __('Postcard or Card'))->unescape()->as(function ($want_postcard) {
+            if($want_postcard == 'card')
+                return "<span class='label label-info'>Обычная карточка </span>";
+            return "<span class='label label-danger'>Брендированная карточка</span>";
+        });
         $show->field('postcard_text', __('Postcard text'));
         $show->field('want_call', __('Call'))->unescape()->as(function ($want_call) {
             if($want_call == null)

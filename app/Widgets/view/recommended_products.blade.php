@@ -29,7 +29,8 @@
                                             <div class="text-center">
                                                 <span class="price">{{ $product->price }} {{ __('messages.uah') }}</span>
                                             </div>
-                                            <button @click="addToCart({{json_encode($product)}})" type="submit" class="btn-login btn-theme btn-medium btn-buy"><span>{{__('messages.buy')}}</span></button>
+                                            {{--<button @click="addToCart({{json_encode($product)}})" type="submit" class="btn-login btn-theme btn-medium btn-buy"><span>{{__('messages.buy')}}</span></button>--}}
+                                            <button onclick="window.location.href='{{ route('product', $product->slug) }}'" type="submit" class="btn-login btn-theme btn-medium btn-buy"><span>{{__('messages.buy')}}</span></button>
                                             {{--<div class="text-right">--}}
                                                 {{--<span class="height">133 cm</span>--}}
                                             {{--</div>--}}

@@ -109,9 +109,12 @@
                     </div>
                 </div>
             </li>
+            <li class="level1">
+                <a href="#">{{ __('messages.payment and delivery') }}</a>
+            </li>
             <li class="level4">
                 <div class="dropdown-phone">
-                    <span>{{ __('messages.contacts') }}</span>
+                    <a href="javascript:;">{{ __('messages.contacts') }}</a>
                     <i class="pe-7s-angle-down"></i>
                     <div class="dropdown-content">
                         <p>+380111111111</p>
@@ -125,9 +128,6 @@
                 {{--<span>+38XXXXXXXXXX</span>--}}
                 {{--<span>+38XXXXXXXXXX</span>--}}
                 {{--<span>+38XXXXXXXXXX</span>--}}
-            </li>
-            <li class="level1">
-                <a href="#">{{ __('messages.payment and delivery') }}</a>
             </li>
             {{--<li class="level4">--}}
                 {{--<div class="dropdown-phone">--}}

@@ -14,7 +14,7 @@ class AddWantFotoToOrders extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->string('want_foto', 2)->nullable()->after('want_time');
+            $table->string('want_foto', 20)->nullable()->after('want_time');
         });
     }
 

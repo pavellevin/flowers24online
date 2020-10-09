@@ -31,7 +31,7 @@ class AttributesController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('group_id', __('Group id'));
-        $grid->column('name', __('Name'));
+        $grid->column('name_ru', __('Name'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
@@ -50,7 +50,7 @@ class AttributesController extends AdminController
 
         $show->field('id', __('Id'));
         $show->field('group_id', __('Group id'));
-        $show->field('name', __('Name'));
+        $show->field('name_ru', __('Name'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -66,8 +66,8 @@ class AttributesController extends AdminController
     {
         $form = new Form(new Attribute());
 
-        $form->select('group_id', 'Group')->options((new $this->groupModel())::all()->pluck('name', 'id'));
-        $form->text('name', __('Name'));
+        $form->select('group_id', 'Group')->options((new $this->groupModel())::all()->pluck('name_ru', 'id'));
+        $form->text('name_ru', __('Name'));
 
         return $form;
     }

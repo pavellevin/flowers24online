@@ -45,7 +45,7 @@ class ProductsController extends AdminController
             $res = '';
             foreach ($attributes as $attribute) {
 //                $res .= "<span class='label' style='background-color: {$attribute['name']}'>{$attribute['name']}</span> ";
-                $res .= "<span class='label label-success'>{$attribute['name']}</span><br/> ";
+                $res .= "<span class='label label-success'>{$attribute['name_ru']}</span><br/> ";
             }
             return $res;
         })->sortable();
@@ -127,11 +127,11 @@ class ProductsController extends AdminController
 
         $form = new Form(new Product());
         $form->select('catalog_id', 'Catalog')->options((new $this->catalogModel())::all()->pluck('name', 'id'));
-        $form->multipleSelect('attributes', 'Цвет')->options((new $this->groupModel())::find(1)->attributes->pluck('name', 'id'))->placeholder('Введите цвет цветка');
-        $form->multipleSelect('attributes', 'Кому/событие')->options((new $this->groupModel())::find(2)->attributes->pluck('name', 'id'))->placeholder('Введите кому/событие');
-        $form->multipleSelect('attributes', 'Цветок в букете')->options((new $this->groupModel())::find(3)->attributes->pluck('name', 'id'))->placeholder('Введите название цветка в букете');
-        $form->multipleSelect('attributes', 'Размер букета')->options((new $this->groupModel())::find(4)->attributes->pluck('name', 'id'))->placeholder('Введите размер букета');
-        $form->multipleSelect('attributes', 'Допы к букетам')->options((new $this->groupModel())::find(5)->attributes->pluck('name', 'id'))->placeholder('Введите тип допа');
+        $form->multipleSelect('attributes', 'Цвет')->options((new $this->groupModel())::find(1)->attributes->pluck('name_ru', 'id'))->placeholder('Введите цвет цветка');
+        $form->multipleSelect('attributes', 'Кому/событие')->options((new $this->groupModel())::find(2)->attributes->pluck('name_ru', 'id'))->placeholder('Введите кому/событие');
+        $form->multipleSelect('attributes', 'Цветок в букете')->options((new $this->groupModel())::find(3)->attributes->pluck('name_ru', 'id'))->placeholder('Введите название цветка в букете');
+        $form->multipleSelect('attributes', 'Размер букета')->options((new $this->groupModel())::find(4)->attributes->pluck('name_ru', 'id'))->placeholder('Введите размер букета');
+        $form->multipleSelect('attributes', 'Допы к букетам')->options((new $this->groupModel())::find(5)->attributes->pluck('name_ru', 'id'))->placeholder('Введите тип допа');
         $form->text('name', __('Name'));
         $form->text('slug', __('Slug'));
         $form->text('old_price', __('Old price'));

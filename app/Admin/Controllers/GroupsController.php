@@ -27,7 +27,7 @@ class GroupsController extends AdminController
         $grid = new Grid(new Group());
 
         $grid->column('id', __('Id'));
-        $grid->column('name', __('Name'));
+        $grid->column('name_ru', __('Name'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
@@ -45,7 +45,7 @@ class GroupsController extends AdminController
         $show = new Show(Group::findOrFail($id));
 
         $show->field('id', __('Id'));
-        $show->field('name', __('Name'));
+        $show->field('name_ru', __('Name'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -61,7 +61,7 @@ class GroupsController extends AdminController
     {
         $form = new Form(new Group());
 
-        $form->text('name', __('Name'));
+        $form->text('name_ru', __('Name'));
 
         return $form;
     }

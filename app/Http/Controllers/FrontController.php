@@ -1,0 +1,284 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Attribute;
+use App\Catalog;
+use App\City;
+use App\District;
+use App\News;
+use App\Newsletter;
+use App\Period;
+use App\Product;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use App\Events\PostHasViewed;
+use Illuminate\Support\Facades\Session;
+
+class FrontController extends Controller
+{
+    private function getSort($products, $sortby)
+    {
+        switch ($sortby) {
+            case 'newness':
+                return $products = $products->newness();
+                break;
+            case 'popularity':
+                return $products = $products->popularity();
+                break;
+            case 'lowerprice':
+                return $products = $products->lowerprice();
+                break;
+            case 'highestprice':
+                return $products = $products->highestprice();
+                break;
+        }
+    }
+
+    public function index()
+    {
+        $products = Product::where('is_slider', 'on')->with('catalog')->get();
+//        dd($products);
+//        foreach ($products as $product){
+//            dd($product);
+//            dd($product->getMedia()->getFullUrl());
+//        }
+        return view('site.index', [
+            'products' => $products
+        ]);
+
+    }
+
+    public function shop($sortby = false)
+    {
+        $products = Product::with('catalog');
+//        dd($products);
+
+        switch ($sortby) {
+            case 'newness':
+                $products = $products->newness();
+                break;
+            case 'popularity':
+                $products = $products->popularity();
+                break;
+            case 'lowerprice':
+                $products = $products->lowerprice();
+                break;
+            case 'highestprice':
+                $products = $products->highestprice();
+                break;
+        }
+        $products = $products->paginate();
+
+        return view('site.shop', [
+            'products' => $products,
+            'sortby' => $sortby
+        ]);
+    }
+
+    public function getProduct($slug)
+    {
+        if (is_numeric($slug)) {
+
+            $product = Product::findOrFail($slug);
+            return Redirect::to(route('product', $product->slug), 301);
+
+        }
+        $product = Product::where('slug', $slug)->firstOrFail();
+
+        $products = Product::with('catalog')->limit(6)->get();
+
+        event(new PostHasViewed($product));
+
+        return view('site.product', [
+            'products' => $products,
+            'product' => $product
+        ]);
+    }
+
+    public function getProducts($slug, $sortby = false)
+    {
+        if (is_numeric($slug)) {
+
+            $catalog = Catalog::findOrFail($slug);
+            return Redirect::to(route('catalog', $catalog->slug), 301);
+
+        }
+        $catalog = Catalog::where('slug', $slug)->firstOrFail();
+        $products = $catalog->products()->active();
+
+        if (isset($sortby) && !empty($sortby))
+            $products = $this->getSort($products, $sortby);
+
+        $products = $products->paginate();
+        foreach ($products as $key => $product) {
+            $products[$key]['image'] = $product->image;
+        }
+
+        return view('site.catalog', [
+            'products' => $products,
+            'catalog' => $catalog,
+            'filters' => '',
+            'sortby' => $sortby
+        ]);
+    }
+
+    public function getProductsByFilter($slug, $sfilters, $sortby = false)
+    {
+        $catalog = Catalog::where('slug', $slug)->first();
+
+        $products = $catalog->products()->active();
+
+        if (isset($sfilters) && !empty($sfilters)) {
+            $filters = array_filter(explode("&", $sfilters));
+
+            foreach ($filters as $filter) {
+                if (is_numeric($filter)) {
+                    $products = $products->where('price', '>=', $filter);
+                } else {
+                    $products = $products->whereHas('attributes', function ($query) use ($filter) {
+                        $query->where('name', 'like', $filter);
+                    })
+//                        ->whereHas('catalog')
+                    ;
+                }
+            }
+        }
+
+        if (isset($sortby) && !empty($sortby))
+            $products = $this->getSort($products, $sortby);
+
+        $products = $products->paginate();
+
+        foreach ($products as $key => $product) {
+            $products[$key]['image'] = $product->image;
+        }
+
+        return view('site.catalog', [
+            'products' => $products,
+            'catalog' => $catalog,
+            'filters' => $sfilters,
+            'sortby' => $sortby
+        ]);
+    }
+
+    public function showShoppingCard(){
+        return view('site.shopping_card');
+    }
+
+    public function showCheckout()
+    {
+        $cities = City::all();
+        $periods = Period::all();
+
+        return view('site.checkout', [
+            'cities' => $cities,
+            'periods' => $periods
+        ]);
+    }
+
+    public function getDistricts($id)
+    {
+        $districts = District::where('city_id', $id)->get();
+        return json_encode($districts);
+    }
+
+    public function createOrder(Request $request)
+    {
+        $order = new \App\Order();
+        $order->order_key = $request->order_key;
+        $order->user_id = $request->user_id;
+        $order->phone = $request->phone;
+        $order->city_id = $request->city_id;
+        $order->district_id = $request->district_id;
+        $order->adress = $request->adress;
+        $order->period_id = $request->period_id;
+        $order->date_delivery = Carbon::parse($request->date_delivery)->format('Y-m-d');
+        $order->comment = $request->comment;
+        $order->reminder = $request->reminder;
+        $order->postcard = $request->want_postcard;
+        $order->postcard_text = $request->postcard_text;
+        $order->want_time = $request->want_time;
+        $order->time_delivery = Carbon::parse($request->time_delivery)->format('H:i:s');
+        $order->status_id = 1;
+        if ($request->want_time == 'on')
+            $order->period_id = null;
+        if ($order->save()) {
+            $carts = json_decode($request->cart, TRUE);
+            foreach ($carts as $cart) {
+                $this->setRelation('order_product', [
+                    'order_id' => $order->id,
+                    'product_id' => $cart['id'],
+                    'quantity' => $cart['quantity'],
+                    'price' => \App\Product::find($cart['id'])->price
+                ]);
+            }
+        }
+        return $order->id;
+    }
+
+    public function confirm($order_id)
+    {
+        return view('site.confirm', ['order_id' => $order_id]);
+    }
+
+    public function mailing(Request $request){
+        $newsletter = new Newsletter();
+        $newsletter->email = $request->email;
+        if ($newsletter->save()){
+            Session::flash('success', 'Мы добавили вас в список и уже готовим для вас новости и акции');
+            return back();
+        } else {
+            Session::flash('danger', 'Что-то пошло не так');
+            return back()->withInput();
+        }
+
+    }
+
+    public function getProductsBySearch(Request $request, $sortby = false){
+        $array = explode(' ', $request->input('search'));
+
+        foreach ($array as $ar){
+            $products = Product::where('name', 'like', '%'. $ar .'%');
+        }
+        $products = $products->paginate();
+
+        return view('site.shop', [
+            'products' => $products,
+            'sortby' => $sortby,
+            'filters' => false
+        ]);
+
+    }
+
+    public function getNews(){
+        $news = News::all();
+
+        return view('site.news', [
+            'news' => $news
+        ]);
+    }
+
+    public function getNew($slug){
+        if (is_numeric($slug)) {
+
+            $new = News::findOrFail($slug);
+            return Redirect::to(route('new', $new->slug), 301);
+
+        }
+        $new = News::where('slug', $slug)->firstOrFail();
+        $media = $new->getFirstMedia('news');
+        event(new PostHasViewed($new));
+
+        return view('site.new', [
+            'new' => $new,
+            'media' => $media
+        ]);
+    }
+
+    private function setRelation($table, $values)
+    {
+        DB::table($table)->insert($values);
+    }
+}

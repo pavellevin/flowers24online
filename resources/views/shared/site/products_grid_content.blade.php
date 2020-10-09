@@ -1,7 +1,7 @@
 <section id="main-content">
     <div class="container-fluid inner">
         <div class="row">
-            <div id="category_title" class="col-md-9">
+            <div id="category_title" class="col-lg-9 col-md-12">
                 @isset($catalog)
                 <h1 class="category_title">{{ $catalog->name }}</h1>
                 @endisset
@@ -93,7 +93,7 @@
                                         </div>
                                         {{--</div>--}}
                                         <div class=" product-block-info">
-                                            <h5 class="title-h5"><a href="#">{{ $product->name }}</a></h5>
+                                            <h5 class="title-h5"><a href="{{ route('product', $product->slug) }}">{{ $product->name }}</a></h5>
                                         </div>
                                         <div class="content-item">
                                             <div class="bottom">
@@ -125,8 +125,8 @@
                     <div class="info"><h3>{{ __('messages.no product found for the specified search criteria!') }}</h3></div>
                 @endif
             </div>
-            <div class="col-md-3">
-                <div class="sidebar sidebar-right hidden-sm hidden-xs">
+            <div class="col-lg-3">
+                <div class="sidebar sidebar-right hidden-md hidden-sm hidden-xs">
                     @if(isset($catalog) && in_array($catalog->id, ['5','7','8','25','26']))
                         @widget('filter_flower', ['slug' => $catalog->slug, 'filters' => $filters])
                         {{--@widget('filter_price', ['filters' => $filters])--}}

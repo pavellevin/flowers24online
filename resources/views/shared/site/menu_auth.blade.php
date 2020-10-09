@@ -1,4 +1,4 @@
-<div class="search-popup search_modal search">
+<div class="other-menu-auth">
     @if(!Auth::check())
         <a href="{{route('login')}}">
             <i class="pe-7s-user"></i>

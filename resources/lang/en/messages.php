@@ -92,5 +92,10 @@ return [
     'buy' => 'Buy Now',
     'color' => 'Color',
     'no product found for the specified search criteria!' => 'No product found for the specified search criteria!',
+    'payment and delivery' => 'Payment and delivery',
+    'we work 24/7' => 'We work 24/7',
+    'always happy customers' => 'Always happy customers',
+    'guaranteed freshness of flowers' => 'Guaranteed freshness of flowers',
+    'convenient payment: more than 10 ways' => 'Convenient payment: more than 10 ways',
 
 ];

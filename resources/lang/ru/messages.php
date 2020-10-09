@@ -92,4 +92,10 @@ return [
     'enter your e-mail' => 'Введите свой e-mail',
     'buy' => 'Заказать',
     'no product found for the specified search criteria!' => 'По заданным критериям поиска товара не найдено!',
+    'payment and delivery' => 'Оплата и доставка',
+    'we work 24/7' => 'Работаем 24/7',
+    'always happy customers' => 'Всегда довольные клиенты',
+    'guaranteed freshness of flowers' => 'Гарантия свежести цветов',
+    'convenient payment: more than 10 ways' => 'Удобная оплата: более 10 способов',
+
 ];

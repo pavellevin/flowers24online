@@ -22,7 +22,13 @@
 {{--HEADER MOBILE--}}
 @include('shared.mobile.header_mobile')
 
-{{--BREADCRUMB--}}
+{{--HEADER INFO--}}
+@include('shared.site.header_info')
+
+{{--HEADER FILTER--}}
+    @yield('header_filter')
+
+    {{--BREADCRUMB--}}
 @yield('breadcrumb')
 @include('shared.site.flash_message')
     {{--CONTENT--}}

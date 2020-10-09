@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer(['layouts.main'], function ($view) {
             $catalog = \App\Catalog::with('products')->get();
 //            $catalog = \App\Catalog::all();
-//            dd(count($catalog[0]->products));
+//            dd($catalog);
             $news = \App\News::all();
 
             $view->with([

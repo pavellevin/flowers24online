@@ -6,4 +6,5 @@ return [
     'filter_price' => 'App\Widgets\FilterPriceWidget',
     'products' => 'App\Widgets\ProductsWidget',
     'recommended_products' => 'App\Widgets\RecommendedProductsWidget',
+    'header_filter' => 'App\Widgets\HeaderFilterFlowerWidget',
 ];

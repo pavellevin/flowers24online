@@ -92,4 +92,10 @@ return [
     'enter your e-mail' => 'Введіть свій e-mail',
     'buy' => 'Замовити',
     'no product found for the specified search criteria!' => 'За заданими критеріями пошуку товару не знайдено!',
+    'payment and delivery' => 'Оплата і доставка',
+    'we work 24/7' => 'Працюємо 24/7',
+    'always happy customers' => 'Завжди задоволені клієнти',
+    'guaranteed freshness of flowers' => 'Гарантія свіжості квітів',
+    'convenient payment: more than 10 ways' => 'Зручна оплата: більше 10 способів',
+
 ];

@@ -21,6 +21,11 @@
         </section>
 @endsection
 
+{{--HEADER FILTER--}}
+@section('header_filter')
+@widget('header_filter', ['slug' => $catalog->slug, 'filters' => $filters])
+@endsection
+
 {{--CONTENT--}}
 @section('content')
     {{--@if(sizeof($products))--}}

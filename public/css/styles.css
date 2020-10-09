@@ -10505,7 +10505,9 @@ button.btn-outline,
 }
 
 .wrap-box-1 .content-item .price {
-    font-size: 17px;
+    font-size: 30px;
+    position: relative;
+    top: -25px;
 }
 
 .wrap-box-1 .content-item .height {
@@ -11193,10 +11195,11 @@ li {
 }
 
 #main-header .header-right .search {
-    margin-right: 35px;
+    margin-right: 10px;
     margin-top: 10px;
     font-size: 16px;
     cursor: pointer;
+    margin-left: 5px;
 }
 
 #cart_top {
@@ -11309,7 +11312,11 @@ li {
 }
 
 #main-header.header-v3 .inner {
-    padding: 23px 40px;
+    /*padding: 23px 40px;*/
+    padding: 10px 0 5px 15px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
 }
 
 #main-header.header-v3 .main-menu .megamenu-fullwidth .submenu-v1 {
@@ -11679,6 +11686,7 @@ li {
 }
 
 #header_mobile .header-bottom {
+    background-color: #80b435;
     border-top: 1px solid #e7e7e7;
 }
 
@@ -11893,6 +11901,13 @@ li {
     .footer.footer-page .inner {
         text-align: center;
     }
+
+    .wrap-box-1 .content-item .price {
+        font-size: 16px;
+        top: -20px;
+        left: 10px;
+    }
+
 }
 
 .footer.footer-page .inner .form-control {
@@ -12523,6 +12538,8 @@ button.btn-login.btn-theme.btn-medium.btn-buy {
 }
 
 .shopping-cart {
+    text-align: center;
+    width: 150px;
     border: 1px solid #e5e5e5;
     padding: 8px 22px;
     position: relative;
@@ -14709,6 +14726,15 @@ button.btn-login.btn-theme.btn-medium.btn-buy {
 @media (max-width: 768px) {
     .contact-v2 .wrap-left h4 {
         font-size: 45px;
+    }
+
+    .other-menu-auth {
+        padding-right: 15px;
+        padding-top: 0!important;
+    }
+
+    #main-header-info p {
+        font-size: 14px!important;
     }
 }
 
@@ -17354,6 +17380,11 @@ button.btn-login.btn-theme.btn-medium {
         padding-left: 0;
     }
 
+    button.btn-login.btn-theme.btn-medium.btn-buy {
+        position: relative;
+        top: -55px;
+        right: -290px;
+    }
 }
 
 @media (max-width: 1199px) and (min-width: 768px) {
@@ -17709,6 +17740,9 @@ button.proceed-checkout {
     padding-left: 0px;
 }
 
+.m-0{
+    margin: 0;
+}
 .mt-85 {
     margin-top: 85px;
 }
@@ -17735,6 +17769,18 @@ button.proceed-checkout {
 
 .p-0 {
     padding: 0 !important;
+}
+
+.p-1 {
+    padding: 1px!important;
+}
+
+.pl-15 {
+    padding-left: 15px;
+}
+
+.pr-15 {
+    padding-right: 15px;
 }
 
 .pb-50 {
@@ -18127,4 +18173,72 @@ input[name=email]::placeholder {
 }
 #pro_related .wrap-box-1 .content-item h5 {
     margin-top: 0;
+}
+
+.catalog-row-inside {
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    padding: 20px;
+    height: 200px;
+    background-color: #92f372;
+}
+
+.other-menu {
+    display: flex;
+    width: 150px;
+}
+.other-menu-lang {
+    padding: 10px;
+    font-size: 22px;
+}
+.other-menu-auth {
+    font-size: 30px;
+    padding-top: 5px;
+}
+
+.main-menu {
+    padding-top: 18px;
+}
+
+.logo {
+    margin-top: 20px;
+}
+
+.header-info {
+     padding: 20px 0;
+     background-color: #b3f158;
+ }
+
+#main-header-filter {
+     padding: 20px 0;
+     background-color: #c5fb77;
+ }
+
+#main-header-info p {
+    font-size: 15px;
+    color: #676767;
+}
+
+span.old-price {
+    color: red;
+}
+
+ul.header-filter {
+    padding: 10px;
+}
+
+ul.header-filter li {
+    padding: 5px;
+    border-bottom: 1px solid #80b435;
+}
+
+#main-header-filter a {
+    font-size: 15px;
+    color: #395d04;
+}
+
+@media (max-width: 992px) {
+    button.btn-login.btn-theme.btn-medium.btn-buy {
+        margin-top: 45px!important;
+    }
 }

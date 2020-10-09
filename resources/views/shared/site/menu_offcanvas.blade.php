@@ -27,6 +27,9 @@
                     <a href="/news">{{ __('messages.news') }}</a>
                 </li>
                 <li class="level1 hassub">
+                    <a href="#">{{ __('messages.payment and delivery') }}</a>
+                </li>
+                <li class="level1 hassub">
                     <a href="/contacts">{{ __('messages.contacts') }}</a>
                 </li>
             </ul>

@@ -1,6 +1,6 @@
 <div class="widget widget-category">
     <div class="title-heading">
-        <span>КАТАЛОГ</span>
+        <span>{{ __('messages.catalog') }}</span>
     </div>
     <div class="widget-content">
         <ul>

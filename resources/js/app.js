@@ -9,6 +9,9 @@ require('./bootstrap');
 window.Vue = require('vue');
 import store from './store.js';
 
+import _ from 'lodash';
+Vue.prototype.__ = str => _.get(window.i18n, str);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -22,6 +25,7 @@ import store from './store.js';
 
 Vue.component('cart', require('./components/CartComponent.vue').default);
 Vue.component('cart-header', require('./components/CartHeaderComponent.vue').default);
+Vue.component('cart-header-mobile', require('./components/CartHeaderMobileComponent.vue').default);
 Vue.component('cart-checkout', require('./components/CartCheckoutComponent.vue').default);
 Vue.component('product', require('./components/ProductComponent.vue').default);
 

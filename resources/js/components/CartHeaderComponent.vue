@@ -3,7 +3,7 @@
     <div class="shopping-cart">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
            aria-haspopup="true" aria-expanded="false">
-            <span class="text-cart">Корзина</span>
+            <span class="text-cart">{{ __('messages.cart') }}</span>
             <span class="item">({{ $store.state.cartCount }})</span>
         </a>
         <div class="dropdown-menu dropdown-cart">
@@ -17,7 +17,7 @@
                             <div class="product-name"><a :href="'/product/' +  product.slug">{{ product.name }} </a>
                             </div>
                             <div class="product-price">
-                                ₴ {{ product.totalPrice }} <span>( x{{ product.quantity }})</span>
+                                 {{ product.totalPrice }} <span>( x{{ product.quantity }}) {{ __('messages.uah') }}</span>
                             </div>
                         </div>
                     </div>
@@ -26,16 +26,18 @@
             </ul>
             <div class="bottom-cart">
                 <div class="cart-price">
-                    <strong>Итого: </strong>
-                    <span class="price-total">₴ {{ totalPrice }}</span>
+                    <strong>{{ __('messages.total') }}: </strong>
+                    <span class="price-total">{{ totalPrice }} {{ __('messages.uah') }}</span>
                 </div>
                 <div class="button-cart">
-                                        <span class="btn-outline btn-small viewcart">
-                                            <a href="/shopping-card" title="">Корзина</a>
-                                        </span>
-                    <span class="btn-theme btn-small checkout">
-                                            <a href="/checkout" title="">Оплата</a>
-                                        </span>
+                    <span class="btn-outline btn-small viewcart">
+                        <a href="/shopping-card" title="">{{ __('messages.edit cart') }}</a>
+                    </span>
+                </div>
+                <div class="button-cart mt-25">
+                    <span class="btn-outline btn-small checkout">
+                        <a href="/checkout" title="">{{ __('messages.checkout') }}</a>
+                    </span>
                 </div>
             </div>
         </div>
@@ -46,7 +48,7 @@
 <script>
     export default {
         mounted() {
-            console.log('Component CartHeader mounted.')
+            console.log('Component CartHeader mounted.');
         },
         computed: {
             totalPrice() {

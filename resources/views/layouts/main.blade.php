@@ -12,10 +12,10 @@
 <div id="app">
 {{--BODY--}}
 @yield('body')
-    <div id="page-preloader">
-        <div class="spinner">
-        </div>
-    </div>
+    {{--<div id="page-preloader">--}}
+        {{--<div class="spinner">--}}
+        {{--</div>--}}
+    {{--</div>--}}
 {{--HEADER --}}
 @include('shared.site.header')
 

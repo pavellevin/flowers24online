@@ -51,6 +51,12 @@ class OrdersController extends AdminController
             if(isset($this->postcard) && $this->postcard != null )
                 $total += 10;
 
+            if(isset($this->want_foto) && $this->want_foto != null )
+                $total += 30;
+
+            if($this->period_id == 1 || $this->period_id  == 8 )
+                $total += 99;
+
             return $total;
         });
         $grid->column('date_delivery', __('Date delivery'))->display(function ($date_delivery) {
@@ -88,9 +94,11 @@ class OrdersController extends AdminController
         $show = new Show(Order::findOrFail($id));
 
         $show->field('id', __('Id'));
-        $show->field('order_key', __('Order key'));
+//        $show->field('order_key', __('Order key'));
         $show->field('user.name', 'User');
         $show->field('phone', __('Phone'));
+        $show->field('recipient_name', __('Recipient name'));
+        $show->field('recipient_phone', __('Recipient phone'));
         $show->products('Products', function ($products) {
 
             $products->resource('/admin/auth/products');
@@ -110,11 +118,26 @@ class OrdersController extends AdminController
         $show->field('date_delivery', __('Date delivery'))->display(function ($date_delivery) {
             return \Carbon\Carbon::parse($date_delivery)->format('Y-m-d');
         });
-        $show->field('period.name', 'Period delivery');
+        $show->field('period.name', 'Period delivery')->unescape()->as(function ($period) {
+            if($period == null)
+                return "<span class='label label-danger'>указано точное время</span>";
+            return $period;
+        });
         $show->field('time_delivery', __('Time delivery'))->display(function ($time_delivery) {
             return \Carbon\Carbon::parse($time_delivery)->format('H:m');
         });
+        $show->field('want_postcard', __('Postcard or Card'));
         $show->field('postcard_text', __('Postcard text'));
+        $show->field('want_call', __('Call'))->unescape()->as(function ($want_call) {
+            if($want_call == null)
+                return "<span class='label label-danger'>без предварительного звонка </span>";
+                return "<span class='label label-info'>предварительно перезвонить получателю</span>";
+        });
+        $show->field('want_foto', __('Foto'))->unescape()->as(function ($want_foto) {
+            if($want_foto == null)
+                return "<span class='label label-info'>без фото </span>";
+                return "<span class='label label-danger'>с фото</span>";
+        });
         $show->field('comment', __('Comment'));
         $show->field('status.name', 'Status')->label();
         $show->field('created_at', __('Created at'));
@@ -132,7 +155,7 @@ class OrdersController extends AdminController
     {
         $form = new Form(new Order());
 
-        $form->text('order_key', __('Order key'));
+        $form->text('id', __('ID'));
         $form->text('user.name');
         $form->mobile('phone', __('Phone'));
 //        $form->text('products');

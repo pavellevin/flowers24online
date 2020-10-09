@@ -21,15 +21,15 @@
                         <div class="content">
                             <div class="box-img">
                                 <div class="content-item">
-                                    <p data-animation="fadeInRight" data-delay="1s">из каталога: {{ $product->catalog->name }}</p>
+                                    <p data-animation="fadeInRight" data-delay="1s">{{ __('messages.from catalog') }}: {{ $product->catalog->name }}</p>
                                     <h5 class="title-h5" data-animation="fadeInRight" data-delay="1.2s"><a href=""
                                                                                                            title="">{{ $product->name }}</a></h5>
                                     <div class="bottom" data-animation="fadeInRight" data-delay="1.4s">
-                                        <span class="old-price"><del>₴{{ $product->old_price }}</del></span>
-                                        <span class="price">₴{{ $product->price }}</span>
+                                        <span class="old-price"><del>{{ $product->old_price }} {{ __('messages.uah') }}</del></span>
+                                        <span class="price">{{ $product->price }} {{ __('messages.uah') }}</span>
                                     </div>
                                     <div class="btn-web" data-animation="fadeInRight" data-delay="1.6s">
-                                        <a href="{{ route('product', $product->slug) }}" title="">Buy Now</a>
+                                        <a href="{{ route('product', $product->slug) }}" title="">{{ __('messages.buy now') }}</a>
                                     </div>
                                 </div>
                             </div>

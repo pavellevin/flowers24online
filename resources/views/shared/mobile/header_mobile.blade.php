@@ -2,7 +2,7 @@
     <div class="header-top">
         <div class="container">
             <div class="logo text-center">
-                <a href="#" title="logo"><img alt="logo-theme" src="images/logo.png" class="img-responsive"></a>
+                <a href="#" title="logo"><img alt="logo-theme" src="/images/logo.png" class="img-responsive"></a>
             </div>
         </div>
     </div>
@@ -27,11 +27,12 @@
                                         <button type="button" class="close" data-dismiss="modal"><span
                                                     class="pe-7s-close"></span></button>
 
-                                        <form method="get" class="searchform" action="/home-v1.html">
+                                        <form method="post" class="searchform" action="{{ route('search') }}">
+                                            {{ csrf_field() }}
                                             <div class="pbr-search input-group">
                                                 <input name="search" maxlength="40"
                                                        class="form-control input-large input-search" size="20"
-                                                       placeholder="Search…" type="text">
+                                                       placeholder="{{ __('messages.search') }}…" type="text">
                                                 <span class="input-group-addon input-large btn-search">
                                                         <input value="" type="submit">
                                                     </span>
@@ -41,8 +42,19 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="dropdown-phone mobile-contacts">
+                            <span>{{ mb_strtoupper(app()->getLocale()) }}</span>
+                            <div class="dropdown-content">
+                                <a href="{{route('locale', 'uk')}}"><p>UA</p></a>
+                                <a href="{{route('locale', 'ru')}}"><p>RU</p></a>
+                                <a href="{{route('locale', 'en')}}"><p>EN</p></a>
+                            </div>
+                        </div>
+
+
                         {{--Start Shopping cart --}}
-                        @include('shared.mobile.shopping_card_mobile')
+                        {{--@include('shared.mobile.shopping_card_mobile')--}}
+                        <cart-header-mobile></cart-header-mobile>
                         {{--End Shopping cart --}}
                     </div>
                 </div>

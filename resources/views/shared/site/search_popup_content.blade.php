@@ -6,7 +6,7 @@
                 {{ csrf_field() }}
                 <div class="pbr-search input-group">
                     <input name="search" maxlength="40" class="form-control input-large input-search" size="20"
-                           placeholder="Search" type="text">
+                           placeholder="{{ __('messages.search') }}..." type="text">
                     <span class="input-group-addon input-large btn-search">
                             <input value="" type="submit">
                         </span>

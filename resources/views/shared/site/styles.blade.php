@@ -7,5 +7,6 @@
 <link rel="stylesheet" type="text/css" href="{{asset('css/animation.css')}}">
 <link rel="shortcut icon" type="text/css" href="{{asset('images/favicon.png')}}"/>
 <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap-select.min.css')}}">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 {{--MAIN STYLE --}}
 <link rel="stylesheet" href="{{asset('css/styles.css')}}">

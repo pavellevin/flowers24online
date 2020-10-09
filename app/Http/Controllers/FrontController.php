@@ -120,50 +120,68 @@ class FrontController extends Controller
             'products' => $products,
             'catalog' => $catalog,
             'filters' => '',
-            'sortby' => $sortby
+            'sortby' => $sortby,
+            'minPrice' => Product::orderBy('price')->value('price'),
+            'maxPrice' => Product::orderBy('price', 'desc')->value('price')
+
         ]);
     }
 
     public function getProductsByFilter($slug, $sfilters, $sortby = false)
     {
+        $prices = [];
         $catalog = Catalog::where('slug', $slug)->first();
 
         $products = $catalog->products()->active();
 
+        $minPrice = $products->orderBy('price')->value('price');
+        $maxPrice = $products->orderBy('price', 'desc')->value('price');
+
         if (isset($sfilters) && !empty($sfilters)) {
             $filters = array_filter(explode("&", $sfilters));
 
-            foreach ($filters as $filter) {
+            foreach ($filters as $key => $filter) {
                 if (is_numeric($filter)) {
-                    $products = $products->where('price', '>=', $filter);
-                } else {
+                    $prices[] = $filter;
+                    unset($filters[$key]);
+                }
+            }
+
+            if (is_array($filters) && sizeof($filters)) {
+                foreach ($filters as $filter) {
                     $products = $products->whereHas('attributes', function ($query) use ($filter) {
                         $query->where('name', 'like', $filter);
-                    })
-//                        ->whereHas('catalog')
+                    })//                        ->whereHas('catalog')
                     ;
                 }
             }
+
+            if (is_array($prices) && sizeof($prices))
+                $products = $products->whereBetween('price', [$prices[0], $prices[1]]);
+
+            if (isset($sortby) && !empty($sortby))
+                $products = $this->getSort($products, $sortby);
+
+            $products = $products->paginate();
+//            dd($products);
+            foreach ($products as $key => $product) {
+                $products[$key]['image'] = $product->image;
+            }
+
+            return view('site.catalog', [
+                'products' => $products,
+                'catalog' => $catalog,
+                'filters' => $sfilters,
+                'sortby' => $sortby,
+                'minPrice' => Product::orderBy('price')->value('price'),
+                'maxPrice' => Product::orderBy('price', 'desc')->value('price')
+
+            ]);
         }
-
-        if (isset($sortby) && !empty($sortby))
-            $products = $this->getSort($products, $sortby);
-
-        $products = $products->paginate();
-
-        foreach ($products as $key => $product) {
-            $products[$key]['image'] = $product->image;
-        }
-
-        return view('site.catalog', [
-            'products' => $products,
-            'catalog' => $catalog,
-            'filters' => $sfilters,
-            'sortby' => $sortby
-        ]);
     }
 
-    public function showShoppingCard(){
+    public function showShoppingCard()
+    {
         return view('site.shopping_card');
     }
 
@@ -171,10 +189,15 @@ class FrontController extends Controller
     {
         $cities = City::all();
         $periods = Period::all();
-
+        $dopproducts = Catalog::find('28')->products;
+        foreach ($dopproducts as $product) {
+            $product['img'] = $product->getFirstMediaUrl('products', 'thumb');
+        }
+//        dd($dopproducts[0]);
         return view('site.checkout', [
             'cities' => $cities,
-            'periods' => $periods
+            'periods' => $periods,
+            'dopproducts' => $dopproducts,
         ]);
     }
 
@@ -190,6 +213,8 @@ class FrontController extends Controller
         $order->order_key = $request->order_key;
         $order->user_id = $request->user_id;
         $order->phone = $request->phone;
+        $order->recipient_name = $request->recipient_name;
+        $order->recipient_phone = $request->recipient_phone;
         $order->city_id = $request->city_id;
         $order->district_id = $request->district_id;
         $order->adress = $request->adress;
@@ -200,6 +225,8 @@ class FrontController extends Controller
         $order->postcard = $request->want_postcard;
         $order->postcard_text = $request->postcard_text;
         $order->want_time = $request->want_time;
+        $order->want_foto = $request->want_foto;
+        $order->want_call = $request->want_call;
         $order->time_delivery = Carbon::parse($request->time_delivery)->format('H:i:s');
         $order->status_id = 1;
         if ($request->want_time == 'on')
@@ -223,10 +250,11 @@ class FrontController extends Controller
         return view('site.confirm', ['order_id' => $order_id]);
     }
 
-    public function mailing(Request $request){
+    public function mailing(Request $request)
+    {
         $newsletter = new Newsletter();
         $newsletter->email = $request->email;
-        if ($newsletter->save()){
+        if ($newsletter->save()) {
             Session::flash('success', 'Мы добавили вас в список и уже готовим для вас новости и акции');
             return back();
         } else {
@@ -236,11 +264,12 @@ class FrontController extends Controller
 
     }
 
-    public function getProductsBySearch(Request $request, $sortby = false){
+    public function getProductsBySearch(Request $request, $sortby = false)
+    {
         $array = explode(' ', $request->input('search'));
 
-        foreach ($array as $ar){
-            $products = Product::where('name', 'like', '%'. $ar .'%');
+        foreach ($array as $ar) {
+            $products = Product::where('name', 'like', '%' . $ar . '%');
         }
         $products = $products->paginate();
 
@@ -252,7 +281,8 @@ class FrontController extends Controller
 
     }
 
-    public function getNews(){
+    public function getNews()
+    {
         $news = News::all();
 
         return view('site.news', [
@@ -260,7 +290,8 @@ class FrontController extends Controller
         ]);
     }
 
-    public function getNew($slug){
+    public function getNew($slug)
+    {
         if (is_numeric($slug)) {
 
             $new = News::findOrFail($slug);

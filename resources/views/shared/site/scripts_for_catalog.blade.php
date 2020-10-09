@@ -178,6 +178,24 @@
 
     var catalog = '<?php echo $catalog->slug;?>';
     var filters = '<?php echo $filters;?>';
+    var minPrice = '<?php echo $minPrice;?>';
+    var maxPrice = '<?php echo $maxPrice;?>';
+
+    $( function() {
+        $( "#slider-range" ).slider({
+            range: true,
+            min: 1,
+            max: maxPrice,
+            values: [ 1, maxPrice ],
+            slide: function( event, ui ) {
+                $( "#amount1" ).val( ui.values[ 0 ] );
+                $( "#amount2" ).val( ui.values[ 1 ] );
+            }
+        });
+        $( "#amount1" ).val( $( "#slider-range" ).slider( "values", 0 ));
+        $( "#amount2" ).val( $( "#slider-range" ).slider( "values", 1 ));
+    } );
+
 
 </script>
 

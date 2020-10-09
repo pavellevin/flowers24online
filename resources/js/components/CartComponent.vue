@@ -4,7 +4,7 @@
                 <div class="inner row">
                     <div class="content-left col-md-8 col-sm-8">
                         <div class="title-heading">
-                            <span>Корзина</span>
+                            <h1>{{ __('messages.cart') }}</h1>
                         </div>
                         <div v-for="product in $store.state.cart" class="content-product-list">
                             <div class="product-block">
@@ -23,27 +23,27 @@
                                 </div>
                                 <div class="product-price">
                                     <a href="#" @click="removeFromCart(product)"><i class="pe-7s-close"></i></a>
-                                    <div class="price">₴{{ product.price }}</div>
+                                    <div class="price">{{ product.price }} {{ __('messages.uah') }}</div>
                                 </div>
                             </div>
                         </div>
                         <div class="action-cart-page">
-                            <div class="continue-shopping btn-outline btn-lage"><a href="/">Продолжить покупки</a>
+                            <div class="continue-shopping btn-outline btn-lage"><a href="/">{{ __('messages.continue shopping') }}</a>
                             </div>
                         </div>
                     </div>
                     <div class="content-right col-md-4 col-sm-4">
                         <div class="widget widget-cart-totals">
                             <div class="title-heading">
-                                <span>Cart Totals</span>
+                                <span>{{ __('messages.cart totals') }}</span>
                             </div>
                             <div class="form-cart-totals">
                                 <div class="content-top">
-                                    <div class="title">Итог:</div>
-                                    <span class="price">₴ {{ totalPrice }}</span>
+                                    <div class="title">{{ __('messages.total') }}:</div>
+                                    <span class="price">{{ totalPrice }} {{ __('messages.uah') }}</span>
                                 </div>
                             </div>
-                            <div class="proceed-checkout btn-theme btn-lage"><a href="/checkout">К оформлению</a></div>
+                            <div class="proceed-checkout btn-theme btn-lage"><a href="/checkout">{{ __('messages.checkout') }}</a></div>
                         </div>
                     </div>
                 </div>

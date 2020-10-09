@@ -16,12 +16,8 @@ class FilterPriceWidget implements ContractWidget
     }
 
     public function execute(){
-        $minPrice = Product::orderBy('price')->value('price');
-        $maxPrice = Product::orderBy('price', 'desc')->value('price');
 
         return view('Widgets::filter_price', [
-            'minPrice' => $minPrice,
-            'maxPrice' => $maxPrice,
             'filters' => $this->filters
         ]);
     }

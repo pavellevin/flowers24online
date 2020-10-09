@@ -11,6 +11,7 @@
 
                 {{--Start Search Popup --}}
                 @include('shared.site.search_popup')
+                @include('shared.site.menu_auth')
                 {{--End Search Popup -->--}}
 
                 {{--Start Shopping cart--}}

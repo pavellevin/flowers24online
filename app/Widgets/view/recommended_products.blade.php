@@ -2,7 +2,7 @@
     <div class="inner">
         <div class="products">
             <div class="title-heading text-center">
-                <h1>РЕКОМЕНДУЕМЫЕ КОМПОЗИЦИИ</h1>
+                <h1>{{ __('recommended compositions') }}</h1>
             </div>
             <div class="product-block">
                 <div id="pro_related" class="row">
@@ -17,18 +17,18 @@
                                              title="images products">
                                     </a>
                                     </div>
-                                    <div class="content-item">
+                                    <div class="content-item p-0">
                                         <h5 class="title-h5"><a
                                                     href="{{ route('product', $product->slug) }}">{{ $product->name }}</a>
                                         </h5>
                                         <div class="bottom">
                                             <div class="text-left pull-left">
-                                                <span class="old-price"><del>₴{{ $product->old_price }}</del></span>
-                                                <span class="price">₴{{ $product->price }}</span>
+                                                <span class="old-price"><del>{{ $product->old_price }} {{ __('messages.uah') }}</del></span>
+                                                <span class="price">{{ $product->price }} {{ __('messages.uah') }}</span>
                                             </div>
-                                            <div class="text-right">
-                                                <span class="height">133 cm</span>
-                                            </div>
+                                            {{--<div class="text-right">--}}
+                                                {{--<span class="height">133 cm</span>--}}
+                                            {{--</div>--}}
                                         </div>
                                     </div>
                                 </div>

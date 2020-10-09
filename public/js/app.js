@@ -2058,6 +2058,65 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2068,7 +2127,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       loading: true
     };
   },
-  props: ['cities', 'login_user', 'periods'],
+  props: ['cities', 'login_user', 'nearestperiod', 'periods', 'dopproducts'],
   mounted: function mounted() {
     var delivery = Number($('#coast_delivery').text());
     var total = Number($('#total_price').text());
@@ -2129,6 +2188,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         order_key: (+new Date()).toString(36),
         user_id: document.getElementById('user_id').value,
         phone: document.getElementById('phone').value,
+        recipient_name: document.getElementById('recipient_name').value,
+        recipient_phone: document.getElementById('recipient_phone').value,
         city_id: this.city_selected,
         district_id: this.districts_selected,
         adress: document.getElementById('adress').value,
@@ -2136,7 +2197,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         date_delivery: document.getElementById('date_delivery').value,
         comment: document.getElementById('comment').value,
         reminder: document.getElementById('reminder').checked,
-        want_postcard: document.getElementById('want_postcard').checked,
+        want_postcard: $('input[name="want_postcard"]:checked').val(),
+        want_foto: document.getElementById('want_foto').checked,
+        want_call: document.getElementById('want_call').checked,
         postcard_text: document.getElementById('postcard_text').value,
         want_time: document.getElementById('want_time').checked,
         time_delivery: document.getElementById('time_delivery').value
@@ -2152,15 +2215,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       });
     },
     viewPostcardText: function viewPostcardText() {
-      $(".postcard").fadeToggle(100);
-      $("#postcard_text").fadeToggle(100);
+      $("#postcard_text").show();
       var postcard = Number($('#postcard_coast').text());
       var total = Number($('#total_price').text());
 
       if (want_postcard.checked) {
+        $(".postcard").show();
         var totalpostcard = total + postcard;
         $('#total_price').text(totalpostcard.toFixed(2));
       } else {
+        $(".postcard").hide();
+
         var _totalpostcard = total - postcard;
 
         $('#total_price').text(_totalpostcard.toFixed(2));
@@ -2179,6 +2244,48 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var _totalexacttime = total - exacttime;
 
         $('#total_price').text(_totalexacttime.toFixed(2));
+      }
+    },
+    viewFoto: function viewFoto() {
+      $(".foto").fadeToggle(100);
+      var foto_coast = Number($('#foto_coast').text());
+      var total = Number($('#total_price').text());
+
+      if (want_foto.checked) {
+        var totalfoto = total + foto_coast;
+        $('#total_price').text(totalfoto.toFixed(2));
+      } else {
+        var _totalfoto = total - foto_coast;
+
+        $('#total_price').text(_totalfoto.toFixed(2));
+      }
+    },
+    viewCall: function viewCall() {
+      $(".call").fadeToggle(100);
+      var call_coast = Number($('#call').text());
+      var total = Number($('#total_price').text());
+
+      if (want_call.checked) {
+        var totalfoto = total + call_coast;
+        $('#total_price').text(totalfoto.toFixed(2));
+      } else {
+        var _totalfoto2 = total - call_coast;
+
+        $('#total_price').text(_totalfoto2.toFixed(2));
+      }
+    },
+    viewEarlyLateDelivery: function viewEarlyLateDelivery() {
+      $(".early_late_delivery").fadeToggle(100);
+      var early_late_delivery = Number($('#early_late_delivery').text());
+      var total = Number($('#total_price').text());
+
+      if (this.period_delivery_selected == 1 || this.period_delivery_selected == 8) {
+        var totalearlylatedelivary = total + early_late_delivery;
+        $('#total_price').text(totalearlylatedelivary.toFixed(2));
+      } else {
+        var _totalearlylatedelivary = total - early_late_delivery;
+
+        $('#total_price').text(_totalearlylatedelivary.toFixed(2));
       }
     }
   }
@@ -2354,9 +2461,105 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component CartHeader mounted.');
+  },
+  computed: {
+    totalPrice: function totalPrice() {
+      var total = 0;
+
+      var _iterator = _createForOfIteratorHelper(this.$store.state.cart),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var item = _step.value;
+          total += item.totalPrice;
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      return total.toFixed(2);
+    }
+  },
+  methods: {
+    removeFromCart: function removeFromCart(item) {
+      this.$store.commit('removeFromCart', item);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CartHeaderMobileComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CartHeaderMobileComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    console.log('Component CartHeaderMobile mounted.');
   },
   computed: {
     totalPrice: function totalPrice() {
@@ -38097,11 +38300,13 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "inner row" }, [
     _c("div", { staticClass: "content-left col-md-8 col-sm-8" }, [
-      _vm._m(0),
-      _vm._v(" "),
       _c("div", { staticClass: "form-billing-details row" }, [
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("label", [_vm._v("Имя *")]),
+        _c("div", { staticClass: "col-md-5 pt-25 pb-10 border-green" }, [
+          _c("div", { staticClass: "title-heading" }, [
+            _c("h3", [_vm._v(_vm._s(_vm.__("messages.сustomer")))])
+          ]),
+          _vm._v(" "),
+          _c("label", [_vm._v(_vm._s(_vm.__("messages.name")) + " *")]),
           _vm._v(" "),
           _c("input", {
             attrs: { type: "text", name: "name", id: "name" },
@@ -38111,36 +38316,229 @@ var render = function() {
           _c("input", {
             attrs: { type: "hidden", name: "user_id", id: "user_id" },
             domProps: { value: _vm.login_user.user.id }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("label", [_vm._v("Телефон *")]),
+          }),
+          _vm._v(" "),
+          _c("label", [_vm._v(_vm._s(_vm.__("messages.phone")) + " *")]),
           _vm._v(" "),
           _c("input", {
             attrs: { type: "text", name: "phone", id: "phone" },
             domProps: { value: _vm.login_user.user.phone }
-          })
+          }),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "reset_input_style",
+            attrs: { type: "checkbox", name: "want_call", id: "want_call" },
+            on: {
+              change: function($event) {
+                return _vm.viewCall()
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("span", [
+            _vm._v(_vm._s(_vm.__("messages.call")) + "\n                   "),
+            _c("i", [_vm._v("(" + _vm._s(_vm.__("messages.call price")) + ")")])
+          ]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "reset_input_style",
+            attrs: { type: "checkbox", name: "reminder", id: "reminder" }
+          }),
+          _vm._v(" "),
+          _c("span", [
+            _vm._v(_vm._s(_vm.__("messages.remind")) + "\n                   "),
+            _c("i", [_vm._v("(" + _vm._s(_vm.__("messages.free")) + ")")])
+          ]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "reset_input_style",
+            attrs: { type: "checkbox", name: "want_foto", id: "want_foto" },
+            on: {
+              change: function($event) {
+                return _vm.viewFoto()
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("span", [
+            _vm._v(_vm._s(_vm.__("messages.photo")) + "\n                   "),
+            _c("i", [
+              _vm._v("(" + _vm._s(_vm.__("messages.photo price")) + ")")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "reset_input_style",
+            attrs: {
+              type: "radio",
+              name: "want_postcard",
+              id: "want_card",
+              value: "card"
+            },
+            on: {
+              change: function($event) {
+                return _vm.viewPostcardText()
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("span", [
+            _vm._v(
+              _vm._s(_vm.__("messages.postcard")) + "\n                   "
+            ),
+            _c("i", [_vm._v("(" + _vm._s(_vm.__("messages.free")) + ")")])
+          ]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "reset_input_style",
+            attrs: {
+              type: "radio",
+              name: "want_postcard",
+              id: "want_postcard",
+              value: "postcard"
+            },
+            on: {
+              change: function($event) {
+                return _vm.viewPostcardText()
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("span", [
+            _vm._v(
+              _vm._s(_vm.__("messages.branded card")) + "\n                   "
+            ),
+            _c("i", [
+              _vm._v("(" + _vm._s(_vm.__("messages.branded card price")) + ")")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("textarea", {
+            attrs: { name: "postcard_text", id: "postcard_text" }
+          }),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("label", [_vm._v(_vm._s(_vm.__("messages.comment")))]),
+          _vm._v(" "),
+          _c("textarea", { attrs: { name: "order note", id: "comment" } })
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("label", [_vm._v("Город доставки *")]),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.city_selected,
-                  expression: "city_selected"
+        _c(
+          "div",
+          { staticClass: "col-md-5 col-md-offset-1 pt-25 pb-10 border-green" },
+          [
+            _c("div", { staticClass: "title-heading" }, [
+              _c("h3", [_vm._v(_vm._s(_vm.__("messages.recipient")))])
+            ]),
+            _vm._v(" "),
+            _c("label", [_vm._v(_vm._s(_vm.__("messages.name")) + " *")]),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "text",
+                name: "recipient_name",
+                id: "recipient_name"
+              }
+            }),
+            _vm._v(" "),
+            _c("label", [_vm._v(_vm._s(_vm.__("messages.phone")) + " ")]),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "text",
+                name: "recipient_phone",
+                id: "recipient_phone"
+              }
+            }),
+            _vm._v(" "),
+            _c("label", [
+              _vm._v(_vm._s(_vm.__("messages.city town of delivery")) + " *")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.city_selected,
+                    expression: "city_selected"
+                  }
+                ],
+                attrs: { name: "city" },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.city_selected = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.selectCity()
+                    }
+                  ]
                 }
+              },
+              [
+                _c(
+                  "option",
+                  {
+                    staticStyle: { display: "none" },
+                    attrs: { value: "", disabled: "", selected: "" }
+                  },
+                  [_vm._v(_vm._s(_vm.__("messages.select city")))]
+                ),
+                _vm._v(" "),
+                _vm._l(_vm.cities, function(city) {
+                  return _c("option", { domProps: { value: city.id } }, [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(city.name) +
+                        "\n                  "
+                    )
+                  ])
+                })
               ],
-              attrs: { name: "city" },
-              on: {
-                change: [
-                  function($event) {
+              2
+            ),
+            _vm._v(" "),
+            _c("label", [
+              _vm._v(_vm._s(_vm.__("messages.delivery area")) + " *")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.districts_selected,
+                    expression: "districts_selected"
+                  }
+                ],
+                on: {
+                  change: function($event) {
                     var $$selectedVal = Array.prototype.filter
                       .call($event.target.options, function(o) {
                         return o.selected
@@ -38149,107 +38547,74 @@ var render = function() {
                         var val = "_value" in o ? o._value : o.value
                         return val
                       })
-                    _vm.city_selected = $event.target.multiple
+                    _vm.districts_selected = $event.target.multiple
                       ? $$selectedVal
                       : $$selectedVal[0]
-                  },
-                  function($event) {
-                    return _vm.selectCity()
                   }
-                ]
-              }
-            },
-            [
-              _c(
-                "option",
-                {
-                  staticStyle: { display: "none" },
-                  attrs: { value: "", disabled: "", selected: "" }
-                },
-                [_vm._v("Выберите город")]
-              ),
-              _vm._v(" "),
-              _vm._l(_vm.cities, function(city) {
-                return _c("option", { domProps: { value: city.id } }, [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(city.name) +
-                      "\n                  "
-                  )
-                ])
-              })
-            ],
-            2
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("label", [_vm._v("Район доставки *")]),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.districts_selected,
-                  expression: "districts_selected"
                 }
+              },
+              [
+                _c(
+                  "option",
+                  {
+                    staticStyle: { display: "none" },
+                    attrs: { value: "", disabled: "", selected: "" }
+                  },
+                  [
+                    _vm.loading
+                      ? _c("p", [
+                          _vm._v(_vm._s(_vm.__("messages.select city first")))
+                        ])
+                      : _c("p", [
+                          _vm._v(_vm._s(_vm.__("messages.select the area")))
+                        ])
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._l(_vm.options, function(option) {
+                  return _c("option", { domProps: { value: option.id } }, [
+                    _vm._v(
+                      "\n                       " +
+                        _vm._s(option.name) +
+                        "\n                     "
+                    )
+                  ])
+                })
               ],
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.districts_selected = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                }
+              2
+            ),
+            _vm._v(" "),
+            _c("label", [
+              _vm._v(_vm._s(_vm.__("messages.delivery address")) + " *")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "text", name: "adress", id: "adress" }
+            }),
+            _vm._v(" "),
+            _c("label", [
+              _vm._v(_vm._s(_vm.__("messages.delivery date")) + "  *")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "date",
+                name: "date_delivery",
+                id: "date_delivery"
               }
-            },
-            [
-              _c(
-                "option",
-                {
-                  staticStyle: { display: "none" },
-                  attrs: { value: "", disabled: "", selected: "" }
-                },
-                [
-                  _vm.loading
-                    ? _c("p", [_vm._v("Для начала выберите город")])
-                    : _c("p", [_vm._v("Теперь можно выбрать район")])
-                ]
-              ),
-              _vm._v(" "),
-              _vm._l(_vm.options, function(option) {
-                return _c("option", { domProps: { value: option.id } }, [
-                  _vm._v(
-                    "\n                       " +
-                      _vm._s(option.name) +
-                      "\n                     "
-                  )
-                ])
-              })
-            ],
-            2
-          )
-        ]),
-        _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
-        _vm._m(2),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-md-3", attrs: { id: "period_delivery" } },
-          [
-            _c("label", [_vm._v("Время доставки ")]),
+            }),
+            _vm._v(" "),
+            _c("label", [
+              _vm._v(_vm._s(_vm.__("messages.delivery time")) + "  ")
+            ]),
+            _vm._v(" "),
+            _c("div", [
+              _vm._v(
+                _vm._s(_vm.__("messages.nearest delivery time")) +
+                  " :   " +
+                  _vm._s(_vm.nearestperiod)
+              )
+            ]),
             _vm._v(" "),
             _c(
               "select",
@@ -38263,19 +38628,24 @@ var render = function() {
                   }
                 ],
                 on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.period_delivery_selected = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  }
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.period_delivery_selected = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.viewEarlyLateDelivery()
+                    }
+                  ]
                 }
               },
               [
@@ -38285,7 +38655,7 @@ var render = function() {
                     staticStyle: { display: "none" },
                     attrs: { value: "", disabled: "", selected: "" }
                   },
-                  [_vm._v("Выберите")]
+                  [_vm._v(_vm._s(_vm.__("messages.сhoose time")))]
                 ),
                 _vm._v(" "),
                 _vm._l(_vm.periods, function(period) {
@@ -38299,178 +38669,354 @@ var render = function() {
                 })
               ],
               2
-            )
+            ),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "reset_input_style",
+              attrs: { type: "checkbox", id: "want_time", name: "want_time" },
+              on: {
+                change: function($event) {
+                  return _vm.viewTimeDelivery()
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("span", [
+              _vm._v(
+                _vm._s(_vm.__("messages.exact time")) + "\n                "
+              ),
+              _c("i", [
+                _vm._v("(" + _vm._s(_vm.__("messages.exact time price")) + ")")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "time_delivery",
+              attrs: {
+                type: "time",
+                id: "time_delivery",
+                name: "time_delivery"
+              }
+            })
           ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _vm._m(3),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "reset_input_style",
-            attrs: {
-              type: "checkbox",
-              name: "want_postcard",
-              id: "want_postcard"
-            },
-            on: {
-              change: function($event) {
-                return _vm.viewPostcardText()
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("span", [_vm._v("Добавить открытку к букету?")]),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("i", [_vm._v("(стоимость услуги 10 грн)")]),
-          _vm._v(" "),
-          _c("textarea", {
-            attrs: {
-              name: "postcard_text",
-              id: "postcard_text",
-              placeholder: "Укажите текст для открытки"
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("input", {
-            staticClass: "reset_input_style",
-            attrs: { type: "checkbox", id: "want_time", name: "want_time" },
-            on: {
-              change: function($event) {
-                return _vm.viewTimeDelivery()
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("span", [_vm._v("Хочу указать точное время доставки")]),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("i", [_vm._v("(стоимость услуги 99 грн)")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "time_delivery",
-            attrs: { type: "time", id: "time_delivery", name: "time_delivery" }
-          }),
-          _vm._v(" "),
-          _vm._m(4),
-          _vm._v(" "),
-          _c("textarea", {
-            attrs: {
-              name: "order note",
-              id: "comment",
-              placeholder: "Укажите необходимую информацию к доставке"
-            }
-          })
-        ])
+        )
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "content-right col-md-4 col-sm-4" }, [
-      _c(
-        "div",
-        { staticClass: "widget widget-your-order" },
-        [
-          _vm._m(5),
-          _vm._v(" "),
-          _vm._l(_vm.$store.state.cart, function(product) {
-            return _c("div", { staticClass: "product-sidebar" }, [
-              _c("div", { staticClass: "products" }, [
-                _c("div", { staticClass: "product-img-wrap" }, [
-                  _c("img", {
-                    staticClass: "img-reponsive",
-                    attrs: { src: product.image[0], alt: "" }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "inner-left" }, [
-                  _c("div", { staticClass: "product-name" }, [
-                    _c("a", { attrs: { href: "/product/" + product.slug } }, [
-                      _vm._v(_vm._s(product.name))
+    _c(
+      "div",
+      { staticClass: "content-right col-md-4 col-sm-4 pt-25 border-green" },
+      [
+        _c(
+          "div",
+          { staticClass: "widget widget-your-order" },
+          [
+            _c("div", { staticClass: "title-heading" }, [
+              _c("h3", [_vm._v(_vm._s(_vm.__("messages.your order")))])
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.$store.state.cart, function(product) {
+              return _c("div", { staticClass: "product-sidebar" }, [
+                _c("div", { staticClass: "products" }, [
+                  _c("div", { staticClass: "product-img-wrap" }, [
+                    _c("img", {
+                      staticClass: "img-reponsive",
+                      attrs: { src: product.image[0], alt: "" }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "inner-left" }, [
+                    _c("div", { staticClass: "product-name" }, [
+                      _c("a", { attrs: { href: "/product/" + product.slug } }, [
+                        _vm._v(_vm._s(product.name))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "product-qty" }, [
+                      _c("span", [_vm._v("x " + _vm._s(product.quantity))])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "product-price" }, [
+                      _c("span", [
+                        _vm._v(
+                          _vm._s(product.price) +
+                            " " +
+                            _vm._s(_vm.__("messages.uah"))
+                        )
+                      ])
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "product-qty" }, [
-                    _c("span", [_vm._v("x " + _vm._s(product.quantity))])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "product-price" }, [
-                    _c("span", [_vm._v("₴ " + _vm._s(product.price))])
+                  _c("div", { staticClass: "inner-right" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "close",
+                        attrs: { href: "javascript:;" },
+                        on: {
+                          click: function($event) {
+                            return _vm.removeFromCart(product)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "ion-ios-close-empty" })]
+                    )
                   ])
+                ])
+              ])
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "widget widget-cart-totals" }, [
+          _c("div", { staticClass: "form-cart-totals" }, [
+            _c("div", { staticClass: "content-top" }, [
+              _c("div", { staticClass: "title" }, [
+                _vm._v(_vm._s(_vm.__("messages.flowers")))
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "price" }, [
+                _vm._v(_vm._s(_vm.totalPrice))
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "content-center early_late_delivery",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("div", { staticClass: "title" }, [
+                  _vm._v(
+                    _vm._s(_vm.__("messages.service morning evening delivery"))
+                  )
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "inner-right" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass: "price",
+                    attrs: { id: "early_late_delivery" }
+                  },
+                  [_vm._v("99.00")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "content-center time_delivery",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("div", { staticClass: "title" }, [
+                  _vm._v(_vm._s(_vm.__("messages.service exact time")))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "price", attrs: { id: "exact_time" } },
+                  [_vm._v("99.00")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "content-center foto",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("div", { staticClass: "title" }, [
+                  _vm._v(_vm._s(_vm.__("messages.service photo")))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "price", attrs: { id: "foto_coast" } },
+                  [_vm._v("30.00")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "content-center postcard",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("div", { staticClass: "title" }, [
+                  _vm._v(_vm._s(_vm.__("messages.service postcard")))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "price", attrs: { id: "postcard_coast" } },
+                  [_vm._v("10.00")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "content-center call",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("div", { staticClass: "title" }, [
+                  _vm._v(_vm._s(_vm.__("messages.service pre-call")))
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "price", attrs: { id: "call" } }, [
+                  _vm._v("99.00")
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "content-center" }, [
+              _c("div", { staticClass: "title" }, [
+                _vm._v(_vm._s(_vm.__("messages.delivery")))
+              ]),
+              _vm._v(" "),
+              _c(
+                "span",
+                { staticClass: "price", attrs: { id: "coast_delivery" } },
+                [_vm._v("0.00")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "content-bottom" }, [
+              _c("div", { staticClass: "total" }, [
+                _vm._v(_vm._s(_vm.__("messages.total")))
+              ]),
+              _vm._v(" "),
+              _c(
+                "span",
+                { staticClass: "price", attrs: { id: "total_price" } },
+                [_vm._v(_vm._s(_vm.totalPrice))]
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "title-heading" }, [
+          _c("h3", [_vm._v(_vm._s(_vm.__("messages.add to the order")))])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "dop-class" },
+          _vm._l(_vm.dopproducts, function(product) {
+            return _c("div", { staticClass: "wrap-box-1" }, [
+              _c("div", { staticClass: "box-img" }, [
+                _c("div", { staticClass: "img" }, [
                   _c(
                     "a",
                     {
-                      staticClass: "close",
-                      attrs: { href: "javascript:;" },
-                      on: {
-                        click: function($event) {
-                          return _vm.removeFromCart(product)
-                        }
-                      }
+                      attrs: { href: "/product/" + product.slug, tabindex: "0" }
                     },
-                    [_c("i", { staticClass: "ion-ios-close-empty" })]
+                    [
+                      _c("img", {
+                        staticClass: "img-responsive",
+                        attrs: {
+                          src: product.img,
+                          alt: product.name,
+                          title: product.name
+                        }
+                      })
+                    ]
                   )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "btn-product" }, [
+                  _c("div", { staticClass: "wrap-btn" }, [
+                    _c("a", { attrs: { href: "/product/" + product.slug } }, [
+                      _vm._m(0, true)
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "javascript:;" },
+                        on: {
+                          click: function($event) {
+                            return _vm.addToCart(product)
+                          }
+                        }
+                      },
+                      [_vm._m(1, true)]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "content-item p-0" }, [
+                  _c("h5", { staticClass: "title-h5" }, [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: /product/ + product.slug, tabindex: "0" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(product.name) +
+                            "\n                    "
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "bottom" }, [
+                    _c("div", { staticClass: "text-left pull-left" }, [
+                      _c("span", { staticClass: "old-price" }, [
+                        _c("del", [
+                          _vm._v(
+                            _vm._s(product.old_price) +
+                              " " +
+                              _vm._s(_vm.__("messages.uah"))
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "price" }, [
+                        _vm._v(
+                          _vm._s(product.price) +
+                            " " +
+                            _vm._s(_vm.__("messages.uah"))
+                        )
+                      ])
+                    ])
+                  ])
                 ])
               ])
             ])
-          })
-        ],
-        2
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "widget widget-cart-totals" }, [
-        _vm._m(6),
+          }),
+          0
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "form-cart-totals" }, [
-          _c("div", { staticClass: "content-top" }, [
-            _c("div", { staticClass: "title" }, [_vm._v("Цветы")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "price" }, [
-              _vm._v(_vm._s(_vm.totalPrice))
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(7),
-          _vm._v(" "),
-          _vm._m(8),
-          _vm._v(" "),
-          _vm._m(9),
-          _vm._v(" "),
-          _c("div", { staticClass: "content-bottom" }, [
-            _c("div", { staticClass: "total" }, [_vm._v("Total")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "price", attrs: { id: "total_price" } }, [
-              _vm._v(_vm._s(_vm.totalPrice))
-            ])
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-md-4 col-sm-4" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn-login btn-theme btn-medium mt-10",
-          attrs: { type: "submit" },
-          on: {
-            click: function($event) {
-              return _vm.createOrder()
+        _c(
+          "button",
+          {
+            staticClass: "btn-login btn-theme btn-medium mb-20 mt-25",
+            attrs: { type: "submit" },
+            on: {
+              click: function($event) {
+                return _vm.createOrder()
+              }
             }
-          }
-        },
-        [_c("span", [_vm._v("Подтвердить")])]
-      )
-    ])
+          },
+          [_c("span", [_vm._v(_vm._s(_vm.__("messages.confirm")))])]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -38478,118 +39024,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "title-heading" }, [
-      _c("span", [_vm._v("Детали заказа")])
-    ])
+    return _c("span", [_c("i", { staticClass: "icon-search" })])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c("label", [_vm._v("Адрес доставки *")]),
-      _vm._v(" "),
-      _c("input", { attrs: { type: "text", name: "adress", id: "adress" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3" }, [
-      _c("label", [_vm._v("Дата доставки *")]),
-      _vm._v(" "),
-      _c("input", {
-        attrs: { type: "date", name: "date_delivery", id: "date_delivery" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("input", {
-        staticClass: "reset_input_style",
-        attrs: { type: "checkbox", name: "reminder", id: "reminder" }
-      }),
-      _vm._v(" "),
-      _c("span", [_vm._v("Напомнить о событии?")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "title" }, [
-      _c("span", [_vm._v("Комментарии к заказу")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "title-heading" }, [
-      _c("span", [_vm._v("Ваш заказ")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "title-heading" }, [
-      _c("span", [_vm._v("Cart Totals")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "content-center time_delivery",
-        staticStyle: { display: "none" }
-      },
-      [
-        _c("div", { staticClass: "title" }, [_vm._v('Услуга "точное время"')]),
-        _vm._v(" "),
-        _c("span", { staticClass: "price", attrs: { id: "exact_time" } }, [
-          _vm._v("99.00")
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "content-center postcard",
-        staticStyle: { display: "none" }
-      },
-      [
-        _c("div", { staticClass: "title" }, [_vm._v('Услуга "открытка"')]),
-        _vm._v(" "),
-        _c("span", { staticClass: "price", attrs: { id: "postcard_coast" } }, [
-          _vm._v("10.00")
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "content-center" }, [
-      _c("div", { staticClass: "title" }, [_vm._v("Доставка")]),
-      _vm._v(" "),
-      _c("span", { staticClass: "price", attrs: { id: "coast_delivery" } }, [
-        _vm._v("0.00")
-      ])
-    ])
+    return _c("span", [_c("i", { staticClass: "icon-cart" })])
   }
 ]
 render._withStripped = true
@@ -38620,7 +39061,9 @@ var render = function() {
           "div",
           { staticClass: "content-left col-md-8 col-sm-8" },
           [
-            _vm._m(0),
+            _c("div", { staticClass: "title-heading" }, [
+              _c("h1", [_vm._v(_vm._s(_vm.__("messages.cart")))])
+            ]),
             _vm._v(" "),
             _vm._l(_vm.$store.state.cart, function(product) {
               return _c("div", { staticClass: "content-product-list" }, [
@@ -38686,75 +39129,66 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c("div", { staticClass: "price" }, [
-                      _vm._v("₴" + _vm._s(product.price))
+                      _vm._v(
+                        _vm._s(product.price) +
+                          " " +
+                          _vm._s(_vm.__("messages.uah"))
+                      )
                     ])
                   ])
                 ])
               ])
             }),
             _vm._v(" "),
-            _vm._m(1)
+            _c("div", { staticClass: "action-cart-page" }, [
+              _c(
+                "div",
+                { staticClass: "continue-shopping btn-outline btn-lage" },
+                [
+                  _c("a", { attrs: { href: "/" } }, [
+                    _vm._v(_vm._s(_vm.__("messages.continue shopping")))
+                  ])
+                ]
+              )
+            ])
           ],
           2
         ),
         _vm._v(" "),
         _c("div", { staticClass: "content-right col-md-4 col-sm-4" }, [
           _c("div", { staticClass: "widget widget-cart-totals" }, [
-            _vm._m(2),
+            _c("div", { staticClass: "title-heading" }, [
+              _c("span", [_vm._v(_vm._s(_vm.__("messages.cart totals")))])
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-cart-totals" }, [
               _c("div", { staticClass: "content-top" }, [
-                _c("div", { staticClass: "title" }, [_vm._v("Итог:")]),
+                _c("div", { staticClass: "title" }, [
+                  _vm._v(_vm._s(_vm.__("messages.total")) + ":")
+                ]),
                 _vm._v(" "),
                 _c("span", { staticClass: "price" }, [
-                  _vm._v("₴ " + _vm._s(_vm.totalPrice))
+                  _vm._v(
+                    _vm._s(_vm.totalPrice) +
+                      " " +
+                      _vm._s(_vm.__("messages.uah"))
+                  )
                 ])
               ])
             ]),
             _vm._v(" "),
-            _vm._m(3)
+            _c("div", { staticClass: "proceed-checkout btn-theme btn-lage" }, [
+              _c("a", { attrs: { href: "/checkout" } }, [
+                _vm._v(_vm._s(_vm.__("messages.checkout")))
+              ])
+            ])
           ])
         ])
       ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "title-heading" }, [
-      _c("span", [_vm._v("Корзина")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "action-cart-page" }, [
-      _c("div", { staticClass: "continue-shopping btn-outline btn-lage" }, [
-        _c("a", { attrs: { href: "/" } }, [_vm._v("Продолжить покупки")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "title-heading" }, [
-      _c("span", [_vm._v("Cart Totals")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "proceed-checkout btn-theme btn-lage" }, [
-      _c("a", { attrs: { href: "/checkout" } }, [_vm._v("К оформлению")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -38791,7 +39225,9 @@ var render = function() {
           }
         },
         [
-          _c("span", { staticClass: "text-cart" }, [_vm._v("Корзина")]),
+          _c("span", { staticClass: "text-cart" }, [
+            _vm._v(_vm._s(_vm.__("messages.cart")))
+          ]),
           _vm._v(" "),
           _c("span", { staticClass: "item" }, [
             _vm._v("(" + _vm._s(_vm.$store.state.cartCount) + ")")
@@ -38825,12 +39261,17 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "product-price" }, [
                         _vm._v(
-                          "\n                                ₴ " +
+                          "\n                                 " +
                             _vm._s(product.totalPrice) +
                             " "
                         ),
                         _c("span", [
-                          _vm._v("( x" + _vm._s(product.quantity) + ")")
+                          _vm._v(
+                            "( x" +
+                              _vm._s(product.quantity) +
+                              ") " +
+                              _vm._s(_vm.__("messages.uah"))
+                          )
                         ])
                       ])
                     ])
@@ -38857,37 +39298,171 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "bottom-cart" }, [
           _c("div", { staticClass: "cart-price" }, [
-            _c("strong", [_vm._v("Итого: ")]),
+            _c("strong", [_vm._v(_vm._s(_vm.__("messages.total")) + ": ")]),
             _vm._v(" "),
             _c("span", { staticClass: "price-total" }, [
-              _vm._v("₴ " + _vm._s(_vm.totalPrice))
+              _vm._v(
+                _vm._s(_vm.totalPrice) + " " + _vm._s(_vm.__("messages.uah"))
+              )
             ])
           ]),
           _vm._v(" "),
-          _vm._m(0)
+          _c("div", { staticClass: "button-cart" }, [
+            _c("span", { staticClass: "btn-outline btn-small viewcart" }, [
+              _c("a", { attrs: { href: "/shopping-card", title: "" } }, [
+                _vm._v(_vm._s(_vm.__("messages.edit cart")))
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "button-cart mt-25" }, [
+            _c("span", { staticClass: "btn-outline btn-small checkout" }, [
+              _c("a", { attrs: { href: "/checkout", title: "" } }, [
+                _vm._v(_vm._s(_vm.__("messages.checkout")))
+              ])
+            ])
+          ])
         ])
       ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "button-cart" }, [
-      _c("span", { staticClass: "btn-outline btn-small viewcart" }, [
-        _c("a", { attrs: { href: "/shopping-card", title: "" } }, [
-          _vm._v("Корзина")
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CartHeaderMobileComponent.vue?vue&type=template&id=cce043da&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CartHeaderMobileComponent.vue?vue&type=template&id=cce043da& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "shopping-cart" }, [
+    _c(
+      "a",
+      {
+        staticClass: "dropdown-toggle",
+        attrs: {
+          href: "#",
+          "data-toggle": "dropdown",
+          role: "button",
+          "aria-haspopup": "true",
+          "aria-expanded": "false"
+        }
+      },
+      [
+        _c("span", { staticClass: "text-cart" }, [
+          _vm._v(_vm._s(_vm.__("messages.cart")))
+        ]),
+        _vm._v(" "),
+        _c("span", { staticClass: "item" }, [
+          _vm._v("(" + _vm._s(_vm.$store.state.cartCount) + ")")
         ])
-      ]),
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "dropdown-menu dropdown-cart" }, [
+      _vm.$store.state.cart.length > 0
+        ? _c(
+            "ul",
+            { staticClass: "mini-products-list" },
+            _vm._l(_vm.$store.state.cart, function(product) {
+              return _c("li", { key: product.id, staticClass: "item-cart" }, [
+                _c("div", { staticClass: "product-details" }, [
+                  _c("div", { staticClass: "product-img-wrap" }, [
+                    _c("img", {
+                      staticClass: "img-reponsive",
+                      attrs: { src: product.image[0], alt: "" }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "inner-left" }, [
+                    _c("div", { staticClass: "product-name" }, [
+                      _c("a", { attrs: { href: "/product/" + product.slug } }, [
+                        _vm._v(_vm._s(product.name) + " ")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "product-price" }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(product.totalPrice) +
+                          " "
+                      ),
+                      _c("span", [
+                        _vm._v(
+                          "( x" +
+                            _vm._s(product.quantity) +
+                            ") " +
+                            _vm._s(_vm.__("messages.uah"))
+                        )
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "close",
+                    attrs: { href: "javascript:;" },
+                    on: {
+                      click: function($event) {
+                        return _vm.removeFromCart(product)
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "ion-ios-close-empty" })]
+                )
+              ])
+            }),
+            0
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _c("span", { staticClass: "btn-theme btn-small checkout" }, [
-        _c("a", { attrs: { href: "/checkout", title: "" } }, [_vm._v("Оплата")])
+      _c("div", { staticClass: "bottom-cart" }, [
+        _c("div", { staticClass: "cart-price" }, [
+          _c("strong", [_vm._v(_vm._s(_vm.__("messages.total")) + ": ")]),
+          _vm._v(" "),
+          _c("span", { staticClass: "price-total" }, [
+            _vm._v(
+              _vm._s(_vm.totalPrice) + " " + _vm._s(_vm.__("messages.uah"))
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "button-cart" }, [
+          _c("span", { staticClass: "btn-outline btn-small viewcart" }, [
+            _c("a", { attrs: { href: "/shopping-card", title: "" } }, [
+              _vm._v(_vm._s(_vm.__("messages.edit cart")))
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "button-cart mt-25" }, [
+          _c("span", { staticClass: "btn-theme btn-small checkout" }, [
+            _c("a", { attrs: { href: "/checkout", title: "" } }, [
+              _vm._v(_vm._s(_vm.__("messages.checkout")))
+            ])
+          ])
+        ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -38926,8 +39501,8 @@ var render = function() {
                       staticClass: "img-responsive",
                       attrs: {
                         src: "#",
-                        alt: "Product",
-                        title: "images products"
+                        alt: product.name,
+                        title: product.name
                       }
                     })
                   ]),
@@ -38964,11 +39539,19 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "pro-price" }, [
                       _c("span", { staticClass: "old-price" }, [
-                        _c("del", [_vm._v("₴" + _vm._s(product.old_price))])
+                        _c("del", [
+                          _vm._v(
+                            _vm._s(product.old_price) +
+                              " " +
+                              _vm._s(_vm.__("messages.uah"))
+                          )
+                        ])
                       ]),
                       _vm._v(" "),
                       _c("span", { staticClass: "price" }, [
-                        _vm._v("₴" + _vm._s(product.price))
+                        _vm._v(
+                          "{ product.price }} " + _vm._s(_vm.__("messages.uah"))
+                        )
                       ])
                     ]),
                     _vm._v(" "),
@@ -39002,11 +39585,21 @@ var render = function() {
                 _c("div", { staticClass: "bottom" }, [
                   _c("div", { staticClass: "text-left pull-left" }, [
                     _c("span", { staticClass: "old-price" }, [
-                      _c("del", [_vm._v("₴" + _vm._s(product.old_price))])
+                      _c("del", [
+                        _vm._v(
+                          _vm._s(product.old_price) +
+                            " " +
+                            _vm._s(_vm.__("messages.uah"))
+                        )
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("span", { staticClass: "price" }, [
-                      _vm._v("₴" + _vm._s(product.price))
+                      _vm._v(
+                        _vm._s(product.price) +
+                          " " +
+                          _vm._s(_vm.__("messages.uah"))
+                      )
                     ])
                   ]),
                   _vm._v(" "),
@@ -52592,6 +53185,8 @@ module.exports = function(module) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store.js */ "./resources/js/store.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -52601,6 +53196,11 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
+
+
+Vue.prototype.__ = function (str) {
+  return lodash__WEBPACK_IMPORTED_MODULE_1___default.a.get(window.i18n, str);
+};
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -52611,8 +53211,10 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+
 Vue.component('cart', __webpack_require__(/*! ./components/CartComponent.vue */ "./resources/js/components/CartComponent.vue")["default"]);
 Vue.component('cart-header', __webpack_require__(/*! ./components/CartHeaderComponent.vue */ "./resources/js/components/CartHeaderComponent.vue")["default"]);
+Vue.component('cart-header-mobile', __webpack_require__(/*! ./components/CartHeaderMobileComponent.vue */ "./resources/js/components/CartHeaderMobileComponent.vue")["default"]);
 Vue.component('cart-checkout', __webpack_require__(/*! ./components/CartCheckoutComponent.vue */ "./resources/js/components/CartCheckoutComponent.vue")["default"]);
 Vue.component('product', __webpack_require__(/*! ./components/ProductComponent.vue */ "./resources/js/components/ProductComponent.vue")["default"]);
 /**
@@ -52884,6 +53486,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CartHeaderComponent_vue_vue_type_template_id_42308795___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CartHeaderComponent_vue_vue_type_template_id_42308795___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/CartHeaderMobileComponent.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/CartHeaderMobileComponent.vue ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CartHeaderMobileComponent_vue_vue_type_template_id_cce043da___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CartHeaderMobileComponent.vue?vue&type=template&id=cce043da& */ "./resources/js/components/CartHeaderMobileComponent.vue?vue&type=template&id=cce043da&");
+/* harmony import */ var _CartHeaderMobileComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CartHeaderMobileComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/CartHeaderMobileComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CartHeaderMobileComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CartHeaderMobileComponent_vue_vue_type_template_id_cce043da___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CartHeaderMobileComponent_vue_vue_type_template_id_cce043da___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/CartHeaderMobileComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/CartHeaderMobileComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/CartHeaderMobileComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CartHeaderMobileComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./CartHeaderMobileComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CartHeaderMobileComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CartHeaderMobileComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/CartHeaderMobileComponent.vue?vue&type=template&id=cce043da&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/CartHeaderMobileComponent.vue?vue&type=template&id=cce043da& ***!
+  \**********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CartHeaderMobileComponent_vue_vue_type_template_id_cce043da___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./CartHeaderMobileComponent.vue?vue&type=template&id=cce043da& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CartHeaderMobileComponent.vue?vue&type=template&id=cce043da&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CartHeaderMobileComponent_vue_vue_type_template_id_cce043da___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CartHeaderMobileComponent_vue_vue_type_template_id_cce043da___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

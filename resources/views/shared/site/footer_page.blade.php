@@ -5,14 +5,14 @@
                 {{ csrf_field() }}
                 <div class="inner row">
                     <div class="col-md-4">
-                        <h5 class="title-h5">Хочешь знать новости?<br>Подпишись!</h5>
+                        <h5 class="title-h5">{{ __('messages.do you want to know the news?') }}<br>{{ __('messages.subscribe!') }}</h5>
                     </div>
                     <div class="col-md-4 pt-50">
-                        <input name="email" placeholder="Enter your e-mail" class="form-control" type="text">
+                        <input name="email" placeholder="{{ __('messages.enter your e-mail') }}" class="form-control" type="text">
                     </div>
                     <div class="btn-web btn-web-1 col-md-4">
                         {{--<a href="#" title="">Подтвердить</a>--}}
-                        <button class="btn-web-2"><span>Подтвердить</span></button>
+                        <button class="btn-web-2"><span>{{ __('messages.confirm') }}</span></button>
                     </div>
                 </div>
             </form>
@@ -57,30 +57,3 @@
         </div>
     </div>
 </footer>
-<!-- Menu offcanvas -->
-<div id="pbr-off-canvas" class="pbr-off-canvas sidebar-offcanvas hidden-lg hidden-md">
-    <div class="pbr-off-canvas-body">
-        <div class="offcanvas-head">
-            <button type="button" class="btn btn-close btn-toggle-canvas" data-toggle="offcanvas">
-                <i class="pe-7s-close-circle"></i>
-            </button>
-            <span>Menu</span>
-        </div>
-        <nav class="navbar navbar-offcanvas navbar-static">
-            <ul class="nav navbar-nav">
-                <li class="level1 active hassub">
-                    <a href="javascript:;">Каталог</a>
-                </li>
-                <li class="level1 hassub">
-                    <a href="/about-us">О нас</a>
-                </li>
-                <li class="level1 hassub">
-                    <a href="/news">Новости</a>
-                </li>
-                <li class="level1 hassub">
-                    <a href="/contacts">Контакты</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</div>

@@ -9,16 +9,25 @@
         <nav class="navbar navbar-offcanvas navbar-static">
             <ul class="nav navbar-nav">
                 <li class="level1 active hassub">
-                    <a href="shop-v1.html">Store</a>
+                <a data-toggle="collapse" href="#menuCatalog" role="button" aria-expanded="false" aria-controls="menuCatalog">
+                    {{ __('messages.catalog') }}
+                    </a>
+                </li>
+                <div class="collapse" id="menuCatalog">
+                    <div class="menu menu-body">
+                        @foreach($catalog as $cat)
+                            <p><a href="/catalog/{{$cat->slug}}">{{$cat->name}}</a></p>
+                        @endforeach
+                    </div>
+                </div>
+                <li class="level1 hassub">
+                    <a href="/about-us">{{ __('messages.about us') }}</a>
                 </li>
                 <li class="level1 hassub">
-                    <a href="aboutus.html">About</a>
+                    <a href="/news">{{ __('messages.news') }}</a>
                 </li>
                 <li class="level1 hassub">
-                    <a href="blog-v1.html">News</a>
-                </li>
-                <li class="level1 hassub">
-                    <a href="contactus.html">Contact</a>
+                    <a href="/contacts">{{ __('messages.contacts') }}</a>
                 </li>
             </ul>
         </nav>

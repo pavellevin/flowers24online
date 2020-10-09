@@ -2,37 +2,61 @@
 
 // Home
 Breadcrumbs::for('home', function ($trail) {
-    $trail->push('Home', route('home'));
+    $trail->push(__('messages.home'), route('home'));
 });
 
 // Home > Shopping-card
 Breadcrumbs::for('shopping_card', function ($trail) {
     $trail->parent('home');
-    $trail->push('Корзина', route('shopping_card'));
+    $trail->push(__('messages.cart'), route('shopping_card'));
 });
 
 // Home > Shop
 Breadcrumbs::for('shop', function ($trail) {
     $trail->parent('home');
-    $trail->push('Каталог', route('shop'));
+    $trail->push(__('messages.catalog'), route('shop'));
 });
 
 // Home > News
 Breadcrumbs::for('news', function ($trail) {
     $trail->parent('home');
-    $trail->push('Новости', route('news'));
+    $trail->push(__('messages.news'), route('news'));
 });
 
 // Home > About Us
 Breadcrumbs::for('about_us', function ($trail) {
     $trail->parent('home');
-    $trail->push('О нас', route('about_us'));
+    $trail->push(__('messages.about us'), route('about_us'));
 });
 
 // Home > Contacts
 Breadcrumbs::for('contacts', function ($trail) {
     $trail->parent('home');
-    $trail->push('Контакты', route('contacts'));
+    $trail->push(__('messages.contacts'), route('contacts'));
+});
+
+// Home > Checkout
+Breadcrumbs::for('show_checkout', function ($trail) {
+    $trail->parent('home');
+    $trail->push(__('messages.checkout'), route('show_checkout'));
+});
+
+// Home > Login
+Breadcrumbs::for('login', function ($trail) {
+    $trail->parent('home');
+    $trail->push(__('messages.login'), route('login'));
+});
+
+// Home > Register
+Breadcrumbs::for('register', function ($trail) {
+    $trail->parent('home');
+    $trail->push(__('messages.register'), route('register'));
+});
+
+// Home > Reset password
+Breadcrumbs::for('password.request', function ($trail) {
+    $trail->parent('home');
+    $trail->push(__('messages.password request'), route('password.request'));
 });
 
 // Home > [Catalog]

@@ -1,7 +1,7 @@
 <section id="main-content">
     <div class="container-fluid inner">
         <div class="row">
-            <div class="col-md-9">
+            <div id="category_title" class="col-md-9">
                 @isset($catalog)
                 <h1 class="category_title">{{ $catalog->name }}</h1>
                 @endisset
@@ -11,7 +11,7 @@
                     <div class="product-block">
                         <div class="row">
                             @foreach($products as $product)
-                                <div class="item col-lg-3 col-md-6 col-sm-6 wrap-box">
+                                <div class="item col-lg-3 col-md-6 col-sm-6  col-xs-6 wrap-box">
                                     <div class="wrap-box-1">
                                         <div class="box-img">
                                             <a href="{{ route('product', $product->slug) }}">
@@ -57,8 +57,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="pro-price">
-                                                    <span class="old-price"><del>₴{{ $product->old_price }}</del></span>
-                                                    <span class="price">₴{{ $product->price }}</span>
+                                                    <span class="old-price"><del>{{ $product->old_price }} {{ __('messages.uah') }}</del></span>
+                                                    <span class="price">{{ $product->price }} {{ __('messages.uah') }}</span>
                                                 </div>
                                                 <div class="pro-desc">
                                                     <p>
@@ -96,12 +96,12 @@
                                         <div class="content-item">
                                             <div class="bottom">
                                                 <div class="text-left pull-left">
-                                                    <span class="old-price"><del>₴{{ $product->old_price }}</del></span>
-                                                    <span class="price">₴{{ $product->price }}</span>
+                                                    <span class="old-price"><del>{{ $product->old_price }} {{ __('messages.uah') }}</del></span>
+                                                    <span class="price">{{ $product->price }} {{ __('messages.uah') }}</span>
                                                 </div>
-                                                <div class="text-right">
-                                                    <span class="height">133 cm</span>
-                                                </div>
+                                                {{--<div class="text-right">--}}
+                                                    {{--<span class="height">133 cm</span>--}}
+                                                {{--</div>--}}
                                             </div>
                                         </div>
                                     </div>
@@ -116,12 +116,18 @@
                 @endif
             </div>
             <div class="col-md-3">
+                <div id="filter" class="sidebar sidebar-right">
+                    @if(isset($catalog) && in_array($catalog->id, ['5','7','8','25','26']))
+                        @widget('filter_flower', ['slug' => $catalog->slug, 'filters' => $filters])
+                        @widget('filter_price', ['filters' => $filters])
+                    @endif
+                    @if(isset($catalog) && in_array($catalog->id, ['28']))
+                        @widget('filter_dop', ['slug' => $catalog->slug, 'filters' => $filters])
+                        @widget('filter_price', ['filters' => $filters])
+                    @endif
+                </div>
                 <div class="sidebar sidebar-right">
                     @widget('catalog')
-                    @widget('filter_price', ['filters' => $filters])
-                    @isset($catalog)
-                    @widget('filter_flower', ['slug' => $catalog->slug, 'filters' => $filters])
-                    @endisset
                     {{--<div class="widget widget-filter-brand">--}}
                     {{--<div class="title-heading">--}}
                     {{--<span>BY BRAND</span>--}}

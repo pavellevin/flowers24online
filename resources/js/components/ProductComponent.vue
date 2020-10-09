@@ -8,8 +8,8 @@
                                         <a :href="'/product/' + product.slug">
                                             <img src="#"
                                                  class="img-responsive"
-                                                 alt="Product"
-                                                 title="images products">
+                                                 :alt="product.name"
+                                                 :title="product.name">
                                         </a>
                                         <div class="btn-product">
                                             <div class="wrap-btn">
@@ -34,8 +34,8 @@
                                                 </div>
                                             </div>
                                             <div class="pro-price">
-                                                <span class="old-price"><del>₴{{ product.old_price }}</del></span>
-                                                <span class="price">₴{{ product.price }}</span>
+                                                <span class="old-price"><del>{{ product.old_price }} {{ __('messages.uah') }}</del></span>
+                                                <span class="price">{ product.price }} {{ __('messages.uah') }}</span>
                                             </div>
                                             <div class="pro-desc">
                                                 <p>
@@ -73,8 +73,8 @@
                                     <div class="content-item">
                                         <div class="bottom">
                                             <div class="text-left pull-left">
-                                                <span class="old-price"><del>₴{{ product.old_price }}</del></span>
-                                                <span class="price">₴{{ product.price }}</span>
+                                                <span class="old-price"><del>{{ product.old_price }} {{ __('messages.uah') }}</del></span>
+                                                <span class="price">{{ product.price }} {{ __('messages.uah') }}</span>
                                             </div>
                                             <div class="text-right">
                                                 <span class="height">133 cm</span>

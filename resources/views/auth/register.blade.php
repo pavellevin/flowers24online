@@ -1,5 +1,10 @@
 @extends('layouts.main')
 
+{{--META--}}
+@section('title', 'Регистрация')
+@section('description', 'Среди зарегистрированных пользователей постоянные конкурсы')
+@section('keywords', 'keywords')
+
 {{--BODY--}}
 @section('body')
     <body class="checkout-page">
@@ -10,7 +15,7 @@
         <section id="breadcrumb" class="breadcrumb-v2">
             <div class="container">
                 <div class="breadcrumb-content">
-                    {{--                    {{ Breadcrumbs::render('new') }}--}}
+                    {{ Breadcrumbs::render('register') }}
                 </div>
             </div>
         </section>
@@ -25,11 +30,11 @@
                     <div class="inner row">
                         <div class="content-left col-md-8 col-sm-8">
                             <div class="title-heading">
-                                <span>Customer Details</span>
+                                <h1>{{ __('messages.user data') }}</h1>
                             </div>
                             <div class="form-billing-details row">
                                 <div class="col-md-6">
-                                    <label>{{ __('Name') }} *</label>
+                                    <label>{{ __('messages.name') }} *</label>
                                     <input id="name" type="text"
                                            class="form-control @error('name') is-invalid @enderror" name="name"
                                            value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -41,19 +46,19 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="col-md-6 pl-0">
-                                        <label>{{ __('BirthDay') }} *</label>
+                                        <label>{{ __('messages.birthday') }} *</label>
                                         <input type="date" name="birthday">
                                     </div>
                                     <div class="col-md-6 pr-0">
-                                        <label>{{ __('Gender') }} *</label>
+                                        <label>{{ __('messages.gender') }} *</label>
                                         <select name="gender">
-                                            <option value="0">Женщина</option>
-                                            <option value="1">Мужчина</option>
+                                            <option value="0">{{ __('messages.female') }}</option>
+                                            <option value="1">{{ __('messages.male') }}</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label>{{ __('E-Mail Address') }} *</label>
+                                    <label>{{ __('messages.e-mail address') }} *</label>
                                     <input id="email" type="email"
                                            class="form-control @error('email') is-invalid @enderror" name="email"
                                            value="{{ old('email') }}" required autocomplete="email">
@@ -64,12 +69,12 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6">
-                                    <label>{{ __('Confirm Password') }} *</label>
+                                    <label>{{ __('messages.confirm password') }} *</label>
                                     <input id="password-confirm" type="password" class="form-control"
                                            name="password_confirmation" required autocomplete="new-password">
                                 </div>
                                 <div class="col-md-6">
-                                    <label>{{ __('Phone') }} *</label>
+                                    <label>{{ __('messages.phone') }} *</label>
                                     <input id="email" type="phone"
                                            class="form-control @error('phone') is-invalid @enderror" name="phone"
                                            value="{{ old('phone') }}" required autocomplete="phone">
@@ -80,7 +85,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6">
-                                    <label>{{ __('Password') }} *</label>
+                                    <label>{{ __('messages.password') }} *</label>
                                     <input id="password" type="password"
                                            class="form-control @error('password') is-invalid @enderror" name="password"
                                            required autocomplete="new-password">
@@ -90,10 +95,9 @@
                                     </span>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 col-md-offset-6">
-                                    <label>{{ __('Registration') }}</label>
+                                <div class="col-md-6 col-md-offset-6 mt-25">
                                     <button type="submit" class="proceed-checkout">
-                                        <span>{{ __('PROCESS REGISTER') }}</span>
+                                        <span>{{ __('messages.process register') }}</span>
                                     </button>
                                 </div>
                             </div>
@@ -181,9 +185,4 @@
 {{--FOOTER--}}
 @section('footer')
     @include('shared.site.footer_page')
-@endsection
-
-{{--SCRIPTS--}}
-@section('scripts_add')
-    @include('scripts_for_catalog.blade.php')
 @endsection

@@ -15,7 +15,7 @@
         <section id="breadcrumb" class="breadcrumb-v2">
             <div class="container">
                 <div class="breadcrumb-content">
-                    {{--                    {{ Breadcrumbs::render('new') }}--}}
+                        {{ Breadcrumbs::render('show_checkout') }}
                 </div>
             </div>
         </section>
@@ -44,12 +44,12 @@
                         <div class="form-center row">
                             <div class="col-md-6">
                                 <div class="desc-coupon">
-                                    <span>Если вы делали покупки у нас раньше, пожалуйста, введите свои данные в полях ниже. Если вы новый клиент, перейдите в раздел регистрации</span>
+                                    <span>{{ __('messages.before checkout') }}</span>
                                 </div>
                             </div>
                             <div class="text-link return-custom">
-                                <span>Вы еще не зарегистрированы?</span>
-                                <a href="{{ route('register') }}">Кликните сюда для регистрации</a>
+                                <span>{{ __('messages.not registered yet?') }}</span>
+                                <a href="{{ route('register') }}">{{ __('messages.click here to register') }}</a>
                             </div>
                             {{--<div class="col-md-6">--}}
                             {{--<div class="form-coupon">--}}
@@ -85,14 +85,14 @@
                                         {{--<input type="text" name="password" placeholder="Password *">--}}
                                         <div class="action-login">
                                             <button type="submit" class="btn-login btn-theme btn-medium">
-                                                <span>{{ __('Login') }}</span>
+                                                <span>{{ __('messages.login') }}</span>
                                             </button>
                                             {{--<div class="btn-login btn-theme btn-medium">--}}
                                             {{--<a href="#">Login</a>--}}
                                             {{--</div>--}}
                                             <div class="text-link">
                                                 @if (Route::has('password.request'))
-                                                    <a href="{{ route('password.request') }}">Забыли пароль?</a>
+                                                    <a href="{{ route('password.request') }}">{{ __('messages.forgot your password?') }}</a>
                                                 @endif
                                             </div>
                                         </div>
@@ -105,13 +105,20 @@
                 @endif
                 <cart-checkout :cities="{{json_encode($cities)}}"
                                :login_user="{{ json_encode(['isLoggedIn'=>auth()->check() ? true : false, 'user'=>auth()->check() ? auth()->user() : null]) }}"
-                               :periods="{{json_encode($periods)}}">
+                               :periods="{{json_encode($periods)}}"
+                               :dopproducts="{{json_encode($dopproducts)}}"
+                               :nearestperiod="{{json_encode($nearestperiod)}}" >
                 </cart-checkout>
             </div>
         </section>
 @endsection
 
 {{--FOOTER--}}
-@section('footer')
-    @include('shared.site.footer_page')
+{{--@section('footer')--}}
+    {{--@include('shared.site.footer_page')--}}
+{{--@endsection--}}
+
+{{--SCRIPTS--}}
+@section('scripts_uniq')
+    @include('shared.site.scripts_for_checkout')
 @endsection

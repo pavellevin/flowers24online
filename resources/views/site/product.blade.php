@@ -30,8 +30,8 @@
                             @foreach($product->getMedia('products') as $img)
                                 <div class="item">
                                     <img src="{{ $img->getUrl('main_img') }}"
-                                         class="img-responsive" alt="Product"
-                                         title="images products">
+                                         class="img-responsive" alt="{{$product->name}}"
+                                         title="images {{$product->name}}">
                                 </div>
                             @endforeach
                         </div>
@@ -39,8 +39,8 @@
                             @foreach($product->getMedia('products') as $img)
                                 <div class="item">
                                     <img src="{{ $img->getUrl('thumb') }}" class="img-responsive"
-                                         alt="Product"
-                                         title="images products">
+                                         alt="{{$product->name}}"
+                                         title="images {{$product->name}}">
                                 </div>
                             @endforeach
                         </div>
@@ -62,8 +62,8 @@
                             </div>
                         </div>
                         <div class="pro-price">
-                            <span class="price-old"><del>₴{{ $product->old_price }}</del></span>
-                            <span class="price">₴{{ $product->price }}</span>
+                            <span class="price-old"><del>{{ $product->old_price }} {{ __('messages.uah') }}</del></span>
+                            <span class="price">{{ $product->price }} {{ __('messages.uah') }}</span>
                         </div>
                         <div class="pro-option-attribute">
                             <div class="pro-quantity">
@@ -79,6 +79,7 @@
                                 {{--<a href="#"><i class="pe-7s-like"></i></a>--}}
                             {{--</div>--}}
                         </div>
+                        <div class="pb-50">Ближайшее время доставки:  {{ $nearestperiod }}</div>
                         <div class="pro-tabs">
                             <div class="tabs-desc">
                                 <ul class="navbar-tabs">
@@ -91,15 +92,15 @@
                                             <p>{{ $product->description }}</p>
                                         </div>
                                     </li>
-                                    <li class="dropdown">
-                                        <div class="dropdowndesc">
-                                            <span>Custom tab</span>
-                                            <i class="icon-caret"></i>
-                                        </div>
-                                        <div class="dropdown-menu">
-                                            <p>{{ $product->description }}</p>
-                                        </div>
-                                    </li>
+                                    {{--<li class="dropdown">--}}
+                                        {{--<div class="dropdowndesc">--}}
+                                            {{--<span>Custom tab</span>--}}
+                                            {{--<i class="icon-caret"></i>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="dropdown-menu">--}}
+                                            {{--<p>{{ $product->description }}</p>--}}
+                                        {{--</div>--}}
+                                    {{--</li>--}}
                                     <li class="dropdown">
                                         <div class="dropdowndesc">
                                             <span>Отзывы</span>

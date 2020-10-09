@@ -17,7 +17,6 @@ class CatalogController extends AdminController
      * @var string
      */
     protected $title = 'Catalog';
-
     /**
      * Make a grid builder.
      *
@@ -67,7 +66,6 @@ class CatalogController extends AdminController
     protected function form()
     {
         $form = new Form(new Catalog());
-
         $form->text('name', __('Name'));
         $form->text('slug', __('Slug'));
         $form->text('description', __('Description'));
@@ -79,7 +77,12 @@ class CatalogController extends AdminController
     public function add(Request $request)
     {
         $catalog = new Catalog($request->except(['image']));
-        $catalog->slug = str_slug($request->slug);
+        if (isset($request->slug)) {
+            $catalog->slug = str_slug($request->slug);
+        } else {
+            $catalog->slug = str_slug($request->name);
+        }
+
         $catalog->save();
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {

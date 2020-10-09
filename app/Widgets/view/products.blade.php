@@ -1,6 +1,6 @@
 <div class="widget widget-products">
     <div class="title-heading">
-        <span>НОВЫЕ КОМПОЗИЦИИ</span>
+        <span>{{ __('messages.new compositions') }}</span>
     </div>
     <div class="widget-content">
         @foreach($products as $product)
@@ -13,8 +13,8 @@
                         <a href="{{ route('product', $product->slug) }}" title="{{ $product->name }}">{{ $product->name }}</a>
                     </div>
                     <div class="product-price">
-                        <span class="old-price"><del>${{ $product->old_price }}</del></span>
-                        <span class="price">${{ $product->price }}</span>
+                        <span class="old-price"><del>{{ $product->old_price }} {{ __('messages.uah') }}</del></span>
+                        <span class="price">{{ $product->price }} {{ __('messages.uah') }}</span>
                     </div>
                 </div>
             </div>

@@ -1999,7 +1999,7 @@ pre code {
 
 @media (min-width: 768px) {
     .container {
-        width: 750px;
+        /*width: 750px;*/
     }
 }
 
@@ -11705,8 +11705,8 @@ li {
 }
 
 #header_mobile .main-right .search-popup {
-    /*margin-right: 20px;*/
-    padding-top: 6px;
+    margin-right: 20px;
+    padding-top: 8px;
 }
 
 #header_mobile.header-v6 .header-bottom {
@@ -13390,7 +13390,7 @@ li {
     border: none;
 }
 
-.box-right .widget .title-heading,
+.box-filter .widget .title-heading,
 .sidebar .widget .title-heading {
     font-size: 24px;
     font-weight: bold;
@@ -15225,8 +15225,9 @@ li {
 }
 
 .products-top-wrap .display-mode button {
-    background: transparent;
-    border: 1px solid #d6d6d6;
+    /*background: transparent;*/
+    background-color: #d9fbac;
+    border: 1px solid #80b43b;
     padding: 0;
     width: 50px;
     height: 50px;
@@ -15830,7 +15831,7 @@ button.btn-login.btn-theme.btn-medium {
 }
 
 .cart-page .content-product-list .product-price {
-    padding-top: 10px;
+    padding-top: 30px;
 }
 
 .cart-page .content-product-list .product-price a {
@@ -15974,6 +15975,7 @@ button.btn-login.btn-theme.btn-medium {
 
 .content-right .widget-your-order .product-sidebar .inner-left {
     margin-top: 20px;
+    width: 200px;
 }
 
 .content-right .widget-your-order .product-sidebar .product-name, .content-right .widget-your-order .product-sidebar .product-qty {
@@ -17938,7 +17940,14 @@ li.submenu1, li.submenu2{
     }
 
     .content-right {
-        margin-top: 30px;
+        /*margin-top: 85px;*/
+        background-color: transparent;
+    }
+
+    .content-right .widget{
+        padding: 10px;
+        background-color: #f8f8f8;
+        text-align: center;
     }
 
     .cart-page .content-product-list .product-name .quantity {
@@ -17954,7 +17963,7 @@ li.submenu1, li.submenu2{
 }
 
 .mobile-contacts{
-    padding: 8px 22px;
+    padding: 8px 22px 8px 0;
 }
 
 .mobile-contacts span{
@@ -17995,11 +18004,24 @@ button.btn-login.btn-theme.btn-medium.btn-buy {
     padding: 0;
     position: relative;
     top: 0px;
-    color: #969696;
+    color: #80b43b;
 }
 
-.box-right .widget .title-heading {
+.box-filter .widget .title-heading {
     text-align: center;
     margin-top: 10px;
     padding-bottom: 0px;
+}
+
+.dop-class .btn-theme.btn-medium span {
+    font-size: 12px;
+}
+
+.dop-class .pull-left {
+    display: block;
+}
+
+.dop-class .price {
+    margin-left: 30px;
+}
 }

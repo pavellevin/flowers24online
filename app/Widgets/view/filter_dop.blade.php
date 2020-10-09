@@ -7,7 +7,7 @@
             <div class="card-header" id="heading{{$attribute->id}}">
                 <h4 class="mb-0">
                     <button class="btn btn-link-filter" data-toggle="collapse" data-target="#collapse{{$attribute->id}}" aria-expanded="true" aria-controls="collapse{{$attribute->id}}">
-                        {{$attribute->name}}
+                        {{$attribute->getValueGroupName($attribute)}}
                     </button>
                 </h4>
             </div>
@@ -15,7 +15,7 @@
             <div id="collapse{{$attribute->id}}" class="collapsed" aria-labelledby="heading{{$attribute->id}}" data-parent="#accordion">
                 @foreach($attribute->attributes as $attr)
                 <div class="card-body">
-                    <li><a href="/catalog/{{$slug}}/filters={{$filters}}{{ mb_strtolower($attr->name) }}&">{{ $attr->name }}</a></li>
+                    <li><a href="/catalog/{{$slug}}/filters={{$filters}}{{ mb_strtolower($attr->name) }}&">{{ $attr->getValueAttributeName($attr) }}</a></li>
                 </div>
                 @endforeach
             </div>

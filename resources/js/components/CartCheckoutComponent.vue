@@ -1,8 +1,8 @@
 <template>
 <div class="inner row">
-    <div class="content-left col-md-8 col-sm-8">
+    <div class="content-left col-md-8 col-sm-12">
         <div class="form-billing-details row">
-            <div class="col-md-5 pt-25 pb-10 border-green">
+            <div class="col-md-5 pt-25 pb-10">
                 <div class="title-heading">
                     <h3>{{ __('messages.сustomer') }}</h3>
                 </div>
@@ -43,7 +43,7 @@
                    <label>{{ __('messages.comment') }}</label>
                    <textarea name="order note" id="comment"></textarea>
             </div>
-            <div class="col-md-5 col-md-offset-1 pt-25 pb-10 border-green">
+            <div class="col-md-5 col-md-offset-1 pt-25 pb-10">
                 <div class="title-heading">
                     <h3>{{ __('messages.recipient') }}</h3>
                 </div>
@@ -95,7 +95,7 @@
             </div>
         </div>
     </div>
-    <div class="content-right col-md-4 col-sm-4 pt-25 border-green">
+    <div class="content-right col-md-4 col-sm-12 pt-25">
         <div class="widget widget-your-order">
             <div class="title-heading">
                 <h3>{{ __('messages.your order') }}</h3>
@@ -169,15 +169,7 @@
                         <img :src="product.img" :alt="product.name" :title="product.name" class="img-responsive">
                         </a>
                 </div>
-            <div class="btn-product">
-                <div class="wrap-btn">
-                    <a :href="'/product/'+product.slug">
-                        <span><i class="icon-search"></i></span>
-                    </a>
-                    <a href="javascript:;" @click="addToCart(product)"><span><i class="icon-cart"></i></span>
-                    </a>
-                </div>
-            </div>
+                <button @click="addToCart(product)" type="submit" class="btn-login btn-theme btn-medium btn-buy"><span>{{__('messages.buy')}}</span></button>
             <div class="content-item p-0">
                 <h5 class="title-h5">
                     <a :href="/product/+product.slug" tabindex="0">

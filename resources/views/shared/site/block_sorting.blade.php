@@ -38,9 +38,9 @@
             </select>
         </div>
     </div>
-    <div class="box-right">
+</div>
+    <div class="box-filter">
             <div id="collapse" aria-labelledby="heading" class="collapse" style="height: 0px;" aria-expanded="false">
                 @widget('filter_flower', ['slug' => $catalog->slug, 'filters' => $filters])
             </div>
         </div>
-</div>

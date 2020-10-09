@@ -17,7 +17,7 @@
                                             <a href="{{ route('product', $product->slug) }}">
                                                 <img src="{{ $product->getFirstMediaUrl('products', 'item_img') }}"
                                                      class="img-responsive"
-                                                     alt="Product"
+                                                     alt="{{$product->name}}"
                                                      title="images products">
                                             </a>
                                             {{--<div class="content-item">--}}

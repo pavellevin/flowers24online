@@ -30,16 +30,12 @@ class Product extends Model implements HasMedia
         return $images;
     }
 
-//    public function image()
-//    {
-//        return $this->getFirstMediaUrl('products');
-//    }
-
     public function getColorAttribute()
     {
         $colors = '';
-        foreach($this->attributes()->pluck('name_ru') as $atrribute){
-            $colors .= $atrribute. ' - ';
+
+        foreach ($this->attributes()->pluck('name_ru') as $atrribute) {
+            $colors .= $atrribute . ' - ';
         }
         return $colors;
     }
@@ -59,7 +55,8 @@ class Product extends Model implements HasMedia
         return $this->belongsToMany('App\Attribute', 'attribute_product', 'product_id', 'attribute_id');
     }
 
-    public function reviews(){
+    public function reviews()
+    {
         return $this->belongsToMany('App\User', 'reviews', 'product_id', 'user_id')->withPivot('text', 'active')->ActiveReview()->withTimestamps();
     }
 
@@ -88,7 +85,8 @@ class Product extends Model implements HasMedia
         return $query->where('quantity', '>', 0);
     }
 
-    public function scopeSortingPosition($query){
+    public function scopeSortingPosition($query)
+    {
 //        return $query->orderBy('position', 'ASC');
         return $query->orderBy(\DB::raw('-`position`'), 'desc');
     }

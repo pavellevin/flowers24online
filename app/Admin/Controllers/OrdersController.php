@@ -29,15 +29,10 @@ class OrdersController extends AdminController
     {
         $grid = new Grid(new Order());
         $grid->model()->orderBy('id', 'desc');
-//        $grid->model()->select([DB::raw("sum(price*quantity) as total"), 'order_key', 'user_id', 'phone', 'city_id', 'status_id', 'district_id', 'date_delivery', 'comment', 'quantity', 'created_at', 'updated_at']);
         $grid->column('id', __('Id'));
-//        $grid->column('order_key', __('Order key'));
-//        $grid->column('user.name', 'User');
-//        $grid->column('phone', __('Phone'));
         $grid->column('city.name', 'City');
         $grid->column('district.name', 'District');
         $grid->column('products', 'Total,₴')->display(function ($datas) {
-//            dd($this);
             $total = 0;
             foreach ($datas as $data) {
                 $total += $data['pivot']['quantity'] * $data['pivot']['price'];
@@ -46,19 +41,19 @@ class OrdersController extends AdminController
             if ($total < 500)
                 $total += \App\Setting::findOrFail(7)->value;
 
-            if(isset($this->want_call) && $this->want_time != null )
+            if (isset($this->want_call) && $this->want_time != null)
                 $total += (integer)$this->want_call;
 
-            if(isset($this->want_time) && $this->want_time != null )
+            if (isset($this->want_time) && $this->want_time != null)
                 $total += (integer)$this->want_time;
 
-            if(isset($this->want_postcard) && $this->want_postcard != null && $this->want_postcard != 'card' )
+            if (isset($this->want_postcard) && $this->want_postcard != null && $this->want_postcard != 'card')
                 $total += (integer)$this->want_postcard;
 
-            if(isset($this->want_foto) && $this->want_foto != null )
+            if (isset($this->want_foto) && $this->want_foto != null)
                 $total += (integer)$this->want_foto;
 
-            if($this->period_id == 1 || $this->period_id  == 8 )
+            if ($this->period_id == 1 || $this->period_id == 8)
                 $total += \App\Setting::findOrFail(6)->value;
 
             return $total;
@@ -123,7 +118,7 @@ class OrdersController extends AdminController
             return \Carbon\Carbon::parse($date_delivery)->format('Y-m-d');
         });
         $show->field('period.name', 'Period delivery')->unescape()->as(function ($period) {
-            if($period == null)
+            if ($period == null)
                 return "<span class='label label-danger'>указано точное время</span>";
             return $period;
         });
@@ -131,20 +126,20 @@ class OrdersController extends AdminController
             return \Carbon\Carbon::parse($time_delivery)->format('H:m');
         });
         $show->field('want_postcard', __('Postcard or Card'))->unescape()->as(function ($want_postcard) {
-            if($want_postcard == 'card')
+            if ($want_postcard == 'card')
                 return "<span class='label label-info'>Обычная карточка </span>";
             return "<span class='label label-danger'>Брендированная карточка</span>";
         });
         $show->field('postcard_text', __('Postcard text'));
         $show->field('want_call', __('Call'))->unescape()->as(function ($want_call) {
-            if($want_call == null)
+            if ($want_call == null)
                 return "<span class='label label-danger'>без предварительного звонка </span>";
-                return "<span class='label label-info'>предварительно перезвонить получателю</span>";
+            return "<span class='label label-info'>предварительно перезвонить получателю</span>";
         });
         $show->field('want_foto', __('Foto'))->unescape()->as(function ($want_foto) {
-            if($want_foto == null)
+            if ($want_foto == null)
                 return "<span class='label label-info'>без фото </span>";
-                return "<span class='label label-danger'>с фото</span>";
+            return "<span class='label label-danger'>с фото</span>";
         });
         $show->field('comment', __('Comment'));
         $show->field('status.name', 'Status')->label();
@@ -166,12 +161,9 @@ class OrdersController extends AdminController
         $form->text('id', __('ID'));
         $form->text('user.name');
         $form->mobile('phone', __('Phone'));
-//        $form->text('products');
         $form->text('city.name');
         $form->text('district.name');
         $form->text('adress');
-//        $form->text('quantity', __('Quantity'));
-//        $form->text('price', __('Price'));
         $form->datetime('date_delivery', __('Date delivery'))->default(date('Y-m-d'));
         $form->text('period.name');
         $form->datetime('time_delivery', __('Time delivery'))->default(date('H:i'));

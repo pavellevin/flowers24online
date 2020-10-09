@@ -57,8 +57,11 @@ Route::get('/catalog/{slug}/{sortby?}', 'FrontController@getProducts')->name('ca
 Route::post('/search', 'FrontController@getProductsBySearch')->name('search');
 
 Route::post('/create-order', 'FrontController@createOrder')->name('create_order');
+
 Route::get('/checkout', 'FrontController@showCheckout')->name('show_checkout');
+
 Route::post('/checkout', 'Auth\LoginController@login')->name('login_checkout');
+
 Route::get('/confirm/{order_id}', 'FrontController@confirm')->name('confirm');
 
 Route::get('/get-districts/{id}', 'FrontController@getDistricts')->name('get_districts');
@@ -86,7 +89,6 @@ Route::get('/contacts', function () {
 })->name('contacts');
 
 Route::get('/shopping-card', 'FrontController@showShoppingCard')->name('shopping_card');
-
 
 Auth::routes();
 

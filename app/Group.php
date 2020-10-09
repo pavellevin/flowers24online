@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
 {
-    public function attributes(){
+    public function attributes()
+    {
         return $this->hasMany('App\Attribute');
     }
 
-    public function getValueGroupName($attribute){
-        switch (app()->getLocale()){
+    public function getValueGroupName($attribute)
+    {
+        switch (app()->getLocale()) {
             case "en":
                 return $attribute->name_en;
                 break;
@@ -23,5 +25,4 @@ class Group extends Model
                 break;
         }
     }
-
 }

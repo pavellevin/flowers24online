@@ -18256,7 +18256,7 @@ input[name=email]::placeholder {
 }
 .other-menu-auth {
     font-size: 28px;
-    padding: 5px 10px;
+    padding: 6px 10px;
     /*padding-left: 15px;*/
 }
 
@@ -18387,6 +18387,16 @@ span.review_user.
 span.review_date {
     color: #888383;
     font-style: italic;
+}
+
+.review_text {
+    width: 100%;
+}
+
+.alert {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @media (max-width: 992px) {

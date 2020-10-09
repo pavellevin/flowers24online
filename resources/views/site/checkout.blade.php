@@ -15,7 +15,7 @@
         <section id="breadcrumb" class="breadcrumb-v2">
             <div class="container">
                 <div class="breadcrumb-content">
-                        {{ Breadcrumbs::render('show_checkout') }}
+                    {{ Breadcrumbs::render('show_checkout') }}
                 </div>
             </div>
         </section>
@@ -121,7 +121,7 @@
 
 {{--FOOTER--}}
 {{--@section('footer')--}}
-    {{--@include('shared.site.footer_page')--}}
+{{--@include('shared.site.footer_page')--}}
 {{--@endsection--}}
 
 {{--SCRIPTS--}}

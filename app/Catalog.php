@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+
 // use Media Library
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -13,7 +14,7 @@ class Catalog extends Model implements HasMedia
     use HasMediaTrait;
 
     protected $table = 'catalogs';
-    protected $fillable = ['name','content','slug', 'description'];
+    protected $fillable = ['name', 'content', 'slug', 'description'];
 
     protected $appends = array('image');
 
@@ -22,15 +23,18 @@ class Catalog extends Model implements HasMedia
         return $this->getFirstMediaUrl('catalog', 'admin_thumb');
     }
 
-    public function products(){
+    public function products()
+    {
         return $this->hasMany('App\Product');
     }
 
-    public function scopeSortingPosition($query){
+    public function scopeSortingPosition($query)
+    {
         return $query->orderBy('position', 'ASC');
     }
 
-    public function scopeHasProducts($query){
+    public function scopeHasProducts($query)
+    {
         return $query->whereHas('products');
     }
 
@@ -55,5 +59,4 @@ class Catalog extends Model implements HasMedia
         $this->addMediaConversion('full-size')
             ->withResponsiveImages();
     }
-
 }

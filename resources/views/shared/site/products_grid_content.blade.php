@@ -6,123 +6,130 @@
                 <h1 class="category_title">{{ $catalog->name }}</h1>
                 @endisset
                 @if(sizeof($products))
-                @include('shared.site.block_sorting')
-                <div class="products product-grid">
-                    <div class="product-block">
-                        <div class="row">
-                            @foreach($products as $product)
-                                <div class="item col-lg-3 col-md-3 col-sm-6  col-xs-6 wrap-box">
-                                    <div class="wrap-box-1">
-                                        <div class="box-img">
-                                            <a href="{{ route('product', $product->slug) }}">
-                                                <img src="{{ $product->getFirstMediaUrl('products', 'item_img') }}"
-                                                     class="img-responsive"
-                                                     alt="{{$product->name}}"
-                                                     title="images products">
-                                            </a>
-                                            {{--<div class="content-item">--}}
-                                            {{--<h5 class="title-h5"><a href="#">{{ $product->name }}</a></h5>--}}
-                                            {{--<div class="bottom">--}}
-                                            {{--<div class="text-left pull-left">--}}
-                                            {{--<span class="old-price"><del>{{ $product->old_price }}</del></span>--}}
-                                            {{--<span class="price">{{ $product->price }}</span>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="text-right">--}}
-                                            {{--<span class="height">133 cm</span>--}}
-                                            {{--</div>--}}
-                                            {{--</div>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="btn-product">--}}
+                    @include('shared.site.block_sorting')
+                    <div class="products product-grid">
+                        <div class="product-block">
+                            <div class="row">
+                                @foreach($products as $product)
+                                    <div class="item col-lg-3 col-md-3 col-sm-6  col-xs-6 wrap-box">
+                                        <div class="wrap-box-1">
+                                            <div class="box-img">
+                                                <a href="{{ route('product', $product->slug) }}">
+                                                    <img src="{{ $product->getFirstMediaUrl('products', 'item_img') }}"
+                                                         class="img-responsive"
+                                                         alt="{{$product->name}}"
+                                                         title="images products">
+                                                </a>
+                                                {{--<div class="content-item">--}}
+                                                {{--<h5 class="title-h5"><a href="#">{{ $product->name }}</a></h5>--}}
+                                                {{--<div class="bottom">--}}
+                                                {{--<div class="text-left pull-left">--}}
+                                                {{--<span class="old-price"><del>{{ $product->old_price }}</del></span>--}}
+                                                {{--<span class="price">{{ $product->price }}</span>--}}
+                                                {{--</div>--}}
+                                                {{--<div class="text-right">--}}
+                                                {{--<span class="height">133 cm</span>--}}
+                                                {{--</div>--}}
+                                                {{--</div>--}}
+                                                {{--</div>--}}
+                                                {{--<div class="btn-product">--}}
                                                 {{--<button @click="addToCart({{json_encode($product)}})" type="submit" class="btn-login btn-theme btn-medium btn-buy"><span>{{__('messages.buy')}}</span></button>--}}
                                                 {{--<div class="wrap-btn">--}}
-                                                    {{--<a href="/"><span><i class="icon-wishlist"></i></span></a>--}}
-                                                    {{--<a href="{{ route('product', $product->slug) }}"><span><i--}}
-                                                                    {{--class="icon-search"></i></span></a>--}}
-                                                    {{--<a href="javascript:;" @click="addToCart({{json_encode($product)}})"--}}
-                                                    {{--><span><i class="icon-cart"></i></span></a>--}}
+                                                {{--<a href="/"><span><i class="icon-wishlist"></i></span></a>--}}
+                                                {{--<a href="{{ route('product', $product->slug) }}"><span><i--}}
+                                                {{--class="icon-search"></i></span></a>--}}
+                                                {{--<a href="javascript:;" @click="addToCart({{json_encode($product)}})"--}}
+                                                {{--><span><i class="icon-cart"></i></span></a>--}}
                                                 {{--</div>--}}
-                                            {{--</div>--}}
-                                            <div class="pro-list">
-                                                <h1 class="pro-name"><a
-                                                            href="{{ route('product', $product->slug) }}">{{ $product->name }}</a>
-                                                </h1>
-                                                <div class="pro-star">
-                                                    <div class="star-rating">
-                                                        <span class="fa fa-star-o" data-rating="1"></span>
-                                                        <span class="fa fa-star-o" data-rating="2"></span>
-                                                        <span class="fa fa-star-o" data-rating="3"></span>
-                                                        <span class="fa fa-star-o" data-rating="4"></span>
-                                                        <span class="fa fa-star-o" data-rating="5"></span>
-                                                        <input type="hidden" name="whatever1" class="rating-value"
-                                                               value="2.56">
+                                                {{--</div>--}}
+                                                <div class="pro-list">
+                                                    <h1 class="pro-name"><a
+                                                                href="{{ route('product', $product->slug) }}">{{ $product->name }}</a>
+                                                    </h1>
+                                                    <div class="pro-star">
+                                                        <div class="star-rating">
+                                                            <span class="fa fa-star-o" data-rating="1"></span>
+                                                            <span class="fa fa-star-o" data-rating="2"></span>
+                                                            <span class="fa fa-star-o" data-rating="3"></span>
+                                                            <span class="fa fa-star-o" data-rating="4"></span>
+                                                            <span class="fa fa-star-o" data-rating="5"></span>
+                                                            <input type="hidden" name="whatever1" class="rating-value"
+                                                                   value="2.56">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="pro-price">
-                                                    @if(!empty($product->old_price))
-                                                    <span class="old-price"><del>{{ $product->old_price }} {{ __('messages.uah') }}</del></span>@endif
-                                                    <span class="price">{{ $product->price }} {{ __('messages.uah') }}</span>
-                                                </div>
-                                                <div class="pro-desc">
-                                                    <p>
-                                                        {{ $product->description }}
-                                                    </p>
-                                                </div>
-                                                <div class="pro-action">
+                                                    <div class="pro-price">
+                                                        @if(!empty($product->old_price))
+                                                            <span class="old-price"><del>{{ $product->old_price }} {{ __('messages.uah') }}</del></span>@endif
+                                                        <span class="price">{{ $product->price }} {{ __('messages.uah') }}</span>
+                                                    </div>
+                                                    <div class="pro-desc">
+                                                        <p>
+                                                            {{ $product->description }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="pro-action">
                                                     <span class="btn-theme btn-medium addcart">
-                                                        <a href="javascript:;" @click="addToCart({{json_encode($product)}})">В корзину</a>
+                                                        <a href="javascript:;" @click
+                                                        ="addToCart({{json_encode($product)}})">В корзину</a>
                                                     </span>
-                                                    <span class="btn-action btn-wishlist">
+                                                        <span class="btn-action btn-wishlist">
                                                         <a href="#"><i class="pe-7s-like"></i></a>
                                                     </span>
-                                                    <span class="btn-action btn-search">
-                                                        <a href="{{ route('product', $product->slug) }}"><i class="pe-7s-search"></i></a>
+                                                        <span class="btn-action btn-search">
+                                                        <a href="{{ route('product', $product->slug) }}"><i
+                                                                    class="pe-7s-search"></i></a>
                                                     </span>
-                                                </div>
-                                                <div class="pro-share">
-                                                    <span>Share this :</span>
-                                                    <ul>
-                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-facebook-square"></i></a>
-                                                        </li>
-                                                    </ul>
+                                                    </div>
+                                                    <div class="pro-share">
+                                                        <span>Share this :</span>
+                                                        <ul>
+                                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-facebook-square"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        {{--</div>--}}
-                                        <div class=" product-block-info">
-                                            <h5 class="title-h5"><a href="{{ route('product', $product->slug) }}">{{ $product->name }}</a></h5>
-                                        </div>
-                                        <div class="content-item">
-                                            <div class="bottom">
-                                                <div class="text-left">
-                                                    {{--@if(!empty($product->old_price))--}}
+                                            {{--</div>--}}
+                                            <div class=" product-block-info">
+                                                <h5 class="title-h5"><a
+                                                            href="{{ route('product', $product->slug) }}">{{ $product->name }}</a>
+                                                </h5>
+                                            </div>
+                                            <div class="content-item">
+                                                <div class="bottom">
+                                                    <div class="text-left">
+                                                        {{--@if(!empty($product->old_price))--}}
                                                         {{--<span class="old-price"><del>{{ $product->old_price }} {{ __('messages.uah') }}</del></span>@endif--}}
-                                                    <span class="old-price
+                                                        <span class="old-price
                                                         @if(empty($product->old_price)) invisible
                                                     @endif"><del>{{ $product->old_price }} {{ __('messages.uah') }}</del></span>
-                                                </div>
-                                                <div class="text-center">
-                                                    <span class="price">{{ $product->price }} {{ __('messages.uah') }}</span>
-                                                </div>
-                                                {{--<div class="text-right">--}}
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <span class="price">{{ $product->price }} {{ __('messages.uah') }}</span>
+                                                    </div>
+                                                    {{--<div class="text-right">--}}
                                                     {{--<span class="height">133 cm</span>--}}
-                                                {{--</div>--}}
+                                                    {{--</div>--}}
+                                                </div>
                                             </div>
-                                        </div>
-                                        <button onclick="window.location.href='{{ route('product', $product->slug) }}'" type="submit" class="btn-login btn-theme btn-medium btn-buy"><span>{{__('messages.buy')}}</span></button>
+                                            <button onclick="window.location.href='{{ route('product', $product->slug) }}'"
+                                                    type="submit" class="btn-login btn-theme btn-medium btn-buy">
+                                                <span>{{__('messages.buy')}}</span></button>
 
+                                        </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
                     </div>
-                </div>
-                {{ $products->links('shared.site.pagination') }}
+                    {{ $products->links('shared.site.pagination') }}
                 @else
-                    <div class="info"><h3>{{ __('messages.no product found for the specified search criteria!') }}</h3></div>
+                    <div class="info"><h3>{{ __('messages.no product found for the specified search criteria!') }}</h3>
+                    </div>
                 @endif
             </div>
             <div class="col-lg-3">
@@ -134,8 +141,8 @@
                     @if(isset($catalog) && in_array($catalog->id, ['28']))
                         @widget('filter_dop', ['slug' => $catalog->slug, 'filters' => $filters])
                     @endif
-                {{--</div>--}}
-                {{--<div class="sidebar sidebar-right">--}}
+                    {{--</div>--}}
+                    {{--<div class="sidebar sidebar-right">--}}
                     @widget('catalog')
                     {{--<div class="widget widget-filter-brand">--}}
                     {{--<div class="title-heading">--}}

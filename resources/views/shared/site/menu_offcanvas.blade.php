@@ -9,8 +9,9 @@
         <nav class="navbar navbar-offcanvas navbar-static">
             <ul class="nav navbar-nav">
                 <li class="level1 active hassub">
-                <a data-toggle="collapse" href="#menuCatalog" role="button" aria-expanded="false" aria-controls="menuCatalog">
-                    {{ __('messages.catalog') }}
+                    <a data-toggle="collapse" href="#menuCatalog" role="button" aria-expanded="false"
+                       aria-controls="menuCatalog">
+                        {{ __('messages.catalog') }}
                     </a>
                 </li>
                 <div class="collapse" id="menuCatalog">

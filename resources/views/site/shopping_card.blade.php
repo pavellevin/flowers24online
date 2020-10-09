@@ -24,7 +24,7 @@
     {{--CONTENT--}}
     @section('content')
         <cart></cart>
-    @endsection
+@endsection
 
 {{--FOOTER--}}
 @section('footer')

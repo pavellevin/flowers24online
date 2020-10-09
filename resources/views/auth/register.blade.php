@@ -173,7 +173,7 @@
                             {{--</div>--}}
                             {{--</div>--}}
                             {{--<div role="button" class="proceed-checkout btn-theme btn-lage"><a href="javascript:;">Proceed--}}
-                                    {{--to Register</a></div>--}}
+                            {{--to Register</a></div>--}}
                             {{--</div>--}}
                         </div>
                     </div>

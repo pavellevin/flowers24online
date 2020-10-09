@@ -37,11 +37,11 @@ class ProductsController extends AdminController
     {
         $grid = new Grid(new Product());
 
-        $grid->filter(function($filter)  {
+        $grid->filter(function ($filter) {
             $filter->where(function ($query) {
 
                 $query->whereHas('catalog', function ($query) {
-                    $query->where('catalog_id',  "{$this->input}");
+                    $query->where('catalog_id', "{$this->input}");
                 });
             }, 'Category')->select(Catalog::HasProducts()->get()->pluck('name', 'id'));
         });
@@ -49,7 +49,6 @@ class ProductsController extends AdminController
         $grid->column('id', __('Id'))->sortable();
         $grid->column('position', __('Position'))->sortable();
         $grid->column('image')->image('', 100, 100);
-//        $grid->image()->image('', 100, 100);
         $grid->catalog()->display(function ($catalog) {
             return "<span class='label label-success'>{$catalog['name']}</span>";
         })->sortable();
@@ -58,7 +57,6 @@ class ProductsController extends AdminController
             $res = '';
             foreach ($attributes as $attribute) {
                 $res .= "<span class='label' style='background-color: {$attribute['color_style']}'>{$attribute['name_ru']}</span> ";
-//                $res .= "<span class='label label-success'>{$attribute['name_ru']}</span><br/> ";
             }
             return $res;
         })->sortable();
@@ -106,18 +104,6 @@ class ProductsController extends AdminController
             return $result;
         });
 
-//        $show->field('color', 'Color')->badge();
-
-//        $show->attributes('Color', function ($attributes) {
-//            $attributes->resource('/admin/attributes');
-//
-//            $attributes->name();
-//
-//            $attributes->filter(function ($filter) {
-//                $filter->like('name');
-//            });
-//        });
-
         $show->field('old_price', __('Old price'));
         $show->field('price', __('Price'));
         $show->field('description', __('Description'));
@@ -162,13 +148,7 @@ class ProductsController extends AdminController
         $form->text('description', __('Description'));
         $form->text('quantity', __('Quantity'));
         $form->switch('is_slider', 'is Slider')->states($states);
-//        $form->text('is_slider', __('is Slider'));
         $form->text('count_view', __('Count view'));
-//        $form->multipleImage('image', 'Pictures')->removable();
-        // Single media
-//        $form->mediaLibrary('image', 'Image')
-//            ->responsive()
-//            ->removable();
 
         // Multiple media field
         $form->multipleMediaLibrary('products', 'Images')
@@ -186,7 +166,6 @@ class ProductsController extends AdminController
         } else {
             $product->slug = str_slug($request->name);
         }
-//        dd($request->input());
         if ($product->save()) {
             foreach ($request->input('attributes') as $attribute) {
                 if ($attribute) {

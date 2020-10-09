@@ -10,40 +10,42 @@
     @include('shared.site.styles')
 </head>
 <div id="app">
-{{--BODY--}}
-@yield('body')
+    {{--BODY--}}
+    @yield('body')
+
     {{--<div id="page-preloader">--}}
-        {{--<div class="spinner">--}}
-        {{--</div>--}}
+    {{--<div class="spinner">--}}
     {{--</div>--}}
-{{--HEADER --}}
-@include('shared.site.header')
+    {{--</div>--}}
+    {{--HEADER --}}
+    @include('shared.site.header')
 
-{{--HEADER MOBILE--}}
-@include('shared.mobile.header_mobile')
+    {{--HEADER MOBILE--}}
+    @include('shared.mobile.header_mobile')
 
-{{--HEADER INFO--}}
-@include('shared.site.header_info')
+    {{--HEADER INFO--}}
+    @include('shared.site.header_info')
 
-{{--HEADER FILTER--}}
+    {{--HEADER FILTER--}}
     @yield('header_filter')
 
-{{--BREADCRUMB--}}
-@yield('breadcrumb')
+    {{--BREADCRUMB--}}
+    @yield('breadcrumb')
 
-@include('shared.site.flash_message')
+    {{--@include('shared.site.flash_message')--}}
+    @include('flash::message')
 
-{{--CONTENT--}}
-@yield('content')
+    {{--CONTENT--}}
+    @yield('content')
 
-{{--FOOTER--}}
-@yield('footer')
+    {{--FOOTER--}}
+    @yield('footer')
 
-{{--MENU OFFCANVAS--}}
-@include('shared.site.menu_offcanvas')
+    {{--MENU OFFCANVAS--}}
+    @include('shared.site.menu_offcanvas')
 
-{{--SCOLL TOP--}}
-@include('shared.site.scroll_top')
+    {{--SCOLL TOP--}}
+    @include('shared.site.scroll_top')
 </div>
 
 {{--SCRIPTS--}}

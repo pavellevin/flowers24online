@@ -25,7 +25,8 @@
             <span>{{ __('messages.sort by') }}:</span>
             {{--<select name="selectpicker" class="selectpicker" onchange="location.href=(typeof catalog !== 'undefined' ? '/catalog/' + catalog : '/shop') + '/' + this.value">--}}
             <select id="sortby-section" name="selectpicker" class="selectpicker2" onchange="setSortby()">
-                <option value="default" @if(isset($_COOKIE['sortBy']) && $_COOKIE['sortBy'] == 'popularity') selected @endif>{{ __('messages.default') }}</option>
+                <option value="default"
+                        @if(isset($_COOKIE['sortBy']) && $_COOKIE['sortBy'] == 'popularity') selected @endif>{{ __('messages.default') }}</option>
                 <option value="popularity"
                         @if(isset($_COOKIE['sortBy']) && $_COOKIE['sortBy'] == 'popularity') selected @endif>{{ __('messages.popularity') }}</option>
                 <option value="lowerprice"
@@ -38,10 +39,10 @@
         </div>
     </div>
 </div>
-    <div class="box-filter">
-        <div id="collapse" aria-labelledby="heading" class="collapse" style="height: 0px;" aria-expanded="false">
-            @isset($catalog)
-                @widget('filter_flower', ['slug' => $catalog->slug, 'filters' => $filters])
-            @endisset
-        </div>
+<div class="box-filter">
+    <div id="collapse" aria-labelledby="heading" class="collapse" style="height: 0px;" aria-expanded="false">
+        @isset($catalog)
+        @widget('filter_flower', ['slug' => $catalog->slug, 'filters' => $filters])
+        @endisset
     </div>
+</div>

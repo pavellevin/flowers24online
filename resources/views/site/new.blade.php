@@ -83,9 +83,9 @@
                         </div>
                     </div>
                     {{--<div class="col-xs-8 col-sm-8 col-md-8 col-lg-4 no-padding">--}}
-                        {{--<div class="color-content">--}}
-                            {{--<img src="{{ $new->getFirstMediaUrl('news', 'right') }}" alt="" class="img-responsive">--}}
-                        {{--</div>--}}
+                    {{--<div class="color-content">--}}
+                    {{--<img src="{{ $new->getFirstMediaUrl('news', 'right') }}" alt="" class="img-responsive">--}}
+                    {{--</div>--}}
                     {{--</div>--}}
                     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 no-padding">
                         <div class="color-content">
@@ -120,114 +120,114 @@
                                 elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                         {{--<div class="warp-comment">--}}
-                            {{--<div class="comment-top">--}}
-                                {{--<div class="entry-between">--}}
-                                    {{--<span class="label">03 Bình luận</span>--}}
-                                    {{--<span class="comment">3</span>--}}
-                                {{--</div>--}}
-                                {{--<div class="comment-text">--}}
-                                    {{--<div class="img-comment">--}}
-                                        {{--<img src="images/user/1.jpg" alt="">--}}
-                                    {{--</div>--}}
-                                    {{--<form>--}}
-                                        {{--<input type="text" name="comment" class="form-control"--}}
-                                               {{--placeholder="Leave a message...">--}}
-                                    {{--</form>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<!-- OUR-GALLERY-->--}}
-                            {{--<div class="gallery-our process clearfix ">--}}
-                                {{--<div class="gallery ">--}}
-                                    {{--<ul class="nav nav-tabs  clearfix">--}}
-                                        {{--<li class="active"><a data-toggle="tab" href="#menu1">Best <span--}}
-                                                        {{--class="caret"></span></a></li>--}}
-                                        {{--<li><a data-toggle="tab" href="#menu2">Community</a></li>--}}
-                                        {{--<li class="warp-right text-right">--}}
-                                            {{--<div class="share">--}}
-                                                {{--Share <i class="fa fa-share-square-o" aria-hidden="true"></i>--}}
-                                            {{--</div>--}}
-                                            {{--<ul class="setting">--}}
-                                                {{--<li class="dropdown">--}}
-                                                    {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i--}}
-                                                                {{--class="fa fa-cog" aria-hidden="true"></i><b--}}
-                                                                {{--class="caret"></b></a>--}}
-                                                    {{--<ul class="dropdown-menu">--}}
-                                                        {{--<li><a href="#">Action</a></li>--}}
-                                                        {{--<li><a href="#">Another action</a></li>--}}
-                                                        {{--<li><a href="#">Something else here</a></li>--}}
-                                                        {{--<li><a href="#">Separated link</a></li>--}}
-                                                    {{--</ul>--}}
-                                                {{--</li>--}}
-                                            {{--</ul>--}}
-                                        {{--</li>--}}
-                                    {{--</ul>--}}
-                                    {{--<br/>--}}
-                                    {{--<div class="tab-content">--}}
-                                        {{--<div id="menu1" class="tab-pane fade in active">--}}
-                                            {{--<div class="item ">--}}
-                                                {{--<div class="img-item">--}}
-                                                    {{--<img src="images/user/1.jpg" alt="">--}}
-                                                {{--</div>--}}
-                                                {{--<div class="content-comment">--}}
-                                                    {{--<div class="wrp-name">--}}
-                                                        {{--<span class="name">Shival ( K )</span> <span class="date">5 hours ago</span>--}}
-                                                    {{--</div>--}}
-                                                    {{--<p>I loving this peer multi shop - so easy to edit to see what--}}
-                                                        {{--my--}}
-                                                        {{--design looks like before I inst</p>--}}
-                                                    {{--<div class="share-comment">--}}
-                                                            {{--<span><i class="fa fa-angle-up"--}}
-                                                                     {{--aria-hidden="true"></i></span>--}}
-                                                        {{--<span>|</span>--}}
-                                                        {{--<span><i class="fa fa-angle-down"--}}
-                                                                 {{--aria-hidden="true"></i></span>--}}
-                                                        {{--<span>Reply</span>--}}
-                                                        {{--<span> Share <i class="fa fa-angle-right"--}}
-                                                                        {{--aria-hidden="true"></i></span>--}}
-                                                    {{--</div>--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                        {{--<div id="menu2" class="tab-pane fade ">--}}
-                                            {{--<div class="item ">--}}
-                                                {{--<div class="img-item">--}}
-                                                    {{--<img src="images/user/1.jpg" alt="">--}}
-                                                {{--</div>--}}
-                                                {{--<div class="content-comment">--}}
-                                                    {{--<div class="wrp-name">--}}
-                                                        {{--<span class="name">Shival ( K )</span> <span class="date">5 giờ trước</span>--}}
-                                                    {{--</div>--}}
-                                                    {{--<p>I loving this peer multi shop - so easy to edit to see what--}}
-                                                        {{--my--}}
-                                                        {{--design looks like before I inst</p>--}}
-                                                    {{--<div class="share-comment">--}}
-                                                            {{--<span><i class="fa fa-angle-up"--}}
-                                                                     {{--aria-hidden="true"></i></span>--}}
-                                                        {{--<span>|</span>--}}
-                                                        {{--<span><i class="fa fa-angle-down"--}}
-                                                                 {{--aria-hidden="true"></i></span>--}}
-                                                        {{--<span>Trả lời</span>--}}
-                                                        {{--<span> Share <i class="fa fa-angle-right"--}}
-                                                                        {{--aria-hidden="true"></i></span>--}}
-                                                    {{--</div>--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<!-- /gallery -->--}}
-                            {{--</div>--}}
-                            {{--<!-- END / OUR GALLERY -->--}}
-                            {{--<div class="follow clearfix">--}}
-                                {{--<div class="left pull-left">--}}
-                                    {{--<span><i class="fa fa-wifi" aria-hidden="true"></i> Comment feed</span>--}}
-                                    {{--<span><i class="fa fa-envelope-o"--}}
-                                             {{--aria-hidden="true"></i> Subscribe via email</span>--}}
-                                {{--</div>--}}
-                                {{--<div class="right pull-right">--}}
-                                    {{--<img src="images/icon/DISQUS-LOGO.png" alt="">--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
+                        {{--<div class="comment-top">--}}
+                        {{--<div class="entry-between">--}}
+                        {{--<span class="label">03 Bình luận</span>--}}
+                        {{--<span class="comment">3</span>--}}
+                        {{--</div>--}}
+                        {{--<div class="comment-text">--}}
+                        {{--<div class="img-comment">--}}
+                        {{--<img src="images/user/1.jpg" alt="">--}}
+                        {{--</div>--}}
+                        {{--<form>--}}
+                        {{--<input type="text" name="comment" class="form-control"--}}
+                        {{--placeholder="Leave a message...">--}}
+                        {{--</form>--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<!-- OUR-GALLERY-->--}}
+                        {{--<div class="gallery-our process clearfix ">--}}
+                        {{--<div class="gallery ">--}}
+                        {{--<ul class="nav nav-tabs  clearfix">--}}
+                        {{--<li class="active"><a data-toggle="tab" href="#menu1">Best <span--}}
+                        {{--class="caret"></span></a></li>--}}
+                        {{--<li><a data-toggle="tab" href="#menu2">Community</a></li>--}}
+                        {{--<li class="warp-right text-right">--}}
+                        {{--<div class="share">--}}
+                        {{--Share <i class="fa fa-share-square-o" aria-hidden="true"></i>--}}
+                        {{--</div>--}}
+                        {{--<ul class="setting">--}}
+                        {{--<li class="dropdown">--}}
+                        {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i--}}
+                        {{--class="fa fa-cog" aria-hidden="true"></i><b--}}
+                        {{--class="caret"></b></a>--}}
+                        {{--<ul class="dropdown-menu">--}}
+                        {{--<li><a href="#">Action</a></li>--}}
+                        {{--<li><a href="#">Another action</a></li>--}}
+                        {{--<li><a href="#">Something else here</a></li>--}}
+                        {{--<li><a href="#">Separated link</a></li>--}}
+                        {{--</ul>--}}
+                        {{--</li>--}}
+                        {{--</ul>--}}
+                        {{--</li>--}}
+                        {{--</ul>--}}
+                        {{--<br/>--}}
+                        {{--<div class="tab-content">--}}
+                        {{--<div id="menu1" class="tab-pane fade in active">--}}
+                        {{--<div class="item ">--}}
+                        {{--<div class="img-item">--}}
+                        {{--<img src="images/user/1.jpg" alt="">--}}
+                        {{--</div>--}}
+                        {{--<div class="content-comment">--}}
+                        {{--<div class="wrp-name">--}}
+                        {{--<span class="name">Shival ( K )</span> <span class="date">5 hours ago</span>--}}
+                        {{--</div>--}}
+                        {{--<p>I loving this peer multi shop - so easy to edit to see what--}}
+                        {{--my--}}
+                        {{--design looks like before I inst</p>--}}
+                        {{--<div class="share-comment">--}}
+                        {{--<span><i class="fa fa-angle-up"--}}
+                        {{--aria-hidden="true"></i></span>--}}
+                        {{--<span>|</span>--}}
+                        {{--<span><i class="fa fa-angle-down"--}}
+                        {{--aria-hidden="true"></i></span>--}}
+                        {{--<span>Reply</span>--}}
+                        {{--<span> Share <i class="fa fa-angle-right"--}}
+                        {{--aria-hidden="true"></i></span>--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div id="menu2" class="tab-pane fade ">--}}
+                        {{--<div class="item ">--}}
+                        {{--<div class="img-item">--}}
+                        {{--<img src="images/user/1.jpg" alt="">--}}
+                        {{--</div>--}}
+                        {{--<div class="content-comment">--}}
+                        {{--<div class="wrp-name">--}}
+                        {{--<span class="name">Shival ( K )</span> <span class="date">5 giờ trước</span>--}}
+                        {{--</div>--}}
+                        {{--<p>I loving this peer multi shop - so easy to edit to see what--}}
+                        {{--my--}}
+                        {{--design looks like before I inst</p>--}}
+                        {{--<div class="share-comment">--}}
+                        {{--<span><i class="fa fa-angle-up"--}}
+                        {{--aria-hidden="true"></i></span>--}}
+                        {{--<span>|</span>--}}
+                        {{--<span><i class="fa fa-angle-down"--}}
+                        {{--aria-hidden="true"></i></span>--}}
+                        {{--<span>Trả lời</span>--}}
+                        {{--<span> Share <i class="fa fa-angle-right"--}}
+                        {{--aria-hidden="true"></i></span>--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<!-- /gallery -->--}}
+                        {{--</div>--}}
+                        {{--<!-- END / OUR GALLERY -->--}}
+                        {{--<div class="follow clearfix">--}}
+                        {{--<div class="left pull-left">--}}
+                        {{--<span><i class="fa fa-wifi" aria-hidden="true"></i> Comment feed</span>--}}
+                        {{--<span><i class="fa fa-envelope-o"--}}
+                        {{--aria-hidden="true"></i> Subscribe via email</span>--}}
+                        {{--</div>--}}
+                        {{--<div class="right pull-right">--}}
+                        {{--<img src="images/icon/DISQUS-LOGO.png" alt="">--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
                         {{--</div>--}}
                     </div>
                 </div>

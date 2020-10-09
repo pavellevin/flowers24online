@@ -17,6 +17,7 @@ class PostHasViewed
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $product;
+
     /**
      * Create a new event instance.
      *

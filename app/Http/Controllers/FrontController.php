@@ -55,44 +55,21 @@ class FrontController extends Controller
         return false;
     }
 
-//    private function getSort($products, $sortby)
-//    {
-//        switch ($sortby) {
-//            case 'newness':
-//                return $products = $products->newness();
-//                break;
-//            case 'popularity':
-//                return $products = $products->popularity();
-//                break;
-//            case 'lowerprice':
-//                return $products = $products->lowerprice();
-//                break;
-//            case 'highestprice':
-//                return $products = $products->highestprice();
-//                break;
-//        }
-//    }
-//
     public function index()
     {
         $products = Product::where('is_slider', 'on')->with('catalog')->get();
-//        dd($products);
-//        foreach ($products as $product){
-//            dd($product);
-//            dd($product->getMedia()->getFullUrl());
-//        }
+
         return view('site.index', [
             'products' => $products
         ]);
 
     }
 
-    public function shop($sortby = false)
+    public function shop($sortBy = false)
     {
         $products = Product::with('catalog');
-//        dd($products);
 
-        switch ($sortby) {
+        switch ($sortBy) {
             case 'newness':
                 $products = $products->newness();
                 break;
@@ -100,17 +77,17 @@ class FrontController extends Controller
                 $products = $products->popularity();
                 break;
             case 'lowerprice':
-                $products = $products->lowerprice();
+                $products = $products->lowerPrice();
                 break;
             case 'highestprice':
-                $products = $products->highestprice();
+                $products = $products->highestPrice();
                 break;
         }
         $products = $products->paginate();
 
         return view('site.shop', [
             'products' => $products,
-            'sortby' => $sortby
+            'sortBy' => $sortBy
         ]);
     }
 
@@ -125,7 +102,7 @@ class FrontController extends Controller
         $product = Product::where('slug', $slug)->with('reviews')->firstOrFail();
 
         $products = Product::with('catalog')->limit(6)->get();
-//dd($product);
+
         event(new PostHasViewed($product));
 
         return view('site.product', [
@@ -134,7 +111,7 @@ class FrontController extends Controller
         ]);
     }
 
-    public function getProducts($slug, $sortby = false)
+    public function getProducts($slug, $sortBy = false)
     {
         if (is_numeric($slug)) {
 
@@ -150,7 +127,7 @@ class FrontController extends Controller
         }
 
         $products = $products->paginate();
-//        dd($products);
+
         foreach ($products as $key => $product) {
             $products[$key]['image'] = $product->image;
         }
@@ -165,7 +142,7 @@ class FrontController extends Controller
         ]);
     }
 
-    public function getProductsByFilter($slug, $sfilters, $sortby = false)
+    public function getProductsByFilter($slug, $sfilters, $sortBy = false)
     {
         $prices = [];
         $catalog = Catalog::where('slug', $slug)->first();
@@ -189,8 +166,7 @@ class FrontController extends Controller
                 foreach ($filters as $filter) {
                     $products = $products->whereHas('attributes', function ($query) use ($filter) {
                         $query->where('name_en', 'like', $filter);
-                    })//                        ->whereHas('catalog')
-                    ;
+                    });
                 }
             }
 
@@ -201,7 +177,7 @@ class FrontController extends Controller
                 $products = $this->getSort($products, $sortby);
 
             $products = $products->paginate();
-//            dd($products);
+
             foreach ($products as $key => $product) {
                 $products[$key]['image'] = $product->image;
             }
@@ -210,10 +186,9 @@ class FrontController extends Controller
                 'products' => $products,
                 'catalog' => $catalog,
                 'filters' => $sfilters,
-                'sortby' => $sortby,
-                'minPrice' => Product::orderBy('price')->value('price'),
-                'maxPrice' => Product::orderBy('price', 'desc')->value('price')
-
+                'sortBy' => $sortBy,
+                'minPrice' => $minPrice,
+                'maxPrice' => $maxPrice
             ]);
         }
     }
@@ -228,10 +203,11 @@ class FrontController extends Controller
         $cities = City::all();
         $periods = Period::all();
         $dopproducts = Catalog::find('28')->products;
+
         foreach ($dopproducts as $product) {
             $product['img'] = $product->getFirstMediaUrl('products', 'thumb');
         }
-//        dd($dopproducts[0]);
+
         return view('site.checkout', [
             'cities' => $cities,
             'periods' => $periods,
@@ -304,16 +280,16 @@ class FrontController extends Controller
         $newsletter = new Newsletter();
         $newsletter->email = $request->email;
         if ($newsletter->save()) {
-            Session::flash('success', 'Мы добавили вас в список и уже готовим для вас новости и акции');
+            flash('Мы добавили вас в список и уже готовим для вас новости и акции')->success();
             return back();
         } else {
-            Session::flash('danger', 'Что-то пошло не так');
+            flash('Что-то пошло не так')->error();
             return back()->withInput();
         }
 
     }
 
-    public function getProductsBySearch(Request $request, $sortby = false)
+    public function getProductsBySearch(Request $request, $sortBy = false)
     {
         $array = explode(' ', $request->input('search'));
 
@@ -324,7 +300,7 @@ class FrontController extends Controller
 
         return view('site.shop', [
             'products' => $products,
-            'sortby' => $sortby,
+            'sortBy' => $sortBy,
             'filters' => false
         ]);
 
@@ -360,7 +336,12 @@ class FrontController extends Controller
     public function addReview(Request $request)
     {
         $product = \App\Product::findOrFail($request->product_id);
-        $review = $product->reviews()->attach($product, ['text' => $request->input('review')        ]);
+        $review = $product->reviews()->attach($product, [
+            'text' => $request->input('review'),
+            'user_id' => $request->input('user_id')]);
+
+        flash('Спасибо за отзыв! Он будет опубликован сразу после модерации администратором')->success();
+
         return redirect()->back();
     }
 }

@@ -16,3 +16,12 @@
 <!-- Custom jQuery -->
 <script type="text/javascript" src="{{asset('js/function.js')}}"></script>
 {{--<script type="text/javascript" src="{{asset('js/preloader.js')}}"></script>--}}
+
+<script>
+    //    $('#flash-overlay-modal').modal();
+    $('div.alert').not('.alert-important').delay(3000).fadeOut(500);
+    //    $('div.alert').not('.alert-important').animate({'opacity':0,'marginLeft': "-=2750px"} , 5000 , function(){
+    //        $(this).fadeOut(100);
+    //    });
+</script>
+

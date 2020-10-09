@@ -75,7 +75,8 @@
                         <div class="pb-50">{{ __('messages.nearest delivery time') }} {{ $nearestperiod }}</div>
                         <div class="pro-action">
                             <div class="btn-theme btn-medium addcart">
-                                <a href="javascript:;" @click="addToCart({{json_encode($product)}})">{{ __('messages.buy') }}</a>
+                                <a href="javascript:;" @click="addToCart({{json_encode($product)}})"
+                                >{{ __('messages.buy') }}</a>
                             </div>
                             <div class="pro-wishlist" data-toggle="modal" data-target="#reviewModal">
                                 <a href="javascript:;"><i class="pe-7s-star"></i></a>
@@ -90,7 +91,8 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h3 class="modal-title"
-                                                    id="exampleModalLongTitle"> @if(Auth::check()){{ __('messages.review') }} @else Вам необходимо авторизироваться! @endif</h3>
+                                                    id="exampleModalLongTitle"> @if(Auth::check()){{ __('messages.review') }} @else
+                                                        Вам необходимо авторизироваться! @endif</h3>
                                                 <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
@@ -103,7 +105,8 @@
                                                        value="{{ Auth::id() }}">
                                                 <label for="review">{{ __('messages.your review') }}</label>
                                                 <br/>
-                                                <textarea rows="6" cols="90%" name="review" required></textarea>
+                                                <textarea class="review_text" rows="6" name="review"
+                                                          required></textarea>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"

@@ -8,11 +8,11 @@
                 {{--Start Main Menu --}}
                 @include('shared.site.main_menu')
 
-            {{--End Main Menu --}}
-            {{--Start Shopping cart--}}
-            {{--                @include('shared.site.shopping_card')--}}
-            {{--End Shopping cart --}}
-            {{--Start Search Popup --}}
+                {{--End Main Menu --}}
+                {{--Start Shopping cart--}}
+                {{--                @include('shared.site.shopping_card')--}}
+                {{--End Shopping cart --}}
+                {{--Start Search Popup --}}
                 <div class="other-menu">
                     @include('shared.site.search_popup')
                     @include('shared.site.menu_lang')

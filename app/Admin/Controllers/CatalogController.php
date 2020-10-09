@@ -17,6 +17,7 @@ class CatalogController extends AdminController
      * @var string
      */
     protected $title = 'Catalog';
+
     /**
      * Make a grid builder.
      *

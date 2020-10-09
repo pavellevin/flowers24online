@@ -21,7 +21,7 @@ class Counter
     /**
      * Handle the event.
      *
-     * @param  PostHasViewed  $event
+     * @param  PostHasViewed $event
      * @return void
      */
     public function handle(PostHasViewed $event)

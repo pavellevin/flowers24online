@@ -23,7 +23,7 @@
 
 {{--HEADER FILTER--}}
 @section('header_filter')
-@widget('header_filter', ['slug' => $catalog->slug, 'filters' => $filters])
+    @widget('header_filter', ['slug' => $catalog->slug, 'filters' => $filters])
 @endsection
 
 {{--CONTENT--}}
@@ -31,9 +31,9 @@
     {{--@if(sizeof($products))--}}
     @include('shared.site.products_grid_content')
     {{--@else--}}
-        {{--<div class="container pb-50">--}}
-            {{--<div class="info"><h3>По заданным критериям товара не найдено!</h3></div>--}}
-        {{--</div>--}}
+    {{--<div class="container pb-50">--}}
+    {{--<div class="info"><h3>По заданным критериям товара не найдено!</h3></div>--}}
+    {{--</div>--}}
     {{--@endif--}}
 @endsection
 

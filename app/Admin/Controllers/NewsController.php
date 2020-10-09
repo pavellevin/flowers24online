@@ -28,7 +28,7 @@ class NewsController extends AdminController
         $grid = new Grid(new News());
 
         $grid->column('id', __('Id'));
-        $grid->column('image')->image('',100,100);
+        $grid->column('image')->image('', 100, 100);
         $grid->column('name', __('Name'));
         $grid->column('slug', __('Slug'));
         $grid->column('text', __('Text'));
@@ -70,7 +70,7 @@ class NewsController extends AdminController
     protected function form()
     {
         $states = [
-            'on'  => ['value' => 1, 'text' => 'Active', 'color' => 'success'],
+            'on' => ['value' => 1, 'text' => 'Active', 'color' => 'success'],
             'off' => ['value' => 0, 'text' => 'Draft', 'color' => 'danger'],
         ];
 

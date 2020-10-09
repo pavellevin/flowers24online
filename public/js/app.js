@@ -38908,20 +38908,6 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn-login btn-theme btn-medium btn-buy",
-                  attrs: { type: "submit" },
-                  on: {
-                    click: function($event) {
-                      return _vm.addToCart(product)
-                    }
-                  }
-                },
-                [_c("span", [_vm._v(_vm._s(_vm.__("messages.buy")))])]
-              ),
-              _vm._v(" "),
               _c("div", { staticClass: "content-item p-0" }, [
                 _c("h5", { staticClass: "title-h5" }, [
                   _c(
@@ -38940,17 +38926,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "bottom" }, [
-                  _c("div", { staticClass: "text-left pull-left" }, [
-                    _c("span", { staticClass: "old-price" }, [
-                      _c("del", [
-                        _vm._v(
-                          _vm._s(product.old_price) +
-                            " " +
-                            _vm._s(_vm.__("messages.uah"))
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
+                  _c("div", { staticClass: "text-center" }, [
                     _c("span", { staticClass: "price" }, [
                       _vm._v(
                         _vm._s(product.price) +
@@ -38958,7 +38934,21 @@ var render = function() {
                           _vm._s(_vm.__("messages.uah"))
                       )
                     ])
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn-login btn-theme btn-medium btn-buy",
+                      attrs: { type: "submit" },
+                      on: {
+                        click: function($event) {
+                          return _vm.addToCart(product)
+                        }
+                      }
+                    },
+                    [_c("span", [_vm._v(_vm._s(_vm.__("messages.buy")))])]
+                  )
                 ])
               ])
             ])

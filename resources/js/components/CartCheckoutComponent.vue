@@ -169,7 +169,6 @@
                         <img :src="product.img" :alt="product.name" :title="product.name" class="img-responsive">
                         </a>
                 </div>
-                <button @click="addToCart(product)" type="submit" class="btn-login btn-theme btn-medium btn-buy"><span>{{__('messages.buy')}}</span></button>
             <div class="content-item p-0">
                 <h5 class="title-h5">
                     <a :href="/product/+product.slug" tabindex="0">
@@ -177,10 +176,11 @@
                     </a>
                 </h5>
                 <div class="bottom">
-                    <div class="text-left pull-left">
-                        <span class="old-price"><del>{{product.old_price}} {{ __('messages.uah') }}</del></span>
-                        <span class="price">{{product.price}} {{ __('messages.uah') }}</span>
+                    <div class="text-center">
+                        <span class="price">{{ product.price }} {{ __('messages.uah') }}</span>
                     </div>
+                    <button @click="addToCart(product)" type="submit" class="btn-login btn-theme btn-medium btn-buy"><span>{{__('messages.buy')}}</span></button>
+
                 </div>
             </div>
         </div>

@@ -33,7 +33,7 @@
                                             {{--</div>--}}
                                             {{--</div>--}}
                                             {{--<div class="btn-product">--}}
-                                                <button @click="addToCart({{json_encode($product)}})" type="submit" class="btn-login btn-theme btn-medium btn-buy"><span>{{__('messages.buy')}}</span></button>
+                                                {{--<button @click="addToCart({{json_encode($product)}})" type="submit" class="btn-login btn-theme btn-medium btn-buy"><span>{{__('messages.buy')}}</span></button>--}}
                                                 {{--<div class="wrap-btn">--}}
                                                     {{--<a href="/"><span><i class="icon-wishlist"></i></span></a>--}}
                                                     {{--<a href="{{ route('product', $product->slug) }}"><span><i--}}
@@ -97,9 +97,14 @@
                                         </div>
                                         <div class="content-item">
                                             <div class="bottom">
-                                                <div class="text-left pull-left">
-                                                    @if(!empty($product->old_price))
-                                                        <span class="old-price"><del>{{ $product->old_price }} {{ __('messages.uah') }}</del></span>@endif
+                                                <div class="text-left">
+                                                    {{--@if(!empty($product->old_price))--}}
+                                                        {{--<span class="old-price"><del>{{ $product->old_price }} {{ __('messages.uah') }}</del></span>@endif--}}
+                                                    <span class="old-price
+                                                        @if(empty($product->old_price)) invisible
+                                                    @endif"><del>{{ $product->old_price }} {{ __('messages.uah') }}</del></span>
+                                                </div>
+                                                <div class="text-center">
                                                     <span class="price">{{ $product->price }} {{ __('messages.uah') }}</span>
                                                 </div>
                                                 {{--<div class="text-right">--}}
@@ -107,6 +112,8 @@
                                                 {{--</div>--}}
                                             </div>
                                         </div>
+                                        <button @click="addToCart({{json_encode($product)}})" type="submit" class="btn-login btn-theme btn-medium btn-buy"><span>{{__('messages.buy')}}</span></button>
+
                                     </div>
                                 </div>
                             @endforeach

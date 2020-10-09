@@ -11691,7 +11691,7 @@ li {
 }
 
 #header_mobile .header-bottom {
-    background-color: #000000;
+    background-color: #2b2b2b;
     border-top: 1px solid #e7e7e7;
 }
 
@@ -12541,7 +12541,7 @@ button.btn-login.btn-theme.btn-medium.btn-buy {
     /*width: 150px;*/
     /*border: 1px solid #e5e5e5;*/
     /*padding: 8px 22px;*/
-    /*position: relative;*/
+    position: relative;
     /*-moz-border-radius: 20px;*/
     /*-webkit-border-radius: 20px;*/
     /*border-radius: 20px;*/
@@ -12580,8 +12580,8 @@ button.btn-login.btn-theme.btn-medium.btn-buy {
     width: 20px;
     height: 20px;
     color: #faf8f8;
-    top: 30px;
-    right: 20px;
+    top: 3px;
+    right: 5px;
     bottom: auto;
     font-size: 12px;
 }
@@ -18405,8 +18405,8 @@ ul.header-filter li {
     }
 
     .shopping-cart .item {
-        top: 200px;
-        right: 20px;
+        /*top: 200px;*/
+        /*right: 20px;*/
     }
 
     .shopping-cart {
@@ -18467,7 +18467,7 @@ ul.header-filter li {
     }
 
     .shopping-cart .item {
-        right: 35px;
+        /*right: 35px;*/
     }
 
     #main-header .main-menu .navbar-nav li.level4 {

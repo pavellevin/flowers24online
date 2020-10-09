@@ -66,27 +66,62 @@
                                 <span class="old-price"><del>{{ $product->old_price }} {{ __('messages.uah') }}</del></span>@endif
                             <span class="price">{{ $product->price }} {{ __('messages.uah') }}</span>
                         </div>
-                        <div class="pro-option-attribute">
-                            <div class="pro-quantity">
-                                <div class="title"><span>Количество</span></div>
-                                <input type="number" min="1" max="10000" step="1" value="1">
-                            </div>
-                        </div>
+                        {{--<div class="pro-option-attribute">--}}
+                        {{--<div class="pro-quantity">--}}
+                        {{--<div class="title"><span>Количество</span></div>--}}
+                        {{--<input type="number" min="1" max="10000" step="1" value="1">--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+                        <div class="pb-50">{{ __('messages.nearest delivery time') }} {{ $nearestperiod }}</div>
                         <div class="pro-action">
                             <div class="btn-theme btn-medium addcart">
-                                <a href="javascript:;" @click="addToCart({{json_encode($product)}})">В корзину</a>
+                                <a href="javascript:;" @click="addToCart({{json_encode($product)}})">{{ __('messages.buy') }}</a>
                             </div>
-                            {{--<div class="pro-wishlist">--}}
-                                {{--<a href="#"><i class="pe-7s-like"></i></a>--}}
-                            {{--</div>--}}
+                            <div class="pro-wishlist" data-toggle="modal" data-target="#reviewModal">
+                                <a href="javascript:;"><i class="pe-7s-star"></i></a>
+                            </div>
+
+                            <!-- Modal -->
+                            <form action="{{ route('add_review')}}" method="post">
+                                @csrf
+                                <div class="modal" id="reviewModal" tabindex="-1" role="dialog"
+                                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h3 class="modal-title"
+                                                    id="exampleModalLongTitle"> @if(Auth::check()){{ __('messages.review') }} @else Вам необходимо авторизироваться! @endif</h3>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <input class="form-control" type="hidden" name="product_id"
+                                                       value="{{ $product->id }}">
+                                                <input class="form-control" type="hidden" name="user_id"
+                                                       value="{{ Auth::id() }}">
+                                                <label for="review">{{ __('messages.your review') }}</label>
+                                                <br/>
+                                                <textarea rows="6" cols="90%" name="review" required></textarea>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">{{ __('messages.close') }}
+                                                </button>
+                                                <button class="btn btn-primary">{{ __('messages.add review') }}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="pb-50">Ближайшее время доставки:  {{ $nearestperiod }}</div>
                         <div class="pro-tabs">
                             <div class="tabs-desc">
                                 <ul class="navbar-tabs">
                                     <li class="dropdown open">
                                         <div class="dropdowndesc">
-                                            <span>Описание</span>
+                                            <span>{{ __('messages.description') }}</span>
                                             <i class="icon-caret"></i>
                                         </div>
                                         <div class="dropdown-menu">
@@ -94,33 +129,39 @@
                                         </div>
                                     </li>
                                     {{--<li class="dropdown">--}}
-                                        {{--<div class="dropdowndesc">--}}
-                                            {{--<span>Custom tab</span>--}}
-                                            {{--<i class="icon-caret"></i>--}}
-                                        {{--</div>--}}
-                                        {{--<div class="dropdown-menu">--}}
-                                            {{--<p>{{ $product->description }}</p>--}}
-                                        {{--</div>--}}
+                                    {{--<div class="dropdowndesc">--}}
+                                    {{--<span>Custom tab</span>--}}
+                                    {{--<i class="icon-caret"></i>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="dropdown-menu">--}}
+                                    {{--<p>{{ $product->description }}</p>--}}
+                                    {{--</div>--}}
                                     {{--</li>--}}
                                     <li class="dropdown">
                                         <div class="dropdowndesc">
-                                            <span>Отзывы</span>
+                                            <span>{{ __('messages.review') }}</span>
                                             <i class="icon-caret"></i>
                                         </div>
                                         <div class="dropdown-menu">
-                                            <p>{{ $product->description }}</p>
+                                            @foreach($product->reviews as $review)
+                                                <div class="review_item">
+                                                    <span class="review_user">{{$review->name}}</span>
+                                                    <span class="review_date">{{$review->created_at}}</span>
+                                                    <p class="review_text">{{ $review->pivot->text }}</p>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         {{--<div class="pro-share">--}}
-                            {{--<span class="title">Share this :</span>--}}
-                            {{--<a href="#"><i class="fa fa-twitter"></i></a>--}}
-                            {{--<a href="#"><i class="fa fa-dribbble"></i></a>--}}
-                            {{--<a href="#"><i class="fa fa-skype"></i></a>--}}
-                            {{--<a href="#"><i class="fa fa-pinterest"></i></a>--}}
-                            {{--<a href="#"><i class="fa fa-facebook-square"></i></a>--}}
+                        {{--<span class="title">Share this :</span>--}}
+                        {{--<a href="#"><i class="fa fa-twitter"></i></a>--}}
+                        {{--<a href="#"><i class="fa fa-dribbble"></i></a>--}}
+                        {{--<a href="#"><i class="fa fa-skype"></i></a>--}}
+                        {{--<a href="#"><i class="fa fa-pinterest"></i></a>--}}
+                        {{--<a href="#"><i class="fa fa-facebook-square"></i></a>--}}
                         {{--</div>--}}
                     </div>
                 </div>

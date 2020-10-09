@@ -59,6 +59,10 @@ class Product extends Model implements HasMedia
         return $this->belongsToMany('App\Attribute', 'attribute_product', 'product_id', 'attribute_id');
     }
 
+    public function reviews(){
+        return $this->belongsToMany('App\User', 'reviews', 'product_id', 'user_id')->withPivot('text', 'active')->ActiveReview()->withTimestamps();
+    }
+
     public function scopeNewness($query)
     {
         return $query->orderBy('id', 'DESC');

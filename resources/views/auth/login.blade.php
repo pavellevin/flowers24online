@@ -1,8 +1,8 @@
 @extends('layouts.main')
 
 {{--META--}}
-@section('title', 'Оплата заказа')
-@section('description', 'Здесь происходит оплата заказа')
+@section('title', 'Авторизация')
+@section('description', 'Здесь происходит авторизация')
 @section('keywords', 'keywords')
 
 {{--BODY--}}

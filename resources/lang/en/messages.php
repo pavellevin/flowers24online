@@ -97,5 +97,9 @@ return [
     'always happy customers' => 'Always happy customers',
     'guaranteed freshness of flowers' => 'Guaranteed freshness of flowers',
     'convenient payment: more than 10 ways' => 'Convenient payment: more than 10 ways',
-
+    'review' => 'Review',
+    'your review' => 'Your review',
+    'close' => 'Close',
+    'add review' => 'Add review',
+    'description' => 'Description',
 ];

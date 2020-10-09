@@ -39394,7 +39394,7 @@ var render = function() {
                     _c("div", { staticClass: "product-price" }, [
                       _vm._v(
                         "\n                            " +
-                          _vm._s(product.totalPrice) +
+                          _vm._s(product.price) +
                           " "
                       ),
                       _c("span", [

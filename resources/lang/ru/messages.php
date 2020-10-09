@@ -97,5 +97,10 @@ return [
     'always happy customers' => 'Всегда довольные клиенты',
     'guaranteed freshness of flowers' => 'Гарантия свежести цветов',
     'convenient payment: more than 10 ways' => 'Удобная оплата: более 10 способов',
+    'review' => 'Отзыв',
+    'your review' => 'Ваш отзыв',
+    'close' => 'Закрыть',
+    'add review' => 'Добавить отзыв',
+    'description' => 'Описание',
 
 ];

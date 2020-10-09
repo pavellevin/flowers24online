@@ -16,7 +16,7 @@
                         <div class="product-name"><a :href="'/product/' +  product.slug">{{ product.name }} </a>
                         </div>
                         <div class="product-price">
-                            {{ product.totalPrice }} <span>( x{{ product.quantity }}) {{ __('messages.uah') }}</span>
+                            {{ product.price }} <span>( x{{ product.quantity }}) {{ __('messages.uah') }}</span>
                         </div>
                     </div>
                 </div>

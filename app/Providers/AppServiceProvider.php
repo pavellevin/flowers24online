@@ -38,8 +38,9 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer(['site.product', 'site.checkout'], function ($view) {
+//            dd(Carbon::now('Europe/Kiev')->addMinutes(30)->format('H:i:s'));
                 if ($period = Period::where('start_time', '>', Carbon::now('Europe/Kiev')->addMinutes(30)->format('H:i:s'))
-                    ->where('start_time', '<', '18:00:00')
+                    ->where('start_time', '<', '19:00:00')
                     ->orderBy('start_time', 'ASC')
                     ->first()) {
                     $nearestperiod = $period->name;

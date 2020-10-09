@@ -36,4 +36,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function reviews(){
+        return $this->belongsToMany('App\Product', 'reviews', 'user_id', 'product_id');
+    }
+
+    public function scopeActiveReview ($query){
+        return $query->where('active', true);
+    }
+
 }

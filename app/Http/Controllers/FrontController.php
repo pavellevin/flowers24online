@@ -18,9 +18,15 @@ use Illuminate\Support\Facades\Session;
 
 class FrontController extends Controller
 {
+
+    private function setRelation($table, $values)
+    {
+        DB::table($table)->insert($values);
+    }
+
     private function getSort($products)
     {
-        switch ($_COOKIE['sortBy']){
+        switch ($_COOKIE['sortBy']) {
             case 'newness':
                 $products = $products->Newness();
                 return $products;
@@ -42,7 +48,8 @@ class FrontController extends Controller
         }
     }
 
-    private function getWant($want){
+    private function getWant($want)
+    {
         if ($want == 'on')
             return true;
         return false;
@@ -115,10 +122,10 @@ class FrontController extends Controller
             return Redirect::to(route('product', $product->slug), 301);
 
         }
-        $product = Product::where('slug', $slug)->firstOrFail();
+        $product = Product::where('slug', $slug)->with('reviews')->firstOrFail();
 
         $products = Product::with('catalog')->limit(6)->get();
-
+//dd($product);
         event(new PostHasViewed($product));
 
         return view('site.product', [
@@ -262,16 +269,16 @@ class FrontController extends Controller
         $order->status_id = 1;
         if ($this->getWant($request->want_time)) {
             $order->period_id = null;
-            $order->want_time =  \App\Setting::findOrFail(5)->value;
+            $order->want_time = \App\Setting::findOrFail(5)->value;
         }
         if ($this->getWant($request->want_postcard)) {
-            $order->want_postcard =  \App\Setting::findOrFail(4)->value;
+            $order->want_postcard = \App\Setting::findOrFail(4)->value;
         }
         if ($this->getWant($request->want_foto)) {
-            $order->want_foto =  \App\Setting::findOrFail(3)->value;
+            $order->want_foto = \App\Setting::findOrFail(3)->value;
         }
         if ($this->getWant($request->want_call)) {
-            $order->want_call =  \App\Setting::findOrFail(2)->value;
+            $order->want_call = \App\Setting::findOrFail(2)->value;
         }
         if ($order->save()) {
             $carts = json_decode($request->cart, TRUE);
@@ -350,8 +357,10 @@ class FrontController extends Controller
         ]);
     }
 
-    private function setRelation($table, $values)
+    public function addReview(Request $request)
     {
-        DB::table($table)->insert($values);
+        $product = \App\Product::findOrFail($request->product_id);
+        $review = $product->reviews()->attach($product, ['text' => $request->input('review')        ]);
+        return redirect()->back();
     }
 }

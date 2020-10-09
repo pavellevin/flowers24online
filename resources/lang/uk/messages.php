@@ -97,5 +97,9 @@ return [
     'always happy customers' => 'Завжди задоволені клієнти',
     'guaranteed freshness of flowers' => 'Гарантія свіжості квітів',
     'convenient payment: more than 10 ways' => 'Зручна оплата: більше 10 способів',
-
+    'review' => 'Відгук',
+    'your review' => 'Ваш відгук',
+    'close' => 'Закрити',
+    'add review' => 'Додоти відгук',
+    'description' => 'Опис',
 ];

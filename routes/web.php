@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+//DB::listen(function($query) {
+//    var_dump($query->sql);
+//    var_dump($query->bindings);
+//    var_dump($query->time);
+//});
+
 Route::get('/setlocale/{locale}', function ($locale) {
     if (in_array($locale, \Config::get('app.locales'))) {
         Session::put('locale', $locale);
@@ -57,6 +64,8 @@ Route::get('/confirm/{order_id}', 'FrontController@confirm')->name('confirm');
 Route::get('/get-districts/{id}', 'FrontController@getDistricts')->name('get_districts');
 
 Route::post('/add-to-newsletters', 'FrontController@mailing')->name('mailing');
+
+Route::post('/add-review', 'FrontController@addReview')->name('add_review')->middleware('auth');
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 

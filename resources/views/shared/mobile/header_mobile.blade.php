@@ -43,7 +43,13 @@
                             </div>
                         </div>
                         <div class="dropdown-phone mobile-contacts">
-                            <span>{{ mb_strtoupper(app()->getLocale()) }}</span>
+                            <span>
+                                @if(mb_strtoupper(app()->getLocale()) == 'UK')
+                                    UA
+                                @else
+                                    {{ mb_strtoupper(app()->getLocale()) }}
+                                @endif
+                            </span>
                             <div class="dropdown-content">
                                 <a href="{{route('locale', 'uk')}}"><p>UA</p></a>
                                 <a href="{{route('locale', 'ru')}}"><p>RU</p></a>

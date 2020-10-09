@@ -89,6 +89,11 @@ Route::group([
     $router->put('/auth/settings/{id}', 'SettingsController@update')->name('update.setting');
     $router->get('/auth/settings/{id}/edit', 'SettingsController@edit')->name('edit.setting');
 
+    $router->get('/auth/reviews', 'ReviewController@index')->name('reviews');
+    $router->get('/auth/reviews/{id}', 'ReviewController@show')->name('show.review');
+    $router->put('/auth/reviews/{id}', 'ReviewController@update')->name('update.review');
+    $router->get('/auth/reviews/{id}/edit', 'ReviewController@edit')->name('edit.review');
+
     $router->resource('newsletters', NewsletterController::class);
 
     $router->resource('news', NewsController::class);
@@ -98,5 +103,10 @@ Route::group([
     $router->resource('attributes', AttributesController::class);
 
     $router->resource('periods', PeriodsController::class);
+
+    $router->get('auth/clear-cache', function() {
+        Artisan::call('optimize:clear');
+        return Artisan::output();
+    });
 
 });

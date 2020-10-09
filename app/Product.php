@@ -84,6 +84,11 @@ class Product extends Model implements HasMedia
         return $query->where('quantity', '>', 0);
     }
 
+    public function scopeSortingPosition($query){
+//        return $query->orderBy('position', 'ASC');
+        return $query->orderBy(\DB::raw('-`position`'), 'desc');
+    }
+
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('admin_thumb')

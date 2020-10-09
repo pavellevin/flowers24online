@@ -4319,7 +4319,7 @@ tbody.collapse.in {
     float: left;
     min-width: 160px;
     padding: 5px 0;
-    margin: 10px 5px 0;
+    margin: 10px 25px 0;
     list-style: none;
     font-size: 14px;
     text-align: left;
@@ -12417,8 +12417,8 @@ button.btn-login.btn-theme.btn-medium.btn-buy {
 
 #Searchmobile .searchform .btn-search {
     background: transparent;
-    border-top: none;
-    border-right: none;
+    /*border-top: none;*/
+    /*border-right: none;*/
     padding: 0;
 }
 
@@ -18123,7 +18123,7 @@ button.btn-login.btn-theme.btn-medium.btn-buy {
 }
 
 .header-v3 {
-    background: #000000;
+    background: #2b2b2b;
     /*background: #dd243e;*/
     /*background: radial-gradient(ellipse, #55890c, #8ec145);*/
 }
@@ -18405,7 +18405,7 @@ ul.header-filter li {
     }
 
     .shopping-cart .item {
-        top: 195px;
+        top: 200px;
         right: 20px;
     }
 

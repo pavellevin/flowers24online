@@ -37,7 +37,17 @@ class ProductsController extends AdminController
     {
         $grid = new Grid(new Product());
 
+        $grid->filter(function($filter)  {
+            $filter->where(function ($query) {
+
+                $query->whereHas('catalog', function ($query) {
+                    $query->where('catalog_id',  "{$this->input}");
+                });
+            }, 'Category')->select(Catalog::HasProducts()->get()->pluck('name', 'id'));
+        });
+
         $grid->column('id', __('Id'))->sortable();
+        $grid->column('position', __('Position'))->sortable();
         $grid->column('image')->image('', 100, 100);
 //        $grid->image()->image('', 100, 100);
         $grid->catalog()->display(function ($catalog) {
@@ -81,6 +91,7 @@ class ProductsController extends AdminController
         $show = new Show(Product::findOrFail($id));
 
         $show->field('id', __('Id'));
+        $show->field('position', __('Position'));
         $show->field('name', __('Name'));
         $show->field('slug', __('Slug'));
         $show->catalog()->unescape()->as(function ($content) {
@@ -144,6 +155,7 @@ class ProductsController extends AdminController
         $form->multipleSelect('attributes', 'Размер букета')->options((new $this->groupModel())::find(4)->attributes->pluck('name_ru', 'id'));
         $form->multipleSelect('attributes', 'Допы к букетам')->options((new $this->groupModel())::find(5)->attributes->pluck('name_ru', 'id'));
         $form->text('name', __('Name'));
+        $form->text('position', __('Position'));
         $form->text('slug', __('Slug'));
         $form->text('old_price', __('Old price'));
         $form->text('price', __('Price'));

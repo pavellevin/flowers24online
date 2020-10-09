@@ -30,6 +30,10 @@ class Catalog extends Model implements HasMedia
         return $query->orderBy('position', 'ASC');
     }
 
+    public function scopeHasProducts($query){
+        return $query->whereHas('products');
+    }
+
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('admin_thumb')

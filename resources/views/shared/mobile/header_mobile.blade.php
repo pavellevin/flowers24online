@@ -21,7 +21,7 @@
                             <a href="#" class="tp_btn_search" data-toggle="modal" data-target="#Searchmobile">
                                 <i class="pe-7s-search"></i>
                             </a>
-                            <div id="Searchmobile" class="modal fade" role="dialog">
+                            <div id="Searchmobile" class="modal" role="dialog">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <button type="button" class="close" data-dismiss="modal"><span

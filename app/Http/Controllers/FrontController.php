@@ -136,7 +136,7 @@ class FrontController extends Controller
 
         }
         $catalog = Catalog::where('slug', $slug)->firstOrFail();
-        $products = $catalog->products()->active();
+        $products = $catalog->products()->active()->sortingPosition();
 
         if (isset($_COOKIE['sortBy']) && !empty($_COOKIE['sortBy'])) {
             $products = $this->getSort($products);
@@ -163,7 +163,7 @@ class FrontController extends Controller
         $prices = [];
         $catalog = Catalog::where('slug', $slug)->first();
 
-        $products = $catalog->products()->active();
+        $products = $catalog->products()->active()->sortingPosition();
 
         $minPrice = $products->orderBy('price')->value('price');
         $maxPrice = $products->orderBy('price', 'desc')->value('price');

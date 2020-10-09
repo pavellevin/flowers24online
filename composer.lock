@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ea4cdc13523223ebd4798a6fed9cc094",
+    "content-hash": "c4655f567c8edfad4d9e5dde82f85a70",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2180,6 +2180,61 @@
                 }
             ],
             "time": "2020-07-04T12:29:56+00:00"
+        },
+        {
+            "name": "nicklasos/laravel-admin-media-library",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nicklasos/laravel-admin-media-library.git",
+                "reference": "5fdda5263872004c9d6076673880a4d5fe8e57d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nicklasos/laravel-admin-media-library/zipball/5fdda5263872004c9d6076673880a4d5fe8e57d2",
+                "reference": "5fdda5263872004c9d6076673880a4d5fe8e57d2",
+                "shasum": ""
+            },
+            "require": {
+                "encore/laravel-admin": "~1.6",
+                "php": ">=7.0.0",
+                "spatie/laravel-medialibrary": "^7.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Nicklasos\\LaravelAdmin\\MediaLibrary\\MediaLibraryServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nicklasos\\LaravelAdmin\\MediaLibrary\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicklasos",
+                    "email": "nicklasos@gmail.com"
+                }
+            ],
+            "description": "Media-library extension for laravel-admin",
+            "homepage": "https://github.com/nicklasos/laravel-admin-media-library",
+            "keywords": [
+                "extension",
+                "laravel-admin",
+                "media",
+                "media-library"
+            ],
+            "time": "2019-04-24T12:34:30+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -6971,6 +7026,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2019-09-17T06:23:10+00:00"
         },
         {

@@ -19,6 +19,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",
         "lavary/laravel-menu": "^1.7",
+        "nicklasos/laravel-admin-media-library": "^0.0.1",
         "spatie/laravel-medialibrary": "^7.0.0"
     },
     "require-dev": {

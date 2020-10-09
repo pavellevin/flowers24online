@@ -12,6 +12,8 @@ use Encore\Admin\Grid;
 use Encore\Admin\Show;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Encore\Admin\Layout\Content;
+
 
 class ProductsController extends AdminController
 {
@@ -37,6 +39,7 @@ class ProductsController extends AdminController
 
         $grid->column('id', __('Id'))->sortable();
         $grid->column('image')->image('', 100, 100);
+//        $grid->image()->image('', 100, 100);
         $grid->catalog()->display(function ($catalog) {
             return "<span class='label label-success'>{$catalog['name']}</span>";
         })->sortable();
@@ -44,8 +47,8 @@ class ProductsController extends AdminController
         $grid->column('attributes')->display(function ($attributes) {
             $res = '';
             foreach ($attributes as $attribute) {
-//                $res .= "<span class='label' style='background-color: {$attribute['name']}'>{$attribute['name']}</span> ";
-                $res .= "<span class='label label-success'>{$attribute['name_ru']}</span><br/> ";
+                $res .= "<span class='label' style='background-color: {$attribute['color_style']}'>{$attribute['name_ru']}</span> ";
+//                $res .= "<span class='label label-success'>{$attribute['name_ru']}</span><br/> ";
             }
             return $res;
         })->sortable();
@@ -84,7 +87,15 @@ class ProductsController extends AdminController
             return "<span class='label label-success'>{$content->name}</span>";
         });
 
-        $show->field('color', 'Color')->badge();
+        $show->field('attributes', 'Attributes')->unescape()->as(function ($attributes) {
+            $result = '';
+            foreach ($attributes as $attribute) {
+                $result .= "<span class='label' style='background-color: " . $attribute->name_en . " !important;'>{$attribute->name_ru}</span> ";
+            }
+            return $result;
+        });
+
+//        $show->field('color', 'Color')->badge();
 
 //        $show->attributes('Color', function ($attributes) {
 //            $attributes->resource('/admin/attributes');
@@ -122,16 +133,16 @@ class ProductsController extends AdminController
     {
         $states = [
             'on' => ['value' => 'on', 'text' => 'Slider', 'color' => 'success'],
-            'off' => ['value' => null, 'text' => 'Draft', 'color' => 'danger'],
+            'off' => ['value' => null, 'text' => 'Not Slider', 'color' => 'danger'],
         ];
 
         $form = new Form(new Product());
         $form->select('catalog_id', 'Catalog')->options((new $this->catalogModel())::all()->pluck('name', 'id'));
-        $form->multipleSelect('attributes', 'Цвет')->options((new $this->groupModel())::find(1)->attributes->pluck('name_ru', 'id'))->placeholder('Введите цвет цветка');
-        $form->multipleSelect('attributes', 'Кому/событие')->options((new $this->groupModel())::find(2)->attributes->pluck('name_ru', 'id'))->placeholder('Введите кому/событие');
-        $form->multipleSelect('attributes', 'Цветок в букете')->options((new $this->groupModel())::find(3)->attributes->pluck('name_ru', 'id'))->placeholder('Введите название цветка в букете');
-        $form->multipleSelect('attributes', 'Размер букета')->options((new $this->groupModel())::find(4)->attributes->pluck('name_ru', 'id'))->placeholder('Введите размер букета');
-        $form->multipleSelect('attributes', 'Допы к букетам')->options((new $this->groupModel())::find(5)->attributes->pluck('name_ru', 'id'))->placeholder('Введите тип допа');
+        $form->multipleSelect('attributes', 'Цвет')->options((new $this->groupModel())::find(1)->attributes->pluck('name_ru', 'id'));
+        $form->multipleSelect('attributes', 'Кому/событие')->options((new $this->groupModel())::find(2)->attributes->pluck('name_ru', 'id'));
+        $form->multipleSelect('attributes', 'Цветок в букете')->options((new $this->groupModel())::find(3)->attributes->pluck('name_ru', 'id'));
+        $form->multipleSelect('attributes', 'Размер букета')->options((new $this->groupModel())::find(4)->attributes->pluck('name_ru', 'id'));
+        $form->multipleSelect('attributes', 'Допы к букетам')->options((new $this->groupModel())::find(5)->attributes->pluck('name_ru', 'id'));
         $form->text('name', __('Name'));
         $form->text('slug', __('Slug'));
         $form->text('old_price', __('Old price'));
@@ -141,8 +152,16 @@ class ProductsController extends AdminController
         $form->switch('is_slider', 'is Slider')->states($states);
 //        $form->text('is_slider', __('is Slider'));
         $form->text('count_view', __('Count view'));
-        $form->multipleImage('image', 'Pictures')->removable();
+//        $form->multipleImage('image', 'Pictures')->removable();
+        // Single media
+//        $form->mediaLibrary('image', 'Image')
+//            ->responsive()
+//            ->removable();
 
+        // Multiple media field
+        $form->multipleMediaLibrary('products', 'Images')
+            ->responsive()
+            ->removable();
 
         return $form;
     }
@@ -178,6 +197,6 @@ class ProductsController extends AdminController
 
     public function update($id)
     {
-        dd('update');
+        return parent::update($id);
     }
 }

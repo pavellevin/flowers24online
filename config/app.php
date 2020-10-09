@@ -177,6 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\WidgetServiceProvider::class,
         Lavary\Menu\ServiceProvider::class,
+        Nicklasos\LaravelAdmin\MediaLibrary\MediaLibraryServiceProvider::class,
     ],
 
     /*

@@ -16,6 +16,11 @@ class Product extends Model implements HasMedia
     protected $perPage = 16;
     protected $appends = array('image');
 
+    public function setProductsAttribute()
+    {
+
+    }
+
     public function getImageAttribute()
     {
         $images = [];
@@ -25,11 +30,16 @@ class Product extends Model implements HasMedia
         return $images;
     }
 
+//    public function image()
+//    {
+//        return $this->getFirstMediaUrl('products');
+//    }
+
     public function getColorAttribute()
     {
         $colors = '';
-        foreach($this->attributes()->pluck('name') as $atrribute){
-            $colors .= $atrribute. '  ';
+        foreach($this->attributes()->pluck('name_ru') as $atrribute){
+            $colors .= $atrribute. ' - ';
         }
         return $colors;
     }

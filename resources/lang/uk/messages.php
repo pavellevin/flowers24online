@@ -91,4 +91,5 @@ return [
     'uah' => 'грн.',
     'enter your e-mail' => 'Введіть свій e-mail',
     'buy' => 'Замовити',
+    'no product found for the specified search criteria!' => 'За заданими критеріями пошуку товару не знайдено!',
 ];

@@ -91,5 +91,6 @@ return [
     'enter your e-mail' => 'Enter your e-mail',
     'buy' => 'Buy Now',
     'color' => 'Color',
+    'no product found for the specified search criteria!' => 'No product found for the specified search criteria!',
 
 ];

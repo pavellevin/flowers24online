@@ -22,7 +22,7 @@
                             <div class="box-img">
                                 <div class="content-item">
                                     <p data-animation="fadeInRight" data-delay="1s">{{ __('messages.from catalog') }}: {{ $product->catalog->name }}</p>
-                                    <h5 class="title-h5" data-animation="fadeInRight" data-delay="1.2s"><a href=""
+                                    <h5 class="title-h5" data-animation="fadeInRight" data-delay="1.2s"><a href="{{ route('product', $product->slug) }}"
                                                                                                            title="">{{ $product->name }}</a></h5>
                                     <div class="bottom" data-animation="fadeInRight" data-delay="1.4s">
                                         @if(!empty($product->old_price))
@@ -30,14 +30,14 @@
                                         <span class="price">{{ $product->price }} {{ __('messages.uah') }}</span>
                                     </div>
                                     <div class="btn-web" data-animation="fadeInRight" data-delay="1.6s">
-                                        <a href="{{ route('product', $product->slug) }}" title="">{{ __('messages.buy now') }}</a>
+                                        <a href="{{ route('product', $product->slug) }}" title="{{ $product->name }}">{{ __('messages.buy now') }}</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="w50 col-sm-6" data-animation="fadeInLeft" data-delay="0.5s">
-                        <img src="{{ $product->getFirstMediaUrl('products', 'main_img') }}" alt="" class="img-responsive">
+                        <img src="{{ $product->getFirstMediaUrl('products', 'main_img') }}" alt="{{ $product->name }}" class="img-responsive">
                     </div>
                 </div>
             </div>

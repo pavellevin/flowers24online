@@ -176,4 +176,8 @@ class ProductsController extends AdminController
         DB::table($table)->insert($values);
     }
 
+    public function update($id)
+    {
+        dd('update');
+    }
 }

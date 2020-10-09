@@ -69,11 +69,6 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6">
-                                    <label>{{ __('messages.confirm password') }} *</label>
-                                    <input id="password-confirm" type="password" class="form-control"
-                                           name="password_confirmation" required autocomplete="new-password">
-                                </div>
-                                <div class="col-md-6">
                                     <label>{{ __('messages.phone') }} *</label>
                                     <input id="email" type="phone"
                                            class="form-control @error('phone') is-invalid @enderror" name="phone"
@@ -94,6 +89,11 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
+                                </div>
+                                <div class="col-md-6">
+                                    <label>{{ __('messages.confirm password') }} *</label>
+                                    <input id="password-confirm" type="password" class="form-control"
+                                           name="password_confirmation" required autocomplete="new-password">
                                 </div>
                                 <div class="col-md-6 col-md-offset-6 mt-25">
                                     <button type="submit" class="proceed-checkout">

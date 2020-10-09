@@ -23,7 +23,8 @@
                                         </h5>
                                         <div class="bottom">
                                             <div class="text-left pull-left">
-                                                <span class="old-price"><del>{{ $product->old_price }} {{ __('messages.uah') }}</del></span>
+                                                @if(!empty($product->old_price))
+                                                    <span class="old-price"><del>{{ $product->old_price }} {{ __('messages.uah') }}</del></span>@endif
                                                 <span class="price">{{ $product->price }} {{ __('messages.uah') }}</span>
                                             </div>
                                             {{--<div class="text-right">--}}

@@ -115,14 +115,14 @@
                 </div>
                 {{ $products->links('shared.site.pagination') }}
                 @else
-                    <div class="info"><h3>По заданным критериям товара не найдено!</h3></div>
+                    <div class="info"><h3>{{ __('messages.no product found for the specified search criteria!') }}</h3></div>
                 @endif
             </div>
             <div class="col-md-3">
                 <div class="sidebar sidebar-right hidden-sm hidden-xs">
                     @if(isset($catalog) && in_array($catalog->id, ['5','7','8','25','26']))
                         @widget('filter_flower', ['slug' => $catalog->slug, 'filters' => $filters])
-                        @widget('filter_price', ['filters' => $filters])
+                        {{--@widget('filter_price', ['filters' => $filters])--}}
                     @endif
                     @if(isset($catalog) && in_array($catalog->id, ['28']))
                         @widget('filter_dop', ['slug' => $catalog->slug, 'filters' => $filters])

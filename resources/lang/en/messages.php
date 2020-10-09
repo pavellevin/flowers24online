@@ -33,7 +33,7 @@ return [
     'new compositions' => 'New compositions',
     'from catalog' => 'from catalog',
     'buy now' => 'Buy Now',
-    'sort' => 'Sort',
+    'sort' => 'Sorting',
     'price from' => 'price from',
     'price to' => 'price to',
     'before checkout' => 'If you have made purchases with us before, please enter your details in the fields below. If you are a new customer, go to the registration section',
@@ -89,5 +89,6 @@ return [
     'search' => 'Search',
     'uah' => 'UAH',
     'enter your e-mail' => 'Enter your e-mail',
+    'buy' => 'Buy',
 
 ];

@@ -90,4 +90,5 @@ return [
     'search' => 'Поиск',
     'uah' => 'грн.',
     'enter your e-mail' => 'Введите свой e-mail',
+    'buy' => 'Заказать',
 ];

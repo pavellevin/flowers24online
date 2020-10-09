@@ -1,4 +1,4 @@
-<div class="widget widget-filter-price col-md-12 col-xs-6">
+<div class="widget widget-filter-price">
     <div class="title-heading">
         <span>{{ __('messages.filter by price') }}</span>
     </div>

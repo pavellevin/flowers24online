@@ -32,15 +32,16 @@
                                             {{--</div>--}}
                                             {{--</div>--}}
                                             {{--</div>--}}
-                                            <div class="btn-product">
-                                                <div class="wrap-btn">
-                                                    <a href="/"><span><i class="icon-wishlist"></i></span></a>
-                                                    <a href="{{ route('product', $product->slug) }}"><span><i
-                                                                    class="icon-search"></i></span></a>
-                                                    <a href="javascript:;" @click="addToCart({{json_encode($product)}})"
-                                                    ><span><i class="icon-cart"></i></span></a>
-                                                </div>
-                                            </div>
+                                            {{--<div class="btn-product">--}}
+                                                <button @click="addToCart({{json_encode($product)}})" type="submit" class="btn-login btn-theme btn-medium btn-buy"><span>{{__('messages.buy')}}</span></button>
+                                                {{--<div class="wrap-btn">--}}
+                                                    {{--<a href="/"><span><i class="icon-wishlist"></i></span></a>--}}
+                                                    {{--<a href="{{ route('product', $product->slug) }}"><span><i--}}
+                                                                    {{--class="icon-search"></i></span></a>--}}
+                                                    {{--<a href="javascript:;" @click="addToCart({{json_encode($product)}})"--}}
+                                                    {{--><span><i class="icon-cart"></i></span></a>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
                                             <div class="pro-list">
                                                 <h1 class="pro-name"><a
                                                             href="{{ route('product', $product->slug) }}">{{ $product->name }}</a>
@@ -116,17 +117,16 @@
                 @endif
             </div>
             <div class="col-md-3">
-                <div id="filter" class="sidebar sidebar-right">
+                <div class="sidebar sidebar-right hidden-xs">
                     @if(isset($catalog) && in_array($catalog->id, ['5','7','8','25','26']))
                         @widget('filter_flower', ['slug' => $catalog->slug, 'filters' => $filters])
-                        @widget('filter_price', ['filters' => $filters])
                     @endif
                     @if(isset($catalog) && in_array($catalog->id, ['28']))
                         @widget('filter_dop', ['slug' => $catalog->slug, 'filters' => $filters])
-                        @widget('filter_price', ['filters' => $filters])
                     @endif
-                </div>
-                <div class="sidebar sidebar-right">
+                    @widget('filter_price', ['filters' => $filters])
+                {{--</div>--}}
+                {{--<div class="sidebar sidebar-right">--}}
                     @widget('catalog')
                     {{--<div class="widget widget-filter-brand">--}}
                     {{--<div class="title-heading">--}}

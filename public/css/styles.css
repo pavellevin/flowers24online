@@ -10359,31 +10359,31 @@ button.btn-outline,
     transition: all 0.3s ease-in-out;
 }
 
-.wrap-box-1:hover .btn-product {
-    opacity: 1;
-    overflow: visible;
-    -moz-transition: all 0.3s ease-in-out;
-    -webkit-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    transform: translate(50%, -50%);
-}
+/*.wrap-box-1:hover .btn-product {*/
+    /*opacity: 1;*/
+    /*overflow: visible;*/
+    /*-moz-transition: all 0.3s ease-in-out;*/
+    /*-webkit-transition: all 0.3s ease-in-out;*/
+    /*-o-transition: all 0.3s ease-in-out;*/
+    /*transition: all 0.3s ease-in-out;*/
+    /*transform: translate(50%, -50%);*/
+/*}*/
 
 .wrap-box-1 .box-img {
     position: relative;
     overflow: hidden;
-    padding-bottom: 60px;
+    /*padding-bottom: 60px;*/
     margin-left: 5px;
 }
 
 .wrap-box-1 .btn-product {
     align-items: center;
     background: #fff;
-    box-shadow: 0 8px 33px rgba(0, 0, 0, 0.13);
+    box-shadow: 0 8px 23px rgba(0, 0, 0, 0.13);
     position: absolute;
-    opacity: 0;
+    /*opacity: 0;*/
     overflow: hidden;
-    top: 50%;
+    top: 100%;
     right: 50%;
     transform: translate(50%, -150%);
     height: 60px;
@@ -10400,7 +10400,7 @@ button.btn-outline,
     display: -moz-flex;
     display: -ms-flexbox;
     display: flex;
-    border: 1px solid #444444;
+    /*border: 1px solid #444444;*/
 }
 
 .wrap-box-1 .btn-product .wrap-btn {
@@ -12510,7 +12510,8 @@ li {
 }
 
 .shopping-cart:after {
-    background: #80b435;
+    /*background: #80b435;*/
+    background: #19c700;
     content: "";
     position: absolute;
     top: 0;
@@ -12527,7 +12528,8 @@ li {
 }
 
 .shopping-cart .item {
-    color: #80b435;
+    /*color: #80b435;*/
+    color: #656662;
     margin-left: 2px;
     font-size: 16px;
 }
@@ -13386,6 +13388,7 @@ li {
     border: none;
 }
 
+.box-right .widget .title-heading,
 .sidebar .widget .title-heading {
     font-size: 24px;
     font-weight: bold;
@@ -17954,4 +17957,46 @@ li.submenu1, li.submenu2{
 
 .mobile-contacts span{
     font-size: 18px;
+}
+
+button.btn-login.btn-theme.btn-medium.btn-buy {
+    width: 100%;
+}
+
+.header-v3 {
+    background: #80b435;
+}
+
+.header-v3 span,
+.header-v3 a{
+    color: white;
+    font-weight: 500;
+}
+
+.header-v3 .title-submenu a,
+.header-v3 .lever-1 a,
+.header-v3 .dropdown-content a{
+    color: black;
+    font-weight: 500;
+}
+
+.display-mode-filter {
+    float: left;
+}
+
+.display-mode-filter i{
+    font-size:30px;
+}
+
+.products-top-wrap .display-mode-filter button i {
+    padding: 0;
+    position: relative;
+    top: 0px;
+    color: #969696;
+}
+
+.box-right .widget .title-heading {
+    text-align: center;
+    margin-top: 10px;
+    padding-bottom: 0px;
 }

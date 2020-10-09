@@ -17,6 +17,9 @@
             {{ __('messages.results') }}</span>
     </div>
     <div class="box-right">
+        <div class="display-mode display-mode-filter hidden-lg hidden-md">
+        <button data-toggle="collapse" data-target="#collapse" class="tp_btn_search"><i class="pe-7s-filter"></i></button>
+        </div>
         <div class="select-filter">
             <span>{{ __('messages.sort by') }}:</span>
             {{--<select name="selectpicker" class="selectpicker" onchange="location.href=(typeof catalog !== 'undefined' ? '/catalog/' + catalog : '/shop') + '/' + this.value">--}}
@@ -27,6 +30,10 @@
                 <option value="highestprice" @if($sortby == 'highestprice') selected @endif> {{ __('messages.from high price') }}</option>
                 <option value="newness" @if($sortby == 'newness') selected @endif>{{ __('messages.new items') }}</option>
             </select>
+        </div>
+        <div id="collapse" aria-labelledby="heading" class="collapse" style="height: 0px;" aria-expanded="false">
+            @widget('filter_flower', ['slug' => $catalog->slug, 'filters' => $filters])
+
         </div>
     </div>
 </div>

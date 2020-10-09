@@ -32,7 +32,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="content-right col-md-4 col-sm-4">
+                    <div class="content-right col-md-4 col-sm-4 mt-85">
                         <div class="widget widget-cart-totals">
                             <div class="title-heading">
                                 <span>{{ __('messages.cart totals') }}</span>

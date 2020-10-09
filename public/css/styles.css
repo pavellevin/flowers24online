@@ -15936,6 +15936,7 @@ button.btn-login.btn-theme.btn-medium {
 .cart-page .content-left .title-heading {
     border-bottom: 1px solid #eee;
     padding-bottom: 18px;
+    text-align: center;
 }
 
 .content-right {
@@ -17651,6 +17652,10 @@ button.proceed-checkout {
 
 .pl-0 {
     padding-left: 0px;
+}
+
+.mt-85{
+    margin-top: 85px;
 }
 
 .mt-25{

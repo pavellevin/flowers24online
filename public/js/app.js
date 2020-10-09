@@ -39106,7 +39106,7 @@ var render = function() {
           2
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "content-right col-md-4 col-sm-4" }, [
+        _c("div", { staticClass: "content-right col-md-4 col-sm-4 mt-85" }, [
           _c("div", { staticClass: "widget widget-cart-totals" }, [
             _c("div", { staticClass: "title-heading" }, [
               _c("span", [_vm._v(_vm._s(_vm.__("messages.cart totals")))])

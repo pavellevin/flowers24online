@@ -1,4 +1,4 @@
-<header id="main-header-filter" class="header-filter visible-md">
+<header id="main-header-filter" class="header-filter">
     <div class="container-fluid">
         <div class="inner row">
             @foreach($attributes as $attribute)
@@ -7,6 +7,7 @@
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenu{{$attribute->id}}"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{$attribute->getValueGroupName($attribute)}}
+                        <i class="pe-7s-angle-down"></i>
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu{{$attribute->id}}">

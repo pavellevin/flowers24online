@@ -14537,6 +14537,10 @@ button.btn-login.btn-theme.btn-medium.btn-buy {
     .comming ul li p {
         font-size: 18px;
     }
+    .other-menu-auth {
+        padding-right: 15px;
+        padding-top: 0!important;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -14646,6 +14650,19 @@ button.btn-login.btn-theme.btn-medium.btn-buy {
     .contact-v2 {
         padding: 30px 0 50px;
     }
+
+    .footer .footer-top .title-h5 {
+        margin: 0;
+    }
+
+    .footer-page-email {
+        padding-top: 0!important;
+    }
+
+    .footer .footer-top .btn-web {
+        margin: 15px;
+    }
+
 }
 
 .contact-v2 .wrap-right {
@@ -14726,11 +14743,6 @@ button.btn-login.btn-theme.btn-medium.btn-buy {
 @media (max-width: 768px) {
     .contact-v2 .wrap-left h4 {
         font-size: 45px;
-    }
-
-    .other-menu-auth {
-        padding-right: 15px;
-        padding-top: 0!important;
     }
 
     #main-header-info p {
@@ -17385,6 +17397,10 @@ button.btn-login.btn-theme.btn-medium {
         top: -55px;
         right: -290px;
     }
+
+    #main-header.header-v3 .inner {
+        padding: 10px 0 0;
+    }
 }
 
 @media (max-width: 1199px) and (min-width: 768px) {
@@ -18204,8 +18220,9 @@ input[name=email]::placeholder {
     margin-top: 20px;
 }
 
-.header-info {
+.header-info-item {
      padding: 20px 0;
+     text-align: center;
      background-color: #b3f158;
  }
 
@@ -18235,6 +18252,26 @@ ul.header-filter li {
 #main-header-filter a {
     font-size: 15px;
     color: #395d04;
+}
+
+.footer-page-email {
+    padding-top: 50px;
+}
+
+.header-info i {
+    font-size: 30px;
+    padding-right: 5px;
+}
+
+/*#main-header-info p:hover,*/
+.header-info-item span {
+    position: relative;
+    bottom: 5px;}
+
+.header-info-item:hover {
+    color: white;
+    background-color: black;
+    cursor: pointer;
 }
 
 @media (max-width: 992px) {

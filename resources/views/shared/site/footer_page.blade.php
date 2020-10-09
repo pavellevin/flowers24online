@@ -7,7 +7,7 @@
                     <div class="col-md-4">
                         <h5 class="title-h5">{{ __('messages.do you want to know the news?') }}<br>{{ __('messages.subscribe!') }}</h5>
                     </div>
-                    <div class="col-md-4 pt-50">
+                    <div class="col-md-4 footer-page-email">
                         <input name="email" placeholder="{{ __('messages.enter your e-mail') }}" class="form-control" type="text">
                     </div>
                     <div class="btn-web btn-web-1 col-md-4">

@@ -10,7 +10,7 @@
                         <div class="item-pro">
                             <div class="wrap-box-1">
                                 <div class="box-img">
-                                    <div class="img" style="height: 100px;width: 100px;float: left;">
+                                    <div class="img" style="height: 100px;width: 100px;float: left;margin-right: 10px;">
                                     <a href="{{ route('product', $product->slug) }}">
                                         <img src="{{ $product->getFirstMediaUrl('products', 'admin_thumb') }}" class="img-responsive" alt="{{ $product->name }}" title="{{ $product->name }}">
                                     </a>

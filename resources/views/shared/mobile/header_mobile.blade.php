@@ -17,7 +17,6 @@
                         </button>
                     </div>
                     <div class="main-right">
-                        @include('shared.site.menu_auth')
                         <div class="search-popup search_modal search">
                             <a href="#" class="tp_btn_search" data-toggle="modal" data-target="#Searchmobile">
                                 <i class="pe-7s-search"></i>
@@ -52,6 +51,7 @@
                             </div>
                         </div>
 
+                        @include('shared.site.menu_auth')
 
                         {{--Start Shopping cart --}}
                         {{--@include('shared.mobile.shopping_card_mobile')--}}

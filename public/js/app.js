@@ -39018,7 +39018,7 @@ var render = function() {
         _c(
           "button",
           {
-            staticClass: "btn-login btn-theme btn-medium mb-20 mt-25",
+            staticClass: "btn-login btn-theme btn-medium mb-20",
             attrs: { type: "submit" },
             on: {
               click: function($event) {
@@ -39225,12 +39225,10 @@ var render = function() {
           }
         },
         [
-          _c("span", { staticClass: "text-cart" }, [
-            _vm._v(_vm._s(_vm.__("messages.cart")))
-          ]),
+          _c("i", { staticClass: "pe-7s-cart" }),
           _vm._v(" "),
           _c("span", { staticClass: "item" }, [
-            _vm._v("(" + _vm._s(_vm.$store.state.cartCount) + ")")
+            _vm._v(_vm._s(_vm.$store.state.cartCount))
           ])
         ]
       ),
@@ -39262,7 +39260,7 @@ var render = function() {
                       _c("div", { staticClass: "product-price" }, [
                         _vm._v(
                           "\n                                 " +
-                            _vm._s(product.totalPrice) +
+                            _vm._s(product.price) +
                             " "
                         ),
                         _c("span", [
@@ -39363,12 +39361,10 @@ var render = function() {
         }
       },
       [
-        _c("span", { staticClass: "text-cart" }, [
-          _vm._v(_vm._s(_vm.__("messages.cart")))
-        ]),
+        _c("i", { staticClass: "pe-7s-cart" }),
         _vm._v(" "),
         _c("span", { staticClass: "item" }, [
-          _vm._v("(" + _vm._s(_vm.$store.state.cartCount) + ")")
+          _vm._v(_vm._s(_vm.$store.state.cartCount))
         ])
       ]
     ),

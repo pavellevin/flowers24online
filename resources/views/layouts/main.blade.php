@@ -28,11 +28,14 @@
 {{--HEADER FILTER--}}
     @yield('header_filter')
 
-    {{--BREADCRUMB--}}
+{{--BREADCRUMB--}}
 @yield('breadcrumb')
+
 @include('shared.site.flash_message')
-    {{--CONTENT--}}
-    @yield('content')
+
+{{--CONTENT--}}
+@yield('content')
+
 {{--FOOTER--}}
 @yield('footer')
 
@@ -42,6 +45,7 @@
 {{--SCOLL TOP--}}
 @include('shared.site.scroll_top')
 </div>
+
 {{--SCRIPTS--}}
 @include('shared.site.scripts')
 

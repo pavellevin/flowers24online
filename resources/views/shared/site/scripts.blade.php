@@ -4,7 +4,7 @@
 <script type="text/javascript" src="{{asset('js/jquery-1.12.4.min.js')}}"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="{{asset('js/owl.carousel.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+{{--<script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>--}}
 <script type="text/javascript" src="{{asset('js/vit-gallery.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/jquery.countTo.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/jquery.appear.min.js')}}"></script>

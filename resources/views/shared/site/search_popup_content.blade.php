@@ -1,4 +1,4 @@
-<div id="mymodal" class="modal fade mymodal" role="dialog">
+<div id="mymodal" class="modal mymodal" role="dialog">
     <button type="button" class="close" data-dismiss="modal"><span class="pe-7s-close"></span></button>
     <div class="modal-dialog modal-lg">
         <div class="modal-content">

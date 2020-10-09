@@ -3,8 +3,8 @@
     <div class="shopping-cart">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
            aria-haspopup="true" aria-expanded="false">
-            <span class="text-cart">{{ __('messages.cart') }}</span>
-            <span class="item">({{ $store.state.cartCount }})</span>
+               <i class="pe-7s-cart"></i>
+               <span class="item">{{ $store.state.cartCount }}</span>
         </a>
         <div class="dropdown-menu dropdown-cart">
             <ul v-if="$store.state.cart.length > 0" class="mini-products-list">
@@ -17,7 +17,7 @@
                             <div class="product-name"><a :href="'/product/' +  product.slug">{{ product.name }} </a>
                             </div>
                             <div class="product-price">
-                                 {{ product.totalPrice }} <span>( x{{ product.quantity }}) {{ __('messages.uah') }}</span>
+                                 {{ product.price }} <span>( x{{ product.quantity }}) {{ __('messages.uah') }}</span>
                             </div>
                         </div>
                     </div>

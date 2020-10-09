@@ -114,14 +114,14 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="pro-share">
-                            <span class="title">Share this :</span>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-dribbble"></i></a>
-                            <a href="#"><i class="fa fa-skype"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                            <a href="#"><i class="fa fa-facebook-square"></i></a>
-                        </div>
+                        {{--<div class="pro-share">--}}
+                            {{--<span class="title">Share this :</span>--}}
+                            {{--<a href="#"><i class="fa fa-twitter"></i></a>--}}
+                            {{--<a href="#"><i class="fa fa-dribbble"></i></a>--}}
+                            {{--<a href="#"><i class="fa fa-skype"></i></a>--}}
+                            {{--<a href="#"><i class="fa fa-pinterest"></i></a>--}}
+                            {{--<a href="#"><i class="fa fa-facebook-square"></i></a>--}}
+                        {{--</div>--}}
                     </div>
                 </div>
             </div>

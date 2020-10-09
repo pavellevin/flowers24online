@@ -28,21 +28,22 @@
             <li class="level1">
                 <a href="{{ route('about_us')}}">{{ __('messages.about us') }}</a>
             </li>
-            <li class="level1 megamenu-fullwidth">
+            {{--<li class="level1 megamenu-fullwidth">--}}
+            <li class="level1">
                 <a href="{{ route('news') }}">{{ __('messages.news') }}</a>
-                <div class="submenu-v1">
-                    <div class="row margin-b-30">
-                        <div class="col-md-8">
-                            <div class="lever-1 margin-b-30">
-                                <div class="title-submenu">
-                                    <span>{{ __('messages.news') }}</span>
-                                </div>
-                                <ul>
-                                    @foreach($news as $new)
-                                        <li><a href="{{ route('new', $new->slug) }}">{{ $new->name }}</a></li>
-                                    @endforeach
-                                </ul>
-                            </div>
+                {{--<div class="submenu-v1">--}}
+                    {{--<div class="row margin-b-30">--}}
+                        {{--<div class="col-md-8">--}}
+                            {{--<div class="lever-1 margin-b-30">--}}
+                                {{--<div class="title-submenu">--}}
+                                    {{--<span>{{ __('messages.news') }}</span>--}}
+                                {{--</div>--}}
+                                {{--<ul>--}}
+                                    {{--@foreach($news as $new)--}}
+                                        {{--<li><a href="{{ route('new', $new->slug) }}">{{ $new->name }}</a></li>--}}
+                                    {{--@endforeach--}}
+                                {{--</ul>--}}
+                            {{--</div>--}}
                             {{--<div class="lever-1">--}}
                             {{--<div class="title-submenu">--}}
                             {{--<span>Новость 2</span>--}}
@@ -54,7 +55,7 @@
                             {{--<li><a href="/new">Новость 2</a></li>--}}
                             {{--</ul>--}}
                             {{--</div>--}}
-                        </div>
+                        {{--</div>--}}
                         {{--<div class="col-md-3">--}}
                         {{--<div class="lever-1 margin-b-30">--}}
                         {{--<div class="title-submenu">--}}
@@ -103,11 +104,11 @@
                         {{--</ul>--}}
                         {{--</div>--}}
                         {{--</div>--}}
-                        <div class="col-md-4">
-                            <img src="/images/banner/banner_menu_01.jpg" alt="banner menu">
-                        </div>
-                    </div>
-                </div>
+                        {{--<div class="col-md-4">--}}
+                            {{--<img src="/images/banner/banner_menu_01.jpg" alt="banner menu">--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
             </li>
             <li class="level1">
                 <a href="#">{{ __('messages.payment and delivery') }}</a>
@@ -115,7 +116,7 @@
             <li class="level4">
                 <div class="dropdown-phone">
                     <a href="javascript:;">{{ __('messages.contacts') }}</a>
-                    <i class="pe-7s-angle-down"></i>
+                    {{--<i class="pe-7s-angle-down"></i>--}}
                     <div class="dropdown-content">
                         <p>+380111111111</p>
                         <p>+380111111111</p>

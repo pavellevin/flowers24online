@@ -22,7 +22,7 @@
         <div class="footer-bottom">
             <div class="wrap-copyright">
                 <div class="copyright">
-                    Copyright © 218 <a href="" title="">Plant</a>.Powered by
+                    Copyright © 2020 <a href="/" title="">Flowers24online.</a> Powered by
                 </div>
                 <div class="countries">
                     {{--<img src="images/icon/6.png" alt="">United States--}}

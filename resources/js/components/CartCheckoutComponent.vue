@@ -186,7 +186,7 @@
         </div>
     </div>
     </div>
-        <button v-on:click="createOrder()" type="submit" class="btn-login btn-theme btn-medium mb-20 mt-25">
+        <button v-on:click="createOrder()" type="submit" class="btn-login btn-theme btn-medium mb-20">
             <span>{{ __('messages.confirm') }}</span>
         </button>
     </div>

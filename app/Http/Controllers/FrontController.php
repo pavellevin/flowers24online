@@ -150,7 +150,7 @@ class FrontController extends Controller
             if (is_array($filters) && sizeof($filters)) {
                 foreach ($filters as $filter) {
                     $products = $products->whereHas('attributes', function ($query) use ($filter) {
-                        $query->where('name', 'like', $filter);
+                        $query->where('name_en', 'like', $filter);
                     })//                        ->whereHas('catalog')
                     ;
                 }

@@ -11175,6 +11175,8 @@ li {
     display: -moz-flex;
     display: -ms-flexbox;
     display: flex;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 #main-header .header-right .search {
@@ -17310,9 +17312,21 @@ button.btn-login.btn-theme.btn-medium {
     margin-top: 35px;
 }
 
+@media (max-width: 1025px) and (min-width: 991px) {
+    #main-header .main-menu .navbar-nav li {
+        font-size: 18px;
+    }
+}
+
 @media (max-width: 1199px) and (min-width: 768px) {
     .blog-zigzag .wpb_wrapper .feature-content {
         margin: 0;
+    }
+    .main-menu .megamenu-default .submenu-v1 {
+        right: calc(50% - 700px);
+    }
+    .main-menu .navbar-nav .submenu-v1 {
+        padding: 50px 50px 50px 50px;
     }
 }
 

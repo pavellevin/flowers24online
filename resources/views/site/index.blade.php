@@ -25,7 +25,8 @@
                                     <h5 class="title-h5" data-animation="fadeInRight" data-delay="1.2s"><a href=""
                                                                                                            title="">{{ $product->name }}</a></h5>
                                     <div class="bottom" data-animation="fadeInRight" data-delay="1.4s">
-                                        <span class="old-price"><del>{{ $product->old_price }} {{ __('messages.uah') }}</del></span>
+                                        @if(!empty($product->old_price))
+                                            <span class="old-price"><del>{{ $product->old_price }} {{ __('messages.uah') }}</del></span>@endif
                                         <span class="price">{{ $product->price }} {{ __('messages.uah') }}</span>
                                     </div>
                                     <div class="btn-web" data-animation="fadeInRight" data-delay="1.6s">

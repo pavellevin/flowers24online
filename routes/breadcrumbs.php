@@ -2,7 +2,7 @@
 
 // Home
 Breadcrumbs::for('home', function ($trail) {
-    $trail->push(__('messages.home'), route('home'));
+    $trail->push(__('messages.home'), route('index'));
 });
 
 // Home > Shopping-card

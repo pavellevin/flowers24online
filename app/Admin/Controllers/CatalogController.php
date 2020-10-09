@@ -30,7 +30,7 @@ class CatalogController extends AdminController
         $grid->column('image')->image();
         $grid->column('name', __('Name'));
         $grid->column('slug', __('Slug'));
-        $grid->column('description', __('Description'));
+        $grid->column('description', __('Description'))->limit(100);
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 

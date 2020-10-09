@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->foreign('catalog_id')->references('id')->on('catalogs')->onDelete('cascade');
             $table->string('name', 100);
             $table->string('slug', 100);
-            $table->Integer('old_price');
+            $table->Integer('old_price')->nullable();
             $table->Integer('price');
             $table->string('description', 500)->nullable();
             $table->tinyInteger('quantity');

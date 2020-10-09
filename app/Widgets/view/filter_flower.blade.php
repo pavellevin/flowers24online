@@ -16,7 +16,7 @@
             <div id="collapse{{$attribute->id}}" class="collapse" aria-labelledby="heading{{$attribute->id}}" data-parent="#accordion">
                 @foreach($attribute->attributes as $attr)
                 <div class="card card-body">
-                    <li><a href="/catalog/{{$slug}}/filters={{$filters}}{{ mb_strtolower($attr->name) }}&">{{ $attr->getValueAttributeName($attr) }}</a></li>
+                    <li><a href="/catalog/{{$slug}}/filters={{$filters}}{{ mb_strtolower($attr->name_en) }}&">{{ $attr->getValueAttributeName($attr) }}</a></li>
                 </div>
                 @endforeach
             </div>

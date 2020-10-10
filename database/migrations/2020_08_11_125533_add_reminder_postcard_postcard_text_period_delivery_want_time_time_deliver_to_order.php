@@ -17,9 +17,9 @@ class AddReminderPostcardPostcardTextPeriodDeliveryWantTimeTimeDeliverToOrder ex
             if (!Schema::hasColumn('orders', 'is_slider')) {
                 $table->string('reminder', 2)->nullable()->after('status_id');
                 $table->string('want_postcard', 20)->nullable()->after('reminder');
-                $table->text('postcard_text', 500)->nullable()->after('postcard');
+                $table->text('postcard_text', 500)->nullable()->after('want_postcard');
                 $table->string('period_id', 20)->nullable()->after('date_delivery');
-                $table->string('want_time', 20)->nullable()->after('period_delivery');
+                $table->string('want_time', 20)->nullable()->after('period_id');
                 $table->time('time_delivery')->nullable()->after('want_time');
             }
 

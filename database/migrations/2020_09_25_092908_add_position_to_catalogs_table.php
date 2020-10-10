@@ -15,7 +15,7 @@ class AddPositionToCatalogsTable extends Migration
     {
         Schema::table('catalogs', function (Blueprint $table) {
             if (!Schema::hasColumn('catalogs', 'position')) {
-                $table->integer('position', 13)->unique()->after('id');
+                $table->text('position', 13)->after('id');
             }
         });
     }

@@ -13,7 +13,11 @@ set('repository', 'https://github.com/pavellevin/flowers24online');
 //set('git_tty', true);
 
 // Shared files/dirs between deploys 
-set('shared_files', ['.env']);
+set('shared_files', [
+    '.env',
+    '.htaccess',
+]);
+
 set('shared_dirs', [
     'storage/app',
     'storage/framework/cache',

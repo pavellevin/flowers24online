@@ -23,6 +23,7 @@ set('shared_dirs', [
     'storage/framework/cache',
     'storage/framework/sessions',
     'storage/framework/views',
+    'storage/media',
     'storage/logs',
     'public/images/uploads',
     'node_modules',

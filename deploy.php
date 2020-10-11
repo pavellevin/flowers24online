@@ -34,6 +34,10 @@ host('ut396634.ftp.tools')
     ->stage('production')
     ->multiplexing(false)
     ->user('ut396634')
+//    ->set(
+//        'composer_options',
+//        'install --verbose --no-dev --prefer-dist --optimize-autoloader --no-progress --no-interaction'
+//    )
     ->set('deploy_path', '~/flowers.test/www/');
 //    ->set('deploy_path', '~/{{application}}');
 
@@ -130,8 +134,8 @@ task('deploy', [
     'deploy:clean-cached-data-boot',
     'deploy:create-route-cache',
     'deploy:create-config-cache',
-    'deploy:install-npm',
-    'deploy:compile-assets',
+//    'deploy:install-npm',
+//    'deploy:compile-assets',
     'deploy:migrations',
 // 'deploy:seed',
     'deploy:symlink',

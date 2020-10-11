@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\News;
+use Illuminate\Support\Facades\Schema;
 use App\Period;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;

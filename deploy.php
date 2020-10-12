@@ -23,7 +23,6 @@ set('shared_dirs', [
     'storage/framework/cache',
     'storage/framework/sessions',
     'storage/framework/views',
-    'storage/media',
     'storage/logs',
     'public/images/uploads',
     'node_modules',
@@ -88,6 +87,13 @@ run('cd {{release_path}} && php artisan db:seed');
 });*/
 
 /**
+ * Create storage link.
+ */
+task('deploy:create-storage-link', function() {
+    run('cd {{release_path}} && php artisan storage:link');
+});
+
+/**
  * Create cache for routes.
  */
 task('deploy:create-route-cache', function() {
@@ -144,6 +150,7 @@ task('deploy', [
     'deploy:migrations',
 // 'deploy:seed',
     'deploy:symlink',
+    'deploy:create-storage-link',
     'cleanup',
 ])->desc('Deploy your project');
 
